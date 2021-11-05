@@ -27,7 +27,7 @@ npm i -S vue-intl
 <TabItem value="yarn">
 
 ```sh
-yarn add -S vue-intl
+yarn add vue-intl
 ```
 
 </TabItem>
@@ -38,23 +38,27 @@ yarn add -S vue-intl
 Initialize `VueIntl` plugin with the same `IntlConfig` documented in [@formatjs/intl](./intl.md#IntlShape).
 
 ```tsx
-import VueIntl from 'vue-intl'
+import {createIntl} from 'vue-intl'
 
 const app = createApp(App)
-app.use(VueIntl, {
-  locale: 'en',
-  defaultLocale: 'en',
-  messages: {
-    foo: 'bar',
-  },
-})
+app.use(
+  createIntl({
+    locale: 'en',
+    defaultLocale: 'en',
+    messages: {
+      foo: 'bar',
+    },
+  })
+)
 ```
 
 From there you can use our APIs in 2 ways:
 
 ### inject
 
-By specifying `inject: ['intl']`, you can use the full `IntlFormatters` API documented in [@formatjs/intl](./intl.md#IntlShape).
+By specifying `inject: {intl: intlKey}`, you can use the full `IntlFormatters` API documented in [@formatjs/intl](./intl.md#IntlShape).
+
+Note: `intlKey` needs to be imported from `vue-intl`.
 
 ### Composition API
 

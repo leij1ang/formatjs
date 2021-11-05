@@ -1,10 +1,8 @@
 import * as React from 'react'
-import IntlProvider, {
-  OptionalIntlConfig,
-} from '../../../src/components/provider'
+import IntlProvider, {IntlConfig} from '../../../src/components/provider'
 import withIntl from '../../../src/components/injectIntl'
 import {render} from '@testing-library/react'
-import {FormattedDate} from '../../../'
+import {FormattedDate, FormattedMessage} from '../../../'
 
 describe('<IntlProvider>', () => {
   const now = Date.now()
@@ -45,6 +43,53 @@ describe('<IntlProvider>', () => {
 
     expect(onError.mock.calls[0][0].code).toBe('INVALID_CONFIG')
     expect(onError).toHaveBeenCalledTimes(1)
+  })
+
+  it('should re-render with new messages', () => {
+    const onError = jest.fn()
+    const props: IntlConfig = {
+      locale: 'en',
+      timeZone: 'Australia/Adelaide',
+      formats: {
+        date: {
+          'year-only': {
+            year: 'numeric',
+          },
+        },
+      },
+      messages: {
+        hello: 'Hello, World!',
+      },
+
+      defaultLocale: 'fr',
+      defaultFormats: {
+        date: {
+          'year-only': {
+            year: 'numeric',
+          },
+        },
+      },
+      onError,
+    }
+
+    const {getByTestId, rerender} = render(
+      <IntlProvider {...props}>
+        <span data-testid="comp">
+          <FormattedMessage id="hello" />
+        </span>
+      </IntlProvider>
+    )
+
+    expect(onError).not.toHaveBeenCalled()
+    expect(getByTestId('comp')).toHaveTextContent('Hello, World!')
+    rerender(
+      <IntlProvider {...props} messages={{hello: 'blah'}}>
+        <span data-testid="comp">
+          <FormattedMessage id="hello" />
+        </span>
+      </IntlProvider>
+    )
+    expect(getByTestId('comp')).toHaveTextContent('blah')
   })
 
   it('warns when `locale` prop provided has no locale data in Intl.NumberFormat', () => {
@@ -89,7 +134,7 @@ describe('<IntlProvider>', () => {
 
   it('shadows inherited intl config props from an <IntlProvider> ancestor', () => {
     const onError = jest.fn()
-    const props: OptionalIntlConfig = {
+    const props: IntlConfig = {
       locale: 'en',
       timeZone: 'Australia/Adelaide',
       formats: {

@@ -1,6 +1,8 @@
 load("@build_bazel_rules_nodejs//:index.bzl", "generated_file_test", "nodejs_binary", "pkg_npm")
-load("//tools:index.bzl", "bundle_karma_tests", "check_format", "generate_src_file", "ts_compile")
+load("//tools:index.bzl", "bundle_karma_tests", "check_format", "generate_src_file", "package_json_test", "ts_compile")
 load("//tools:jest.bzl", "jest_test")
+
+exports_files(["package.json"])
 
 PACKAGE_NAME = "icu-messageformat-parser"
 
@@ -59,7 +61,6 @@ nodejs_binary(
     data = [
         ":dist",
         "@npm//benchmark",
-        "@npm//intl-messageformat-parser",
         "benchmark.js",
     ] + SRC_DEPS,
     entry_point = "benchmark.js",
@@ -78,6 +79,7 @@ check_format(
             "**/*",
         ],
         exclude = [
+            "**/*.generated.ts",
             "CHANGELOG.md",
             "tests/__snapshots__/*",
         ],
@@ -102,4 +104,9 @@ generate_src_file(
         "@npm//regenerate",
     ],
     entry_point = "scripts/regex-gen.ts",
+)
+
+package_json_test(
+    name = "package_json_test",
+    deps = SRC_DEPS,
 )

@@ -1,4 +1,15 @@
 /**
+ * Check if this is old Node that only supports en
+ * @returns
+ */
+function onlySupportsEn() {
+  return (
+    !(Intl.NumberFormat as any).polyfilled &&
+    !Intl.NumberFormat.supportedLocalesOf(['es']).length
+  )
+}
+
+/**
  * Check if Intl.NumberFormat is ES2020 compatible.
  * Caveat: we are not checking `toLocaleString`.
  *
@@ -25,10 +36,20 @@ function supportsES2020() {
   return true
 }
 
-export function shouldPolyfill() {
+function supportedLocalesOf(locale?: string | string[]) {
+  if (!locale) {
+    return true
+  }
+  const locales = Array.isArray(locale) ? locale : [locale]
+  return Intl.NumberFormat.supportedLocalesOf(locales).length === locales.length
+}
+
+export function shouldPolyfill(locale?: string | string[]) {
   return (
     typeof Intl === 'undefined' ||
     !('NumberFormat' in Intl) ||
-    !supportsES2020()
+    !supportsES2020() ||
+    onlySupportsEn() ||
+    !supportedLocalesOf(locale)
   )
 }

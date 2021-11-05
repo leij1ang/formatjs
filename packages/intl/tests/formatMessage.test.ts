@@ -5,12 +5,12 @@ import '@formatjs/intl-numberformat/locale-data/es'
 import IntlMessageFormat from 'intl-messageformat'
 import {parse} from '@formatjs/icu-messageformat-parser'
 import {formatMessage as baseFormatMessage} from '../src/message'
-import {Formatters, OptionalIntlConfig, IntlFormatters} from '../src/types'
+import {Formatters, IntlConfig, IntlFormatters} from '../src/types'
 
 describe('format API', () => {
   const {NODE_ENV} = process.env
 
-  let config: OptionalIntlConfig<any>
+  let config: IntlConfig<any>
   let state: Formatters
 
   beforeEach(() => {
@@ -444,6 +444,20 @@ describe('format API', () => {
         expect(
           (config.onError as jest.Mock).mock.calls.map(c => c[0].code)
         ).toMatchSnapshot()
+      })
+
+      it('returns an empty string when `fallbackOnEmptyString` is false', () => {
+        config.fallbackOnEmptyString = false
+        const id = 'empty'
+
+        expect(formatMessage({id})).toBe('')
+      })
+
+      it('does not return an empty string when `fallbackOnEmptyString` is true', () => {
+        config.fallbackOnEmptyString = true
+        const id = 'empty'
+
+        expect(formatMessage({id})).toBe(id)
       })
 
       it('returns message `id` when message and `defaultMessage` are empty', () => {

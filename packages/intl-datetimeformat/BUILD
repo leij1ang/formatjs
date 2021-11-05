@@ -1,7 +1,10 @@
 load("@build_bazel_rules_nodejs//:index.bzl", "generated_file_test", "pkg_npm")
 load("@com_github_ash2k_bazel_tools//multirun:def.bzl", "multirun")
-load("//tools:index.bzl", "check_format", "esbuild", "generate_src_file", "ts_compile", "ts_script")
+load("@npm//ts-node:index.bzl", "ts_node")
+load("//tools:index.bzl", "check_format", "esbuild", "generate_src_file", "package_json_test", "ts_compile", "ts_script")
 load("//tools:jest.bzl", "jest_test")
+
+exports_files(["package.json"])
 
 PACKAGE_NAME = "intl-datetimeformat"
 
@@ -28,7 +31,9 @@ pkg_npm(
     ],
     deps = [
         "add-all-tz.js",
+        "add-all-tz.d.ts",
         "add-golden-tz.js",
+        "add-golden-tz.d.ts",
         ":dist",
         ":locale-data",
         # polyfill-library uses this
@@ -49,23 +54,23 @@ alias(
 SRCS = glob(
     [
         "*.ts",
-        "src/*.ts",
-        "src/data/*",
+        "src/**/*",
     ],
-    exclude = ["test*.*"],
 )
 
 TESTS = glob([
-    "tests/*.test.ts",
+    "tests/**/*.test.ts",
 ])
 
 SRC_DEPS = [
     "//packages/ecma402-abstract:dist",
+    "//packages/intl-localematcher:dist",
 ]
 
 TEST_DEPS = SRC_DEPS + [
     "//packages/intl-pluralrules",
     "//packages/ecma402-abstract:types",
+    "//packages/intl-localematcher:types",
     "//packages/intl-getcanonicallocales:dist",
     "//packages/intl-getcanonicallocales:types",
     "//packages/intl-locale:dist",
@@ -96,6 +101,7 @@ ts_script(
     name = "cldr-raw",
     data = [
         "scripts/extract-dates.ts",
+        "src/abstract/skeleton.ts",
         "src/types.ts",
         "//packages/ecma402-abstract:dist",
         "//packages/ecma402-abstract:types",
@@ -243,6 +249,18 @@ ts_script(
     entry_point = "scripts/process-zdump.ts",
 )
 
+genrule(
+    name = "add-all-tz-typedef",
+    outs = ["add-all-tz.d.ts"],
+    cmd = "echo 'export {}' > $@",
+)
+
+genrule(
+    name = "add-golden-tz-typedef",
+    outs = ["add-golden-tz.d.ts"],
+    cmd = "echo 'export {}' > $@",
+)
+
 generated_file_test(
     name = "tsconfig_json",
     src = "tsconfig.json",
@@ -252,6 +270,7 @@ generated_file_test(
 esbuild(
     name = "polyfill.iife",
     entry_point = "lib/polyfill.js",
+    target = "es5",
     deps = [
         ":dist-esm",
         "@npm//tslib",
@@ -271,4 +290,24 @@ check_format(
             "test262-main.ts",
         ],
     ),
+)
+
+ts_node(
+    name = "benchmark",
+    args = [
+        "--transpile-only",
+        "$(execpath tests/benchmark.ts)",
+    ],
+    data = SRCS + SRC_DEPS + [
+        "tests/benchmark.ts",
+        "tests/locale-data/en.json",
+        "//:tsconfig.json",
+        "@npm//tslib",
+        "//:tsconfig.node.json",
+    ],
+)
+
+package_json_test(
+    name = "package_json_test",
+    deps = SRC_DEPS,
 )

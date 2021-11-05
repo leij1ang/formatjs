@@ -1,38 +1,67 @@
-import chalk from 'chalk'
+import {supportsColor, green, red, yellow} from 'chalk'
 import readline from 'readline'
-import tty from 'tty'
+import {format, promisify} from 'util'
 
 const CLEAR_WHOLE_LINE = 0
 
+export const writeStderr = promisify(process.stderr.write).bind(process.stderr)
+export const writeStdout = promisify(process.stdout.write).bind(process.stdout)
+
+const nativeClearLine = promisify(readline.clearLine).bind(readline)
+const nativeCursorTo = promisify(readline.cursorTo).bind(readline)
+
 // From:
 // https://github.com/yarnpkg/yarn/blob/53d8004229f543f342833310d5af63a4b6e59c8a/src/reporters/console/util.js
-export function clearLine(terminal: NodeJS.WriteStream) {
-  if (!chalk.supportsColor) {
-    if (terminal instanceof tty.WriteStream) {
+export async function clearLine(terminal: typeof process['stderr']) {
+  if (!supportsColor) {
+    if (terminal.isTTY) {
       // terminal
       if (terminal.columns > 0) {
-        terminal.write(`\r${' '.repeat(terminal.columns - 1)}`)
+        await writeStderr(`\r${' '.repeat(terminal.columns - 1)}`)
       }
-      terminal.write(`\r`)
+      await writeStderr(`\r`)
     }
     // ignore piping to file
   } else {
-    readline.clearLine(terminal, CLEAR_WHOLE_LINE)
-    readline.cursorTo(terminal, 0)
+    await nativeClearLine(terminal, CLEAR_WHOLE_LINE)
+    await nativeCursorTo(terminal, 0, undefined)
   }
 }
 
-export function warn(message: string): void {
-  clearLine(process.stderr)
-  process.stderr.write(`${chalk.yellow('warning')} ${message}\n`)
+const LEVEL_COLORS = {
+  debug: green,
+  warn: yellow,
+  error: red,
 }
 
-export function error(message: string): void {
-  clearLine(process.stderr)
-  process.stderr.write(`${chalk.red('error')} ${message}\n`)
+function label(level: keyof typeof LEVEL_COLORS, message: string) {
+  return `[@formatjs/cli] [${LEVEL_COLORS[level](
+    level.toUpperCase()
+  )}] ${message}`
 }
 
-export async function getStdinAsString(): Promise<string> {
+export async function debug(message: string, ...args: any[]) {
+  if (process.env.LOG_LEVEL !== 'debug') {
+    return
+  }
+  await clearLine(process.stderr)
+  await writeStderr(format(label('debug', message), ...args))
+  await writeStderr('\n')
+}
+
+export async function warn(message: string, ...args: any[]) {
+  await clearLine(process.stderr)
+  await writeStderr(format(label('warn', message), ...args))
+  await writeStderr('\n')
+}
+
+export async function error(message: string, ...args: any[]) {
+  await clearLine(process.stderr)
+  await writeStderr(format(label('error', message), ...args))
+  await writeStderr('\n')
+}
+
+export function getStdinAsString(): Promise<string> {
   let result = ''
   return new Promise(resolve => {
     process.stdin.setEncoding('utf-8')

@@ -3,6 +3,194 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.3.2](https://github.com/formatjs/formatjs/compare/@formatjs/intl-relativetimeformat@9.3.1...@formatjs/intl-relativetimeformat@9.3.2) (2021-10-17)
+
+**Note:** Version bump only for package @formatjs/intl-relativetimeformat
+
+
+
+
+
+## [9.3.1](https://github.com/formatjs/formatjs/compare/@formatjs/intl-relativetimeformat@9.3.0...@formatjs/intl-relativetimeformat@9.3.1) (2021-09-27)
+
+**Note:** Version bump only for package @formatjs/intl-relativetimeformat
+
+
+
+
+
+# [9.3.0](https://github.com/formatjs/formatjs/compare/@formatjs/intl-relativetimeformat@9.2.3...@formatjs/intl-relativetimeformat@9.3.0) (2021-09-26)
+
+
+### Features
+
+* **@formatjs/intl-relativetimeformat:** update shouldPolyfill for Intl.RelativeTimeFormat ([#3139](https://github.com/formatjs/formatjs/issues/3139)) ([0435ad1](https://github.com/formatjs/formatjs/commit/0435ad113469adad27451f59fce42c3bf6e5f75e))
+
+
+
+
+
+## [9.2.3](https://github.com/formatjs/formatjs/compare/@formatjs/intl-relativetimeformat@9.2.2...@formatjs/intl-relativetimeformat@9.2.3) (2021-08-21)
+
+**Note:** Version bump only for package @formatjs/intl-relativetimeformat
+
+
+
+
+
+## [9.2.2](https://github.com/formatjs/formatjs/compare/@formatjs/intl-relativetimeformat@9.2.1...@formatjs/intl-relativetimeformat@9.2.2) (2021-08-15)
+
+**Note:** Version bump only for package @formatjs/intl-relativetimeformat
+
+
+
+
+
+## [9.2.1](https://github.com/formatjs/formatjs/compare/@formatjs/intl-relativetimeformat@9.2.0...@formatjs/intl-relativetimeformat@9.2.1) (2021-08-06)
+
+**Note:** Version bump only for package @formatjs/intl-relativetimeformat
+
+
+
+
+
+# [9.2.0](https://github.com/formatjs/formatjs/compare/@formatjs/intl-relativetimeformat@9.1.7...@formatjs/intl-relativetimeformat@9.2.0) (2021-07-24)
+
+
+### Bug Fixes
+
+* **@formatjs/intl-relativetimeformat:** refactor ([7bfcc3e](https://github.com/formatjs/formatjs/commit/7bfcc3ea726f4ed493d073e6c34f53ad77f63484))
+
+
+### Features
+
+* **@formatjs/intl-relativetimeformat:** add supported locales check to should-polyfill, fix [#3066](https://github.com/formatjs/formatjs/issues/3066) ([ab90bf5](https://github.com/formatjs/formatjs/commit/ab90bf53b9fee8645e93656517876d93d93b12c3))
+
+
+
+
+
+## [9.1.7](https://github.com/formatjs/formatjs/compare/@formatjs/intl-relativetimeformat@9.1.6...@formatjs/intl-relativetimeformat@9.1.7) (2021-06-26)
+
+**Note:** Version bump only for package @formatjs/intl-relativetimeformat
+
+
+
+
+
+## [9.1.6](https://github.com/formatjs/formatjs/compare/@formatjs/intl-relativetimeformat@9.1.5...@formatjs/intl-relativetimeformat@9.1.6) (2021-06-05)
+
+
+### Bug Fixes
+
+* **@formatjs/intl-relativetimeformat:** remove Intl check ([cf95623](https://github.com/formatjs/formatjs/commit/cf95623339317b570c4ef9cb00862598acf8314d))
+
+
+
+
+
+## [9.1.5](https://github.com/formatjs/formatjs/compare/@formatjs/intl-relativetimeformat@9.1.4...@formatjs/intl-relativetimeformat@9.1.5) (2021-06-05)
+
+**Note:** Version bump only for package @formatjs/intl-relativetimeformat
+
+
+
+
+
+## [9.1.4](https://github.com/formatjs/formatjs/compare/@formatjs/intl-relativetimeformat@9.1.3...@formatjs/intl-relativetimeformat@9.1.4) (2021-06-04)
+
+**Note:** Version bump only for package @formatjs/intl-relativetimeformat
+
+
+
+
+
+## [9.1.3](https://github.com/formatjs/formatjs/compare/@formatjs/intl-relativetimeformat@9.1.2...@formatjs/intl-relativetimeformat@9.1.3) (2021-06-01)
+
+**Note:** Version bump only for package @formatjs/intl-relativetimeformat
+
+
+
+
+
+## [9.1.2](https://github.com/formatjs/formatjs/compare/@formatjs/intl-relativetimeformat@9.1.1...@formatjs/intl-relativetimeformat@9.1.2) (2021-05-23)
+
+**Note:** Version bump only for package @formatjs/intl-relativetimeformat
+
+
+
+
+
+## [9.1.1](https://github.com/formatjs/formatjs/compare/@formatjs/intl-relativetimeformat@9.1.0...@formatjs/intl-relativetimeformat@9.1.1) (2021-05-20)
+
+**Note:** Version bump only for package @formatjs/intl-relativetimeformat
+
+
+
+
+
+# [9.1.0](https://github.com/formatjs/formatjs/compare/@formatjs/intl-relativetimeformat@9.0.0...@formatjs/intl-relativetimeformat@9.1.0) (2021-05-17)
+
+
+### Features
+
+* **@formatjs/intl-relativetimeformat:** upgrade unicode to v39 ([5b743cb](https://github.com/formatjs/formatjs/commit/5b743cb2b3ed2f62cc973a3ba39e20e136756425))
+
+
+
+
+
+# [9.0.0](https://github.com/formatjs/formatjs/compare/@formatjs/intl-relativetimeformat@8.1.8...@formatjs/intl-relativetimeformat@9.0.0) (2021-05-14)
+
+
+### Features
+
+* **@formatjs/intl-relativetimeformat:** stop aliasing en-US-POSIX to en-US ([30a38ad](https://github.com/formatjs/formatjs/commit/30a38ad2efd32a37d82e20ff0f1cea24b8c8a22c))
+
+
+### BREAKING CHANGES
+
+* **@formatjs/intl-relativetimeformat:** Before we call `en-US-POSIX` as `en-US` but it has subtle pattern differences so it's misleading. If you were importing `en-US` earlier, use `en` instead since they're the same.
+
+
+
+
+
+## [8.1.8](https://github.com/formatjs/formatjs/compare/@formatjs/intl-relativetimeformat@8.1.7...@formatjs/intl-relativetimeformat@8.1.8) (2021-05-10)
+
+**Note:** Version bump only for package @formatjs/intl-relativetimeformat
+
+
+
+
+
+## [8.1.7](https://github.com/formatjs/formatjs/compare/@formatjs/intl-relativetimeformat@8.1.6...@formatjs/intl-relativetimeformat@8.1.7) (2021-05-02)
+
+
+### Bug Fixes
+
+* **@formatjs/intl-relativetimeformat:** add d.ts for locale files, fix [#2850](https://github.com/formatjs/formatjs/issues/2850) ([c7b7eba](https://github.com/formatjs/formatjs/commit/c7b7ebaa87674806b568ca4d8555cb91d14a143a))
+
+
+
+
+
+## [8.1.6](https://github.com/formatjs/formatjs/compare/@formatjs/intl-relativetimeformat@8.1.5...@formatjs/intl-relativetimeformat@8.1.6) (2021-04-26)
+
+**Note:** Version bump only for package @formatjs/intl-relativetimeformat
+
+
+
+
+
+## [8.1.5](https://github.com/formatjs/formatjs/compare/@formatjs/intl-relativetimeformat@8.1.4...@formatjs/intl-relativetimeformat@8.1.5) (2021-04-12)
+
+**Note:** Version bump only for package @formatjs/intl-relativetimeformat
+
+
+
+
+
 ## [8.1.4](https://github.com/formatjs/formatjs/compare/@formatjs/intl-relativetimeformat@8.1.3...@formatjs/intl-relativetimeformat@8.1.4) (2021-03-26)
 
 **Note:** Version bump only for package @formatjs/intl-relativetimeformat

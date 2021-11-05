@@ -1,4 +1,4 @@
-import {Rule, Scope} from 'eslint'
+import {Rule} from 'eslint'
 import {TSESTree} from '@typescript-eslint/typescript-estree'
 import {extractMessages} from '../util'
 import {
@@ -25,12 +25,12 @@ enum LDML {
 }
 
 function verifyAst(
-  plConfig: Record<keyof LDML, boolean>,
+  plConfig: Record<LDML, boolean>,
   ast: MessageFormatElement[]
 ) {
   for (const el of ast) {
     if (isPluralElement(el)) {
-      const rules = Object.keys(plConfig) as Array<keyof LDML>
+      const rules = Object.keys(plConfig) as Array<LDML>
       for (const rule of rules) {
         if (plConfig[rule] && !el.options[rule]) {
           throw new PluralRulesEnforcement(`Missing plural rule "${rule}"`)
@@ -47,12 +47,8 @@ function verifyAst(
   }
 }
 
-function checkNode(
-  context: Rule.RuleContext,
-  node: TSESTree.Node,
-  importedMacroVars: Scope.Variable[]
-) {
-  const msgs = extractMessages(node, importedMacroVars)
+function checkNode(context: Rule.RuleContext, node: TSESTree.Node) {
+  const msgs = extractMessages(node, context.settings)
   if (!msgs.length) {
     return
   }
@@ -71,11 +67,16 @@ function checkNode(
       continue
     }
     try {
-      verifyAst(context.options[0], parse(defaultMessage))
+      verifyAst(
+        context.options[0],
+        parse(defaultMessage, {
+          ignoreTag: context.settings.ignoreTag,
+        })
+      )
     } catch (e) {
       context.report({
         node: messageNode as any,
-        message: e.message,
+        message: e instanceof Error ? e.message : String(e),
       })
     }
   }
@@ -109,9 +110,8 @@ const rule: Rule.RuleModule = {
     ],
   },
   create(context) {
-    let importedMacroVars: Scope.Variable[] = []
     const callExpressionVisitor = (node: TSESTree.Node) =>
-      checkNode(context, node, importedMacroVars)
+      checkNode(context, node)
 
     if (context.parserServices.defineTemplateBodyVisitor) {
       return context.parserServices.defineTemplateBodyVisitor(
@@ -124,14 +124,7 @@ const rule: Rule.RuleModule = {
       )
     }
     return {
-      ImportDeclaration: node => {
-        const moduleName = node.source.value
-        if (moduleName === 'react-intl') {
-          importedMacroVars = context.getDeclaredVariables(node)
-        }
-      },
-      JSXOpeningElement: (node: TSESTree.Node) =>
-        checkNode(context, node, importedMacroVars),
+      JSXOpeningElement: (node: TSESTree.Node) => checkNode(context, node),
       CallExpression: callExpressionVisitor,
     }
   },

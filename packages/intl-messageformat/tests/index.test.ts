@@ -566,9 +566,10 @@ describe('IntlMessageFormat', function () {
 
     it('simple message', function () {
       const mf = new IntlMessageFormat('hello <b>world</b>', 'en')
-      expect(
-        mf.format<object>({b: parts => ({parts})})
-      ).toEqual(['hello ', {parts: ['world']}])
+      expect(mf.format<object>({b: parts => ({parts})})).toEqual([
+        'hello ',
+        {parts: ['world']},
+      ])
     })
     it('nested tag message', function () {
       const mf = new IntlMessageFormat(
@@ -646,7 +647,7 @@ describe('IntlMessageFormat', function () {
     })
     it('select message w/ placeholder & >', function () {
       const mf = new IntlMessageFormat(
-        '{gender, select, male {&lt; hello <b>world</b> {token} &lt;&gt; <a>{placeholder}</a>} female {<b>foo &lt;&gt; bar</b>}}',
+        '{gender, select, male {&lt; hello <b>world</b> {token} &lt;&gt; <a>{placeholder}</a>} female {<b>foo &lt;&gt; bar</b>} other {<b>foo &lt;&gt; bar</b>}}',
         'en'
       )
       expect(
@@ -830,6 +831,14 @@ describe('IntlMessageFormat', function () {
         'You worked for # hours today.'
       )
     })
+  })
+
+  it('default format like in ICU should work', function () {
+    expect(
+      new IntlMessageFormat('{amount, number, integer}', 'en-US').format({
+        amount: 123456.78,
+      })
+    ).toBe('123,457')
   })
 
   it('number skeleton', function () {

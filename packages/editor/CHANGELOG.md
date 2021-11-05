@@ -3,6 +3,265 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.33](https://github.com/formatjs/formatjs/compare/@formatjs/editor@1.1.32...@formatjs/editor@1.1.33) (2021-10-22)
+
+**Note:** Version bump only for package @formatjs/editor
+
+
+
+
+
+## [1.1.32](https://github.com/formatjs/formatjs/compare/@formatjs/editor@1.1.31...@formatjs/editor@1.1.32) (2021-10-17)
+
+**Note:** Version bump only for package @formatjs/editor
+
+
+
+
+
+## [1.1.31](https://github.com/formatjs/formatjs/compare/@formatjs/editor@1.1.30...@formatjs/editor@1.1.31) (2021-09-27)
+
+**Note:** Version bump only for package @formatjs/editor
+
+
+
+
+
+## [1.1.30](https://github.com/formatjs/formatjs/compare/@formatjs/editor@1.1.29...@formatjs/editor@1.1.30) (2021-09-26)
+
+
+### Bug Fixes
+
+* **react-intl:** allow @types/react 16 as well ([7a8cef1](https://github.com/formatjs/formatjs/commit/7a8cef142a20c96e847ac5c10efcd88dd032a074)), closes [#3138](https://github.com/formatjs/formatjs/issues/3138)
+
+
+
+
+
+## [1.1.29](https://github.com/formatjs/formatjs/compare/@formatjs/editor@1.1.28...@formatjs/editor@1.1.29) (2021-08-21)
+
+**Note:** Version bump only for package @formatjs/editor
+
+
+
+
+
+## [1.1.28](https://github.com/formatjs/formatjs/compare/@formatjs/editor@1.1.27...@formatjs/editor@1.1.28) (2021-08-16)
+
+**Note:** Version bump only for package @formatjs/editor
+
+
+
+
+
+## [1.1.27](https://github.com/formatjs/formatjs/compare/@formatjs/editor@1.1.26...@formatjs/editor@1.1.27) (2021-08-15)
+
+**Note:** Version bump only for package @formatjs/editor
+
+
+
+
+
+## [1.1.26](https://github.com/formatjs/formatjs/compare/@formatjs/editor@1.1.25...@formatjs/editor@1.1.26) (2021-08-06)
+
+**Note:** Version bump only for package @formatjs/editor
+
+
+
+
+
+## [1.1.25](https://github.com/formatjs/formatjs/compare/@formatjs/editor@1.1.24...@formatjs/editor@1.1.25) (2021-07-24)
+
+**Note:** Version bump only for package @formatjs/editor
+
+
+
+
+
+## [1.1.24](https://github.com/formatjs/formatjs/compare/@formatjs/editor@1.1.23...@formatjs/editor@1.1.24) (2021-07-23)
+
+**Note:** Version bump only for package @formatjs/editor
+
+
+
+
+
+## [1.1.23](https://github.com/formatjs/formatjs/compare/@formatjs/editor@1.1.22...@formatjs/editor@1.1.23) (2021-06-26)
+
+**Note:** Version bump only for package @formatjs/editor
+
+
+
+
+
+## [1.1.22](https://github.com/formatjs/formatjs/compare/@formatjs/editor@1.1.21...@formatjs/editor@1.1.22) (2021-06-21)
+
+**Note:** Version bump only for package @formatjs/editor
+
+
+
+
+
+## [1.1.21](https://github.com/formatjs/formatjs/compare/@formatjs/editor@1.1.20...@formatjs/editor@1.1.21) (2021-06-09)
+
+**Note:** Version bump only for package @formatjs/editor
+
+
+
+
+
+## [1.1.20](https://github.com/formatjs/formatjs/compare/@formatjs/editor@1.1.19...@formatjs/editor@1.1.20) (2021-06-05)
+
+**Note:** Version bump only for package @formatjs/editor
+
+
+
+
+
+## [1.1.19](https://github.com/formatjs/formatjs/compare/@formatjs/editor@1.1.18...@formatjs/editor@1.1.19) (2021-06-05)
+
+**Note:** Version bump only for package @formatjs/editor
+
+
+
+
+
+## [1.1.18](https://github.com/formatjs/formatjs/compare/@formatjs/editor@1.1.17...@formatjs/editor@1.1.18) (2021-06-04)
+
+**Note:** Version bump only for package @formatjs/editor
+
+
+
+
+
+## [1.1.17](https://github.com/formatjs/formatjs/compare/@formatjs/editor@1.1.16...@formatjs/editor@1.1.17) (2021-06-02)
+
+**Note:** Version bump only for package @formatjs/editor
+
+
+
+
+
+## [1.1.16](https://github.com/formatjs/formatjs/compare/@formatjs/editor@1.1.15...@formatjs/editor@1.1.16) (2021-06-01)
+
+**Note:** Version bump only for package @formatjs/editor
+
+
+
+
+
+## [1.1.15](https://github.com/formatjs/formatjs/compare/@formatjs/editor@1.1.14...@formatjs/editor@1.1.15) (2021-05-23)
+
+**Note:** Version bump only for package @formatjs/editor
+
+
+
+
+
+## [1.1.14](https://github.com/formatjs/formatjs/compare/@formatjs/editor@1.1.13...@formatjs/editor@1.1.14) (2021-05-20)
+
+**Note:** Version bump only for package @formatjs/editor
+
+
+
+
+
+## [1.1.13](https://github.com/formatjs/formatjs/compare/@formatjs/editor@1.1.12...@formatjs/editor@1.1.13) (2021-05-17)
+
+**Note:** Version bump only for package @formatjs/editor
+
+
+
+
+
+## [1.1.12](https://github.com/formatjs/formatjs/compare/@formatjs/editor@1.1.11...@formatjs/editor@1.1.12) (2021-05-14)
+
+**Note:** Version bump only for package @formatjs/editor
+
+
+
+
+
+## [1.1.11](https://github.com/formatjs/formatjs/compare/@formatjs/editor@1.1.10...@formatjs/editor@1.1.11) (2021-05-10)
+
+**Note:** Version bump only for package @formatjs/editor
+
+
+
+
+
+## [1.1.10](https://github.com/formatjs/formatjs/compare/@formatjs/editor@1.1.9...@formatjs/editor@1.1.10) (2021-05-02)
+
+**Note:** Version bump only for package @formatjs/editor
+
+
+
+
+
+## [1.1.9](https://github.com/formatjs/formatjs/compare/@formatjs/editor@1.1.8...@formatjs/editor@1.1.9) (2021-05-02)
+
+**Note:** Version bump only for package @formatjs/editor
+
+
+
+
+
+## [1.1.8](https://github.com/formatjs/formatjs/compare/@formatjs/editor@1.1.7...@formatjs/editor@1.1.8) (2021-04-29)
+
+**Note:** Version bump only for package @formatjs/editor
+
+
+
+
+
+## [1.1.7](https://github.com/formatjs/formatjs/compare/@formatjs/editor@1.1.6...@formatjs/editor@1.1.7) (2021-04-26)
+
+**Note:** Version bump only for package @formatjs/editor
+
+
+
+
+
+## [1.1.6](https://github.com/formatjs/formatjs/compare/@formatjs/editor@1.1.5...@formatjs/editor@1.1.6) (2021-04-26)
+
+**Note:** Version bump only for package @formatjs/editor
+
+
+
+
+
+## [1.1.5](https://github.com/formatjs/formatjs/compare/@formatjs/editor@1.1.4...@formatjs/editor@1.1.5) (2021-04-26)
+
+**Note:** Version bump only for package @formatjs/editor
+
+
+
+
+
+## [1.1.4](https://github.com/formatjs/formatjs/compare/@formatjs/editor@1.1.3...@formatjs/editor@1.1.4) (2021-04-26)
+
+**Note:** Version bump only for package @formatjs/editor
+
+
+
+
+
+## [1.1.3](https://github.com/formatjs/formatjs/compare/@formatjs/editor@1.1.2...@formatjs/editor@1.1.3) (2021-04-21)
+
+**Note:** Version bump only for package @formatjs/editor
+
+
+
+
+
+## [1.1.2](https://github.com/formatjs/formatjs/compare/@formatjs/editor@1.1.1...@formatjs/editor@1.1.2) (2021-04-12)
+
+**Note:** Version bump only for package @formatjs/editor
+
+
+
+
+
 ## [1.1.1](https://github.com/formatjs/formatjs/compare/@formatjs/editor@1.1.0...@formatjs/editor@1.1.1) (2021-04-04)
 
 **Note:** Version bump only for package @formatjs/editor

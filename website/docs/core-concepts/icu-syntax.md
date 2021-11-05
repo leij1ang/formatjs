@@ -121,7 +121,11 @@ The format of a match is match `{output}`. (A match is similar to the case state
 
 output is itself a message, so it can be a literal string or also have more arguments nested inside of it.
 
-The other match is special and is used if nothing else matches. (This is similar to the default case of the switch found in some programming languages.)
+The `other` match is special and is used if nothing else matches. (This is similar to the default case of the switch found in some programming languages.)
+
+:::danger
+`other` is required as per `icu4j` implementation. We will throw an error if `select` is used without `other`.
+:::
 
 ```
 {gender, select,
@@ -153,6 +157,10 @@ The match is a literal value and is matched to one of these plural categories. N
 - `many`: This category is used for languages that have grammar specialized specifically for a larger number of items. (Examples are Arabic, Polish, and Russian.)
 - `other`: This category is used if the value doesn't match one of the other plural categories. Note that this is used for "plural" for languages (such as English) that have a simple "singular" versus "plural" dichotomy.
 - `=value`: This is used to match a specific value regardless of the plural categories of the current locale.
+
+:::danger
+`other` is required as per `icu4j` implementation. We will throw an error if `plural` is used without `other`.
+:::
 
 ```
 Cart: {itemCount} {itemCount, plural,
@@ -193,6 +201,10 @@ The match is a literal value and is matched to one of these plural categories. N
 - `other`: This category is used if the value doesn't match one of the other plural categories. Note that this is used for "plural" for languages (such as English) that have a simple "singular" versus "plural" dichotomy.
 - `=value`: This is used to match a specific value regardless of the plural categories of the current locale.
 
+:::danger
+`other` is required as per `icu4j` implementation. We will throw an error if `selectordinal` is used without `other`.
+:::
+
 In the `output` of the match, the `#` special token can be used as a placeholder for the numeric value and will be formatted as if it were `{key, number}`.
 
 ```
@@ -216,20 +228,19 @@ with <link>{pct, number, ::percent} discount</link>
 
 ## Quoting / Escaping
 
-The ASCII apostrophe ('`') can be used to escape syntax characters in the text portion of the message. A single
+The ASCII apostrophe `'` (U+0027) can be used to escape syntax characters in the text portion of the message. A single
 apostrophe escapes one syntax character immediately following it; a pair of apostrophes escape every syntax characters
 wrapped between them:
 
 ```js
 "This is not an interpolation: '{word}"
 //→ "This is not an interpolation: {word}"
-"These are not interpolatons: '{word1} {word2}'"
-//→ "These are not interpolatons: {word1} {word2}"
+"These are not interpolations: '{word1} {word2}'"
+//→ "These are not interpolations: {word1} {word2}"
 "'<notATag>"
 //→ "<notATag>"
 "'<notATag>hello</notATag>'"
 //→ "<notATag>hello</notATag>"
-
 ```
 
 Two consecutive ASCII apostrophes represents one ASCII apostrophe, similar to `%%` in `printf` represents one `%`.
@@ -239,5 +250,4 @@ However, we recommend using curly apostrophe `’` (U+2019) for human-readable s
 ```js
 "This '{isn''t}' obvious."
 //→ "This {isn't} obvious."
-
 ```

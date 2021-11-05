@@ -16,23 +16,19 @@ import * as rawCalendarPreferenceData from 'cldr-core/supplemental/calendarPrefe
 import * as TimeZoneNames from 'cldr-dates-full/main/en/timeZoneNames.json'
 import * as metaZones from 'cldr-core/supplemental/metaZones.json'
 import IntlLocale from '@formatjs/intl-locale'
-import {
-  DateTimeFormatOptions,
-  Formats,
-  parseDateTimeSkeleton,
-} from '@formatjs/ecma402-abstract'
+import {Formats} from '@formatjs/ecma402-abstract'
+import {parseDateTimeSkeleton} from '../src/abstract/skeleton'
 const {timeData} = rawTimeData.supplemental
 const processedTimeData = Object.keys(timeData).reduce(
   (all: Record<string, string[]>, k) => {
-    all[k.replace('_', '-')] = timeData[
-      k as keyof typeof timeData
-    ]._allowed.split(' ')
+    all[k.replace('_', '-')] =
+      timeData[k as keyof typeof timeData]._allowed.split(' ')
     return all
   },
   {}
 )
 
-function isDateFormatOnly(opts: DateTimeFormatOptions) {
+function isDateFormatOnly(opts: Intl.DateTimeFormatOptions) {
   return !Object.keys(opts).find(
     k =>
       k === 'hour' ||
@@ -43,7 +39,7 @@ function isDateFormatOnly(opts: DateTimeFormatOptions) {
   )
 }
 
-function isTimeFormatOnly(opts: DateTimeFormatOptions) {
+function isTimeFormatOnly(opts: Intl.DateTimeFormatOptions) {
   return !Object.keys(opts).find(
     k =>
       k === 'year' ||

@@ -3,6 +3,233 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.18.0](https://github.com/formatjs/formatjs/compare/eslint-plugin-formatjs@2.17.9...eslint-plugin-formatjs@2.18.0) (2021-10-22)
+
+
+### Features
+
+* **eslint-plugin-formatjs:** upgrade to TS 4.4 ([d45d3c1](https://github.com/formatjs/formatjs/commit/d45d3c19e37f64fdf3eb4dfefa6f976fadedbd9f))
+
+
+
+
+
+## [2.17.9](https://github.com/formatjs/formatjs/compare/eslint-plugin-formatjs@2.17.8...eslint-plugin-formatjs@2.17.9) (2021-10-17)
+
+**Note:** Version bump only for package eslint-plugin-formatjs
+
+
+
+
+
+## [2.17.8](https://github.com/formatjs/formatjs/compare/eslint-plugin-formatjs@2.17.7...eslint-plugin-formatjs@2.17.8) (2021-09-27)
+
+**Note:** Version bump only for package eslint-plugin-formatjs
+
+
+
+
+
+## [2.17.7](https://github.com/formatjs/formatjs/compare/eslint-plugin-formatjs@2.17.6...eslint-plugin-formatjs@2.17.7) (2021-09-26)
+
+
+### Bug Fixes
+
+* **eslint-plugin-formatjs:** remove deprecated @types/emoji-regex 9 ([#3159](https://github.com/formatjs/formatjs/issues/3159)) ([49b9dfb](https://github.com/formatjs/formatjs/commit/49b9dfb969f08d3ba4b5fbefddecdd82070f156c))
+
+
+
+
+
+## [2.17.6](https://github.com/formatjs/formatjs/compare/eslint-plugin-formatjs@2.17.5...eslint-plugin-formatjs@2.17.6) (2021-08-24)
+
+**Note:** Version bump only for package eslint-plugin-formatjs
+
+
+
+
+
+## [2.17.5](https://github.com/formatjs/formatjs/compare/eslint-plugin-formatjs@2.17.4...eslint-plugin-formatjs@2.17.5) (2021-08-21)
+
+**Note:** Version bump only for package eslint-plugin-formatjs
+
+
+
+
+
+## [2.17.4](https://github.com/formatjs/formatjs/compare/eslint-plugin-formatjs@2.17.3...eslint-plugin-formatjs@2.17.4) (2021-08-15)
+
+**Note:** Version bump only for package eslint-plugin-formatjs
+
+
+
+
+
+## [2.17.3](https://github.com/formatjs/formatjs/compare/eslint-plugin-formatjs@2.17.2...eslint-plugin-formatjs@2.17.3) (2021-08-06)
+
+
+### Bug Fixes
+
+* **eslint-plugin-formatjs:** declare dep on typescript, fix [#3099](https://github.com/formatjs/formatjs/issues/3099) ([d97e301](https://github.com/formatjs/formatjs/commit/d97e301f77b96e70c536e6bc668152e47a85ce6c))
+
+
+
+
+
+## [2.17.2](https://github.com/formatjs/formatjs/compare/eslint-plugin-formatjs@2.17.1...eslint-plugin-formatjs@2.17.2) (2021-07-24)
+
+**Note:** Version bump only for package eslint-plugin-formatjs
+
+
+
+
+
+## [2.17.1](https://github.com/formatjs/formatjs/compare/eslint-plugin-formatjs@2.17.0...eslint-plugin-formatjs@2.17.1) (2021-07-06)
+
+**Note:** Version bump only for package eslint-plugin-formatjs
+
+
+
+
+
+# [2.17.0](https://github.com/formatjs/formatjs/compare/eslint-plugin-formatjs@2.16.1...eslint-plugin-formatjs@2.17.0) (2021-06-26)
+
+
+### Features
+
+* **eslint-plugin-formatjs:** allow setting ignoreTag as global linter settings, fix [#2998](https://github.com/formatjs/formatjs/issues/2998) ([8aaa11c](https://github.com/formatjs/formatjs/commit/8aaa11c4322d95e409f40c86d6ee9ccd6b556474))
+
+
+
+
+
+## [2.16.1](https://github.com/formatjs/formatjs/compare/eslint-plugin-formatjs@2.16.0...eslint-plugin-formatjs@2.16.1) (2021-06-21)
+
+**Note:** Version bump only for package eslint-plugin-formatjs
+
+
+
+
+
+# [2.16.0](https://github.com/formatjs/formatjs/compare/eslint-plugin-formatjs@2.15.7...eslint-plugin-formatjs@2.16.0) (2021-06-13)
+
+
+### Features
+
+* **eslint-plugin-formatjs:** allow additionalFunctionNames & additionalComponentNames in shared settings, fix [#2967](https://github.com/formatjs/formatjs/issues/2967) ([c19b0ea](https://github.com/formatjs/formatjs/commit/c19b0eae3b28d99276a6c2da288b51d0c32ff3be))
+* **eslint-plugin-formatjs:** rm react-intl package import check for function names and components ([5c7aeba](https://github.com/formatjs/formatjs/commit/5c7aeba2d6e281de390b50811691a40e08f8b34d))
+
+
+
+
+
+## [2.15.7](https://github.com/formatjs/formatjs/compare/eslint-plugin-formatjs@2.15.6...eslint-plugin-formatjs@2.15.7) (2021-06-09)
+
+**Note:** Version bump only for package eslint-plugin-formatjs
+
+
+
+
+
+## [2.15.6](https://github.com/formatjs/formatjs/compare/eslint-plugin-formatjs@2.15.5...eslint-plugin-formatjs@2.15.6) (2021-06-05)
+
+**Note:** Version bump only for package eslint-plugin-formatjs
+
+
+
+
+
+## [2.15.5](https://github.com/formatjs/formatjs/compare/eslint-plugin-formatjs@2.15.4...eslint-plugin-formatjs@2.15.5) (2021-06-04)
+
+**Note:** Version bump only for package eslint-plugin-formatjs
+
+
+
+
+
+## [2.15.4](https://github.com/formatjs/formatjs/compare/eslint-plugin-formatjs@2.15.3...eslint-plugin-formatjs@2.15.4) (2021-06-01)
+
+**Note:** Version bump only for package eslint-plugin-formatjs
+
+
+
+
+
+## [2.15.3](https://github.com/formatjs/formatjs/compare/eslint-plugin-formatjs@2.15.2...eslint-plugin-formatjs@2.15.3) (2021-05-23)
+
+**Note:** Version bump only for package eslint-plugin-formatjs
+
+
+
+
+
+## [2.15.2](https://github.com/formatjs/formatjs/compare/eslint-plugin-formatjs@2.15.1...eslint-plugin-formatjs@2.15.2) (2021-05-20)
+
+**Note:** Version bump only for package eslint-plugin-formatjs
+
+
+
+
+
+## [2.15.1](https://github.com/formatjs/formatjs/compare/eslint-plugin-formatjs@2.15.0...eslint-plugin-formatjs@2.15.1) (2021-05-17)
+
+**Note:** Version bump only for package eslint-plugin-formatjs
+
+
+
+
+
+# [2.15.0](https://github.com/formatjs/formatjs/compare/eslint-plugin-formatjs@2.14.10...eslint-plugin-formatjs@2.15.0) (2021-05-10)
+
+
+### Features
+
+* **eslint-plugin-formatjs:** update typescript-eslint ([#2865](https://github.com/formatjs/formatjs/issues/2865)) ([3a692ab](https://github.com/formatjs/formatjs/commit/3a692ab1a9474db835f7884b91852f690c07eb7c))
+
+
+
+
+
+## [2.14.10](https://github.com/formatjs/formatjs/compare/eslint-plugin-formatjs@2.14.9...eslint-plugin-formatjs@2.14.10) (2021-05-02)
+
+**Note:** Version bump only for package eslint-plugin-formatjs
+
+
+
+
+
+## [2.14.9](https://github.com/formatjs/formatjs/compare/eslint-plugin-formatjs@2.14.8...eslint-plugin-formatjs@2.14.9) (2021-04-26)
+
+**Note:** Version bump only for package eslint-plugin-formatjs
+
+
+
+
+
+## [2.14.8](https://github.com/formatjs/formatjs/compare/eslint-plugin-formatjs@2.14.7...eslint-plugin-formatjs@2.14.8) (2021-04-26)
+
+**Note:** Version bump only for package eslint-plugin-formatjs
+
+
+
+
+
+## [2.14.7](https://github.com/formatjs/formatjs/compare/eslint-plugin-formatjs@2.14.6...eslint-plugin-formatjs@2.14.7) (2021-04-21)
+
+**Note:** Version bump only for package eslint-plugin-formatjs
+
+
+
+
+
+## [2.14.6](https://github.com/formatjs/formatjs/compare/eslint-plugin-formatjs@2.14.5...eslint-plugin-formatjs@2.14.6) (2021-04-12)
+
+**Note:** Version bump only for package eslint-plugin-formatjs
+
+
+
+
+
 ## [2.14.5](https://github.com/formatjs/formatjs/compare/eslint-plugin-formatjs@2.14.4...eslint-plugin-formatjs@2.14.5) (2021-04-04)
 
 **Note:** Version bump only for package eslint-plugin-formatjs

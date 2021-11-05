@@ -8,7 +8,10 @@ import {
 } from 'intl-messageformat'
 import {DateTimeFormat} from '@formatjs/ecma402-abstract'
 import {MessageFormatElement} from '@formatjs/icu-messageformat-parser'
-import IntlListFormat, {IntlListFormatOptions} from '@formatjs/intl-listformat'
+import IntlListFormat, {
+  IntlListFormatOptions,
+  Part,
+} from '@formatjs/intl-listformat'
 import {DisplayNames, DisplayNamesOptions} from '@formatjs/intl-displaynames'
 import {
   MissingTranslationError,
@@ -18,10 +21,7 @@ import {
   UnsupportedFormatterError,
 } from './error'
 import {DEFAULT_INTL_CONFIG} from './utils'
-import {
-  DateTimeFormatOptions,
-  NumberFormatOptions,
-} from '@formatjs/ecma402-abstract'
+import {NumberFormatOptions} from '@formatjs/ecma402-abstract'
 
 export type OnErrorFn = (
   err:
@@ -38,9 +38,10 @@ export type OnErrorFn = (
  * Generic type T is the type of potential rich text element. For example:
  * With React, T would be React.ReactNode
  */
-export interface IntlConfig<T = string> {
+export interface ResolvedIntlConfig<T = string> {
   locale: string
   timeZone?: string
+  fallbackOnEmptyString?: boolean
   formats: CustomFormats
   messages: Record<string, string> | Record<string, MessageFormatElement[]>
   defaultLocale: string
@@ -58,7 +59,7 @@ export interface CustomFormatConfig {
 }
 
 export type FormatDateOptions = Exclude<
-  DateTimeFormatOptions,
+  Intl.DateTimeFormatOptions,
   'localeMatcher'
 > &
   CustomFormatConfig
@@ -134,11 +135,15 @@ export interface IntlFormatters<T = any, R = T> {
     values?: Record<string, PrimitiveType | T | FormatXMLElementFn<T, R>>,
     opts?: IntlMessageFormatOptions
   ): R
-  formatList(values: Array<string>, opts?: FormatListOptions): string
+  formatList(values: ReadonlyArray<string>, opts?: FormatListOptions): string
   formatList(
-    values: Array<string | T>,
+    values: ReadonlyArray<string | T>,
     opts?: FormatListOptions
   ): T | string | Array<string | T>
+  formatListToParts(
+    values: ReadonlyArray<string | T>,
+    opts?: FormatListOptions
+  ): Part[]
   formatDisplayName(
     value: Parameters<DisplayNames['of']>[0],
     opts: FormatDisplayNameOptions
@@ -169,7 +174,9 @@ export interface Formatters {
   ): DisplayNames
 }
 
-export interface IntlShape<T> extends IntlConfig<T>, IntlFormatters {
+export interface IntlShape<T = string>
+  extends ResolvedIntlConfig<T>,
+    IntlFormatters {
   formatters: Formatters
 }
 
@@ -189,8 +196,8 @@ export interface MessageDescriptor {
   defaultMessage?: string | MessageFormatElement[]
 }
 
-export type OptionalIntlConfig<T = string> = Omit<
-  IntlConfig<T>,
+export type IntlConfig<T = string> = Omit<
+  ResolvedIntlConfig<T>,
   keyof typeof DEFAULT_INTL_CONFIG
 > &
   Partial<typeof DEFAULT_INTL_CONFIG>

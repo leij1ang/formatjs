@@ -38,6 +38,10 @@ export default class Foo extends Component {
       defaultMessage: 'formatMessage',
       description: 'no-id',
     })
+    formatMessage({
+      defaultMessage: '{count, plural, =0 {zero} other{other}}',
+      description: 'no-id',
+    })
 
     return (
       <div>
@@ -61,6 +65,15 @@ export default class Foo extends Component {
           description={{
             text: 'Something for the translator. Another description',
             metadata: 'Additional metadata content.',
+          }}
+          values={{abc: 2}}
+        />
+
+        <FormattedMessage
+          defaultMessage="{value, number}"
+          description={{
+            text: 'number',
+            metadata: 'number',
           }}
           values={{abc: 2}}
         />

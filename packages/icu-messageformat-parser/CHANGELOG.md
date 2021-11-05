@@ -3,6 +3,181 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.14](https://github.com/formatjs/formatjs/compare/@formatjs/icu-messageformat-parser@2.0.13...@formatjs/icu-messageformat-parser@2.0.14) (2021-10-22)
+
+
+### Bug Fixes
+
+* **@formatjs/icu-skeleton-parser:** update package.json to include the repository ([#3230](https://github.com/formatjs/formatjs/issues/3230)) ([36dc6bc](https://github.com/formatjs/formatjs/commit/36dc6bc5d8049caaf377f378d81eb6703eb091d5))
+
+
+
+
+
+## [2.0.13](https://github.com/formatjs/formatjs/compare/@formatjs/icu-messageformat-parser@2.0.12...@formatjs/icu-messageformat-parser@2.0.13) (2021-10-17)
+
+**Note:** Version bump only for package @formatjs/icu-messageformat-parser
+
+
+
+
+
+## [2.0.12](https://github.com/formatjs/formatjs/compare/@formatjs/icu-messageformat-parser@2.0.11...@formatjs/icu-messageformat-parser@2.0.12) (2021-09-27)
+
+**Note:** Version bump only for package @formatjs/icu-messageformat-parser
+
+
+
+
+
+## [2.0.11](https://github.com/formatjs/formatjs/compare/@formatjs/icu-messageformat-parser@2.0.10...@formatjs/icu-messageformat-parser@2.0.11) (2021-08-21)
+
+**Note:** Version bump only for package @formatjs/icu-messageformat-parser
+
+
+
+
+
+## [2.0.10](https://github.com/formatjs/formatjs/compare/@formatjs/icu-messageformat-parser@2.0.9...@formatjs/icu-messageformat-parser@2.0.10) (2021-08-15)
+
+**Note:** Version bump only for package @formatjs/icu-messageformat-parser
+
+
+
+
+
+## [2.0.9](https://github.com/formatjs/formatjs/compare/@formatjs/icu-messageformat-parser@2.0.8...@formatjs/icu-messageformat-parser@2.0.9) (2021-08-06)
+
+**Note:** Version bump only for package @formatjs/icu-messageformat-parser
+
+
+
+
+
+## [2.0.8](https://github.com/formatjs/formatjs/compare/@formatjs/icu-messageformat-parser@2.0.7...@formatjs/icu-messageformat-parser@2.0.8) (2021-07-24)
+
+**Note:** Version bump only for package @formatjs/icu-messageformat-parser
+
+
+
+
+
+## [2.0.7](https://github.com/formatjs/formatjs/compare/@formatjs/icu-messageformat-parser@2.0.6...@formatjs/icu-messageformat-parser@2.0.7) (2021-06-26)
+
+**Note:** Version bump only for package @formatjs/icu-messageformat-parser
+
+
+
+
+
+## [2.0.6](https://github.com/formatjs/formatjs/compare/@formatjs/icu-messageformat-parser@2.0.5...@formatjs/icu-messageformat-parser@2.0.6) (2021-06-05)
+
+**Note:** Version bump only for package @formatjs/icu-messageformat-parser
+
+
+
+
+
+## [2.0.5](https://github.com/formatjs/formatjs/compare/@formatjs/icu-messageformat-parser@2.0.4...@formatjs/icu-messageformat-parser@2.0.5) (2021-06-01)
+
+**Note:** Version bump only for package @formatjs/icu-messageformat-parser
+
+
+
+
+
+## [2.0.4](https://github.com/formatjs/formatjs/compare/@formatjs/icu-messageformat-parser@2.0.3...@formatjs/icu-messageformat-parser@2.0.4) (2021-05-23)
+
+**Note:** Version bump only for package @formatjs/icu-messageformat-parser
+
+
+
+
+
+## [2.0.3](https://github.com/formatjs/formatjs/compare/@formatjs/icu-messageformat-parser@2.0.2...@formatjs/icu-messageformat-parser@2.0.3) (2021-05-20)
+
+**Note:** Version bump only for package @formatjs/icu-messageformat-parser
+
+
+
+
+
+## [2.0.2](https://github.com/formatjs/formatjs/compare/@formatjs/icu-messageformat-parser@2.0.1...@formatjs/icu-messageformat-parser@2.0.2) (2021-05-17)
+
+
+### Bug Fixes
+
+* **@formatjs/icu-messageformat-parser:** remove duplicate generated regex and use .source ([8f29e55](https://github.com/formatjs/formatjs/commit/8f29e55558f12982d11cc8692bf59733f7f92ee7))
+
+
+
+
+
+## [2.0.1](https://github.com/formatjs/formatjs/compare/@formatjs/icu-messageformat-parser@2.0.0...@formatjs/icu-messageformat-parser@2.0.1) (2021-05-10)
+
+**Note:** Version bump only for package @formatjs/icu-messageformat-parser
+
+
+
+
+
+# [2.0.0](https://github.com/formatjs/formatjs/compare/@formatjs/icu-messageformat-parser@1.2.1...@formatjs/icu-messageformat-parser@2.0.0) (2021-05-02)
+
+
+### Features
+
+* **@formatjs/icu-messageformat-parser:** set requiresOtherClause to true ([976c79a](https://github.com/formatjs/formatjs/commit/976c79a5df41130d5d032ada846fd7496776ce8a))
+
+
+### BREAKING CHANGES
+
+* **@formatjs/icu-messageformat-parser:** This is so that we're consistent with icu4j, fix #2855
+
+
+
+
+
+## [1.2.1](https://github.com/formatjs/formatjs/compare/@formatjs/icu-messageformat-parser@1.2.0...@formatjs/icu-messageformat-parser@1.2.1) (2021-04-26)
+
+**Note:** Version bump only for package @formatjs/icu-messageformat-parser
+
+
+
+
+
+# [1.2.0](https://github.com/formatjs/formatjs/compare/@formatjs/icu-messageformat-parser@1.1.6...@formatjs/icu-messageformat-parser@1.2.0) (2021-04-26)
+
+
+### Features
+
+* **@formatjs/icu-messageformat-parser:** expose ESM entry point ([2a3dcab](https://github.com/formatjs/formatjs/commit/2a3dcab257a63f83f0cc562911665f51c1754b22))
+
+
+
+
+
+## [1.1.6](https://github.com/formatjs/formatjs/compare/@formatjs/icu-messageformat-parser@1.1.5...@formatjs/icu-messageformat-parser@1.1.6) (2021-04-21)
+
+
+### Bug Fixes
+
+* **@formatjs/icu-messageformat-parser:** fix legacy Edge/Xbox browser issue, fix [#2822](https://github.com/formatjs/formatjs/issues/2822) ([7e17c4d](https://github.com/formatjs/formatjs/commit/7e17c4d49e68c367779ba533c40ad7e21413ab26))
+
+
+
+
+
+## [1.1.5](https://github.com/formatjs/formatjs/compare/@formatjs/icu-messageformat-parser@1.1.4...@formatjs/icu-messageformat-parser@1.1.5) (2021-04-12)
+
+
+### Bug Fixes
+
+* **@formatjs/ecma402-abstract:** swap out some impls with native Date, 2x speed, [#2813](https://github.com/formatjs/formatjs/issues/2813) ([463420c](https://github.com/formatjs/formatjs/commit/463420c21ca9c64f629f31fee2dc63031be9122c))
+
+
+
+
+
 ## [1.1.4](https://github.com/formatjs/formatjs/compare/@formatjs/icu-messageformat-parser@1.1.3...@formatjs/icu-messageformat-parser@1.1.4) (2021-04-04)
 
 

@@ -3,7 +3,6 @@ import {
   ListPatternLocaleData,
   setInternalSlot,
   SupportedLocales,
-  ResolveLocale,
   getInternalSlot,
   ListPatternFieldsData,
   ListPatternData,
@@ -14,6 +13,7 @@ import {
   GetOptionsObject,
   CanonicalizeLocaleList,
 } from '@formatjs/ecma402-abstract'
+import {ResolveLocale} from '@formatjs/intl-localematcher'
 
 export interface IntlListFormatOptions {
   /**
@@ -68,11 +68,11 @@ export interface ResolvedIntlListFormatOptions {
   style: 'long' | 'short' | 'narrow'
 }
 
-export type Part = LiteralPart | ElementPart
+export type Part<T = string> = LiteralPart | ElementPart | ElementPart<T>
 
-export interface ElementPart {
+export interface ElementPart<T = string> {
   type: 'element'
-  value: string
+  value: T
 }
 
 interface Placeable {

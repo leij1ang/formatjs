@@ -1,13 +1,12 @@
 import {
-  IntlConfig,
   IntlCache,
   CustomFormats,
   Formatters,
   OnErrorFn,
+  ResolvedIntlConfig,
 } from './types'
 import {IntlMessageFormat} from 'intl-messageformat'
-import * as memoize from 'fast-memoize'
-import {Cache} from 'fast-memoize'
+import memoize, {Cache, strategies} from '@formatjs/fast-memoize'
 import {UnsupportedFormatterError} from './error'
 import {DateTimeFormat} from '@formatjs/ecma402-abstract'
 
@@ -28,13 +27,15 @@ export function filterProps<T extends Record<string, any>, K extends string>(
 }
 
 const defaultErrorHandler: OnErrorFn = error => {
+  // @ts-ignore just so we don't need to declare dep on @types/node
   if (process.env.NODE_ENV !== 'production') {
     console.error(error)
   }
 }
 
 export const DEFAULT_INTL_CONFIG: Pick<
-  IntlConfig<any>,
+  ResolvedIntlConfig<any>,
+  | 'fallbackOnEmptyString'
   | 'formats'
   | 'messages'
   | 'timeZone'
@@ -48,6 +49,8 @@ export const DEFAULT_INTL_CONFIG: Pick<
 
   defaultLocale: 'en',
   defaultFormats: {},
+
+  fallbackOnEmptyString: true,
 
   onError: defaultErrorHandler,
 }
@@ -68,9 +71,6 @@ function createFastMemoizeCache<V>(store: Record<string, V>): Cache<string, V> {
   return {
     create() {
       return {
-        has(key) {
-          return key in store
-        },
         get(key) {
           return store[key]
         },
@@ -82,10 +82,6 @@ function createFastMemoizeCache<V>(store: Record<string, V>): Cache<string, V> {
   }
 }
 
-// @ts-ignore this is to deal with rollup's default import shenanigans
-const _memoizeIntl = memoize.default || memoize
-const memoizeIntl = _memoizeIntl as typeof memoize.default
-
 /**
  * Create intl formatters and populate cache
  * @param cache explicit cache to prevent leaking memory
@@ -96,31 +92,25 @@ export function createFormatters(
   const RelativeTimeFormat = (Intl as any).RelativeTimeFormat
   const ListFormat = (Intl as any).ListFormat
   const DisplayNames = (Intl as any).DisplayNames
-  const getDateTimeFormat = memoizeIntl(
+  const getDateTimeFormat = memoize(
     (...args) => new Intl.DateTimeFormat(...args) as DateTimeFormat,
     {
       cache: createFastMemoizeCache(cache.dateTime),
-      strategy: memoizeIntl.strategies.variadic,
+      strategy: strategies.variadic,
     }
   )
-  const getNumberFormat = memoizeIntl(
-    (...args) => new Intl.NumberFormat(...args),
-    {
-      cache: createFastMemoizeCache(cache.number),
-      strategy: memoizeIntl.strategies.variadic,
-    }
-  )
-  const getPluralRules = memoizeIntl(
-    (...args) => new Intl.PluralRules(...args),
-    {
-      cache: createFastMemoizeCache(cache.pluralRules),
-      strategy: memoizeIntl.strategies.variadic,
-    }
-  )
+  const getNumberFormat = memoize((...args) => new Intl.NumberFormat(...args), {
+    cache: createFastMemoizeCache(cache.number),
+    strategy: strategies.variadic,
+  })
+  const getPluralRules = memoize((...args) => new Intl.PluralRules(...args), {
+    cache: createFastMemoizeCache(cache.pluralRules),
+    strategy: strategies.variadic,
+  })
   return {
     getDateTimeFormat,
     getNumberFormat,
-    getMessageFormat: memoizeIntl(
+    getMessageFormat: memoize(
       (message, locales, overrideFormats, opts) =>
         new IntlMessageFormat(message, locales, overrideFormats, {
           formatters: {
@@ -132,24 +122,24 @@ export function createFormatters(
         }),
       {
         cache: createFastMemoizeCache(cache.message),
-        strategy: memoizeIntl.strategies.variadic,
+        strategy: strategies.variadic,
       }
     ),
-    getRelativeTimeFormat: memoizeIntl(
+    getRelativeTimeFormat: memoize(
       (...args) => new RelativeTimeFormat(...args),
       {
         cache: createFastMemoizeCache(cache.relativeTime),
-        strategy: memoizeIntl.strategies.variadic,
+        strategy: strategies.variadic,
       }
     ),
     getPluralRules,
-    getListFormat: memoizeIntl((...args) => new ListFormat(...args), {
+    getListFormat: memoize((...args) => new ListFormat(...args), {
       cache: createFastMemoizeCache(cache.list),
-      strategy: memoizeIntl.strategies.variadic,
+      strategy: strategies.variadic,
     }),
-    getDisplayNames: memoizeIntl((...args) => new DisplayNames(...args), {
+    getDisplayNames: memoize((...args) => new DisplayNames(...args), {
       cache: createFastMemoizeCache(cache.displayNames),
-      strategy: memoizeIntl.strategies.variadic,
+      strategy: strategies.variadic,
     }),
   }
 }

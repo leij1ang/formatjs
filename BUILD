@@ -2,6 +2,7 @@ load("@bazelbuild_buildtools//buildifier:def.bzl", "buildifier")
 load("@com_github_ash2k_bazel_tools//multirun:def.bzl", "multirun")
 load("@npm//@bazel/typescript:index.bzl", "ts_config")
 load("@npm//karma:index.bzl", "karma_test")
+load("@npm//lerna:index.bzl", "lerna")
 load("//tools:index.bzl", "BUILDIFIER_WARNINGS")
 
 # Allow any ts_library rules in this workspace to reference the config
@@ -18,13 +19,21 @@ exports_files(
         "karma.conf-ci.js",
         "jest.config.js",
         ".prettierrc.json",
-    ],
+        "package.json",
+    ] + glob(["npm_package_patches/*"]),
     visibility = ["//:__subpackages__"],
 )
 
 ts_config(
     name = "tsconfig.esm",
     src = "tsconfig.esm.json",
+    visibility = ["//:__subpackages__"],
+    deps = ["//:tsconfig.json"],
+)
+
+ts_config(
+    name = "tsconfig.esm.esnext",
+    src = "tsconfig.esm.esnext.json",
     visibility = ["//:__subpackages__"],
     deps = ["//:tsconfig.json"],
 )
@@ -91,10 +100,13 @@ multirun(
     commands = [
         "//packages/babel-plugin-formatjs:prettier",
         "//packages/cli:prettier",
+        "//packages/ecma376:prettier",
         "//packages/ecma402-abstract:prettier",
         "//packages/editor:prettier",
         "//packages/eslint-plugin-formatjs:prettier",
+        "//packages/fast-memoize:prettier",
         "//packages/icu-messageformat-parser:prettier",
+        "//packages/icu-skeleton-parser:prettier",
         "//packages/intl-datetimeformat:prettier",
         "//packages/intl-displaynames:prettier",
         "//packages/intl-durationformat:prettier",
@@ -132,6 +144,7 @@ multirun(
         "//packages/intl-pluralrules:tests-locale-data-all.update",
         "//packages/intl-relativetimeformat:test262-main.update",
         "//packages/intl-relativetimeformat:tests-locale-data-all.update",
+        "//packages/intl-getcanonicallocales:aliases.update",
     ],
 )
 
@@ -141,4 +154,13 @@ buildifier(
     lint_mode = "fix",
     lint_warnings = BUILDIFIER_WARNINGS,
     verbose = True,
+)
+
+lerna(
+    name = "version",
+    templated_args = [
+        "version",
+        "prerelease",
+        "--yes",
+    ],
 )

@@ -1,12 +1,13 @@
-import {createIntl, IntlConfig} from '@formatjs/intl'
+import {createIntl as _createIntl, IntlConfig} from '@formatjs/intl'
 import Vue from 'vue'
+import {intlKey} from './injection-key'
 
-export const plugin: Vue.Plugin = {
-  install: (app, options: IntlConfig) => {
+export const createIntl = (options: IntlConfig): Vue.Plugin => ({
+  install(app) {
     if (!options) {
       throw new Error('Missing `options` for vue-intl plugin')
     }
-    const intl = createIntl(options)
+    const intl = _createIntl(options)
 
     app.config.globalProperties.$intl = intl
     app.config.globalProperties.$formatMessage = intl.formatMessage
@@ -17,6 +18,6 @@ export const plugin: Vue.Plugin = {
     app.config.globalProperties.$formatDisplayName = intl.formatDisplayName
     app.config.globalProperties.$formatNumber = intl.formatNumber
 
-    app.provide('intl', intl)
+    app.provide(intlKey, intl)
   },
-}
+})

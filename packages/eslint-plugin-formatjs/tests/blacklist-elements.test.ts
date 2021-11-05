@@ -11,6 +11,26 @@ ruleTester.run('blacklist-elements', blacklistElements, {
   })`,
       options: [['selectordinal']],
     },
+    {
+      code: `import {defineMessage} from 'react-intl'
+  defineMessage({
+      defaultMessage: '{count, plural, one {#} other {# more}} <a href="asd"></a>'
+  })`,
+      options: [['selectordinal']],
+      settings: {
+        ignoreTag: true,
+      },
+    },
+    {
+      code: `
+  $t({
+      defaultMessage: '{count, plural, one {#} other {# more}}'
+  })`,
+      options: [['selectordinal']],
+      settings: {
+        additionalFunctionNames: ['$t'],
+      },
+    },
     dynamicMessage,
     noMatch,
     spreadJsx,
@@ -24,6 +44,21 @@ ruleTester.run('blacklist-elements', blacklistElements, {
                   defaultMessage: '{count, selectordinal, offset:1 one {#} other {# more}}'
               })`,
       options: [['selectordinal']],
+      errors: [
+        {
+          message: 'selectordinal element is blacklisted',
+        },
+      ],
+    },
+    {
+      code: `
+              $t({
+                  defaultMessage: '{count, selectordinal, offset:1 one {#} other {# more}}'
+              })`,
+      options: [['selectordinal']],
+      settings: {
+        additionalFunctionNames: ['$t'],
+      },
       errors: [
         {
           message: 'selectordinal element is blacklisted',

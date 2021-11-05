@@ -69,17 +69,17 @@ export function parseUnicodeLanguageId(
   }
   let script
   // unicode_script_subtag
-  if (isUnicodeScriptSubtag(chunks[0])) {
+  if (chunks.length && isUnicodeScriptSubtag(chunks[0])) {
     script = chunks.shift()
   }
   let region
   // unicode_region_subtag
-  if (isUnicodeRegionSubtag(chunks[0])) {
+  if (chunks.length && isUnicodeRegionSubtag(chunks[0])) {
     region = chunks.shift()
   }
   const variants: Record<string, any> = {}
   while (chunks.length && isUnicodeVariantSubtag(chunks[0])) {
-    const variant = chunks.shift()!
+    const variant: string = chunks.shift()!
     if (variant in variants) {
       throw new RangeError(`Duplicate variant "${variant}"`)
     }

@@ -3,6 +3,8 @@ load("@npm//@bazel/typescript:index.bzl", "ts_project")
 load("//tools:index.bzl", "check_format", "ts_compile")
 load("//tools:jest.bzl", "jest_test")
 
+exports_files(["package.json"])
+
 PACKAGE_NAME = "intl-durationformat"
 
 pkg_npm(
@@ -31,6 +33,7 @@ SRCS = glob(["*.ts"])
 
 SRC_DEPS = [
     "//packages/ecma402-abstract:dist",
+    "//packages/intl-localematcher:dist",
 ]
 
 ts_compile(
@@ -50,6 +53,7 @@ jest_test(
     ]),
     deps = [
         "//packages/ecma402-abstract:types",
+        "//packages/intl-localematcher:types",
     ] + SRC_DEPS,
 )
 
@@ -61,6 +65,7 @@ ts_project(
     declaration_map = True,
     extends = "//:tsconfig.json",
     out_dir = "test262",
+    resolve_json_module = True,
     tsconfig = "//:tsconfig.es6.json",
     deps = SRC_DEPS,
 )
@@ -83,3 +88,7 @@ check_format(
         ],
     ),
 )
+# package_json_test(
+#     name="package_json_test",
+#     deps=SRC_DEPS
+# )

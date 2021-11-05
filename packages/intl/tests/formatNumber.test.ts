@@ -3,12 +3,12 @@ import '@formatjs/intl-numberformat/polyfill'
 import '@formatjs/intl-numberformat/locale-data/en'
 import '@formatjs/intl-numberformat/locale-data/es'
 import {formatNumber as formatNumberFn} from '../src/number'
-import {OptionalIntlConfig} from '../src/types'
+import {IntlConfig} from '../src/types'
 
 describe('format API', () => {
   const {NODE_ENV} = process.env
 
-  let config: OptionalIntlConfig<any>
+  let config: IntlConfig<any>
 
   let getNumberFormat: any
   beforeEach(() => {
@@ -153,6 +153,16 @@ describe('format API', () => {
         expect(
           (config.onError as jest.Mock).mock.calls.map(c => c[0].code)
         ).toMatchSnapshot()
+      })
+
+      it('uses provided numberingSystem', () => {
+        const num = 0.1
+        const numberingSystem = 'arab'
+        const style = 'percent'
+        // @ts-ignore
+        nf = new Intl.NumberFormat(config.locale, {numberingSystem, style})
+
+        expect(formatNumber(num, {numberingSystem, style})).toBe(nf.format(num))
       })
     })
   })

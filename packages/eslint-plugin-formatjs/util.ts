@@ -1,5 +1,4 @@
 import {TSESTree} from '@typescript-eslint/typescript-estree'
-import {Scope} from 'eslint'
 
 export interface MessageDescriptor {
   id?: string
@@ -7,6 +6,16 @@ export interface MessageDescriptor {
   description?: string
 }
 
+const FORMAT_FUNCTION_NAMES = new Set(['$formatMessage', 'formatMessage'])
+const COMPONENT_NAMES = new Set(['FormattedMessage'])
+const DECLARATION_FUNCTION_NAMES = new Set(['defineMessage'])
+
+export interface Settings {
+  excludeMessageDeclCalls?: boolean
+  additionalFunctionNames?: string[]
+  additionalComponentNames?: string[]
+  ignoreTag?: boolean
+}
 export interface MessageDescriptorNodeInfo {
   message: MessageDescriptor
   messageNode?: TSESTree.Property['value'] | TSESTree.JSXAttribute['value']
@@ -24,15 +33,6 @@ function isTemplateLiteralWithoutVar(
   node: TSESTree.Node
 ): node is TSESTree.TemplateLiteral {
   return node.type === 'TemplateLiteral' && node.quasis.length === 1
-}
-
-function findReferenceImport(
-  id: TSESTree.Identifier,
-  importedVars: Scope.Variable[]
-) {
-  return importedVars.find(
-    v => !!v.references.find(ref => ref.identifier === id)
-  )
 }
 
 function staticallyEvaluateStringConcat(
@@ -66,39 +66,23 @@ function isIntlFormatMessageCall(node: TSESTree.Node) {
   )
 }
 
-function is$formatMessageCall(node: TSESTree.Node) {
+function isSingleMessageDescriptorDeclaration(
+  node: TSESTree.Node,
+  functionNames: Set<string>
+) {
   return (
     node.type === 'CallExpression' &&
     node.callee.type === 'Identifier' &&
-    node.callee.name === '$formatMessage'
+    functionNames.has(node.callee.name)
   )
 }
 
-function isSingleMessageDescriptorDeclaration(
-  id: TSESTree.LeftHandSideExpression,
-  importedVars: Scope.Variable[]
-) {
-  if (id.type !== 'Identifier') {
-    return false
-  }
-  const importedVar = findReferenceImport(id, importedVars)
-  if (!importedVar) {
-    return false
-  }
-  return importedVar.name === '_' || importedVar.name === 'defineMessage'
-}
-function isMultipleMessageDescriptorDeclaration(
-  id: TSESTree.LeftHandSideExpression,
-  importedVars: Scope.Variable[]
-) {
-  if (id.type !== 'Identifier') {
-    return false
-  }
-  const importedVar = findReferenceImport(id, importedVars)
-  if (!importedVar) {
-    return false
-  }
-  return importedVar.name === 'defineMessages'
+function isMultipleMessageDescriptorDeclaration(node: TSESTree.Node) {
+  return (
+    node.type === 'CallExpression' &&
+    node.callee.type === 'Identifier' &&
+    node.callee.name === 'defineMessages'
+  )
 }
 
 function extractMessageDescriptor(
@@ -255,36 +239,53 @@ function extractMessageDescriptors(node?: TSESTree.Expression) {
 
 export function extractMessages(
   node: TSESTree.Node,
-  importedMacroVars: Scope.Variable[],
-  excludeMessageDeclCalls = false
+  {
+    additionalComponentNames,
+    additionalFunctionNames,
+    excludeMessageDeclCalls,
+  }: Settings = {}
 ): Array<[MessageDescriptorNodeInfo, TSESTree.Expression | undefined]> {
+  const allFormatFunctionNames = Array.isArray(additionalFunctionNames)
+    ? new Set([
+        ...Array.from(FORMAT_FUNCTION_NAMES),
+        ...additionalFunctionNames,
+      ])
+    : FORMAT_FUNCTION_NAMES
+  const allComponentNames = Array.isArray(additionalComponentNames)
+    ? new Set([...Array.from(COMPONENT_NAMES), ...additionalComponentNames])
+    : COMPONENT_NAMES
   if (node.type === 'CallExpression') {
     const expr = node
-    const fnId = expr.callee
+    const args0 = expr.arguments[0]
+    const args1 = expr.arguments[1]
+    // We can't really analyze spread element
+    if (!args0 || args0.type === 'SpreadElement') {
+      return []
+    }
     if (
       (!excludeMessageDeclCalls &&
-        isSingleMessageDescriptorDeclaration(fnId, importedMacroVars)) ||
+        isSingleMessageDescriptorDeclaration(
+          node,
+          DECLARATION_FUNCTION_NAMES
+        )) ||
       isIntlFormatMessageCall(node) ||
-      is$formatMessageCall(node)
+      isSingleMessageDescriptorDeclaration(node, allFormatFunctionNames)
     ) {
-      const msgDescriptorNodeInfo = extractMessageDescriptor(expr.arguments[0])
-      if (msgDescriptorNodeInfo) {
-        return [[msgDescriptorNodeInfo, expr.arguments[1]]]
+      const msgDescriptorNodeInfo = extractMessageDescriptor(args0)
+      if (msgDescriptorNodeInfo && (!args1 || args1.type !== 'SpreadElement')) {
+        return [[msgDescriptorNodeInfo, args1]]
       }
     } else if (
       !excludeMessageDeclCalls &&
-      isMultipleMessageDescriptorDeclaration(fnId, importedMacroVars)
+      isMultipleMessageDescriptorDeclaration(node)
     ) {
-      return extractMessageDescriptors(expr.arguments[0]).map(msg => [
-        msg,
-        undefined,
-      ])
+      return extractMessageDescriptors(args0).map(msg => [msg, undefined])
     }
   } else if (
     node.type === 'JSXOpeningElement' &&
     node.name &&
     node.name.type === 'JSXIdentifier' &&
-    node.name.name === 'FormattedMessage'
+    allComponentNames.has(node.name.name)
   ) {
     const msgDescriptorNodeInfo = extractMessageDescriptorFromJSXElement(node)
     if (msgDescriptorNodeInfo) {

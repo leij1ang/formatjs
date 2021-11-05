@@ -27,7 +27,7 @@ npm i -S @formatjs/intl
 <TabItem value="yarn">
 
 ```sh
-yarn add -S @formatjs/intl
+yarn add @formatjs/intl
 ```
 
 </TabItem>
@@ -64,12 +64,17 @@ const intl = createIntl(
 intl.formatNumber(20)
 ```
 
+## createIntlCache
+
+Creates a cache instance to be used globally across locales. This memoizes previously created `Intl.*` constructors for performance and is only an in-memory cache.
+
 ## IntlShape
 
 ```ts
 interface IntlConfig {
   locale: string
   timeZone?: string
+  fallbackOnEmptyString?: boolean
   formats: CustomFormats
   messages: Record<string, string> | Record<string, MessageFormatElement[]>
   defaultLocale: string
@@ -116,6 +121,7 @@ interface IntlFormatters {
     values: Array<string | T>,
     opts?: FormatListOptions
   ): T | string | Array<string | T>
+  formatListToParts(values: Array<string | T>, opts?: FormatListOptions): Part[]
   formatDisplayName(
     value: string,
     opts?: FormatDisplayNameOptions
@@ -136,7 +142,7 @@ The user's current locale and what the app should be rendered in. While `default
 
 ### defaultLocale and defaultFormats
 
-Default locale & formats for when a message is not translated (missing from `messages`). `defaultLocale` should be the locale that `defaultMessage`s are declared in so that a sentence is coherent in a single locale. Without `defaultLocale` and/or if it's set incorrectly, you might run into scenario where a sentence is in English but embeded date/time is in Spanish.
+Default locale & formats for when a message is not translated (missing from `messages`). `defaultLocale` should be the locale that `defaultMessage`s are declared in so that a sentence is coherent in a single locale. Without `defaultLocale` and/or if it's set incorrectly, you might run into scenario where a sentence is in English but embedded date/time is in Spanish.
 
 ### onError
 
@@ -145,6 +151,14 @@ Allows the user to provide a custom error handler. By default, error messages ar
 ### defaultRichTextElements
 
 A map of tag to rich text formatting function. This is meant to provide a centralized way to format common tags such as `<b>`, `<p>`... or enforcing certain Design System in the codebase (e.g standardized `<a>` or `<button>`...). See https://github.com/formatjs/formatjs/issues/1752 for more context.
+
+### fallbackOnEmptyString
+
+Defaults to `true`.
+
+This boolean option can be useful if you want to intentionally provide empty values for certain locales via empty strings. When `fallbackOnEmptyString` is `false`, empty strings will be returned instead of triggering the fallback procedure. This behaviour can be leveraged to "skip" content in specific locales.
+
+See [this issue](https://github.com/formatjs/formatjs/issues/607) for more context.
 
 ## formatDate
 

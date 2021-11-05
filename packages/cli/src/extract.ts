@@ -1,4 +1,4 @@
-import {warn, getStdinAsString} from './console_utils'
+import {warn, getStdinAsString, debug, writeStdout} from './console_utils'
 import {readFile, outputFile} from 'fs-extra'
 import {
   interpolateName,
@@ -137,14 +137,19 @@ function processFile(
     }
   }
 
+  debug('Processing opts for %s: %s', fn, opts)
+
   const scriptParseFn = parseScript(opts, fn)
   if (fn.endsWith('.vue')) {
+    debug('Processing %s using vue extractor', fn)
     parseFile(source, fn, scriptParseFn)
   } else {
+    debug('Processing %s using typescript extractor', fn)
     scriptParseFn(source)
   }
-
+  debug('Done extracting %s messages: %s', fn, messages)
   if (meta) {
+    debug('Extracted meta:', meta)
     messages.forEach(m => (m.meta = meta))
   }
   return {messages, meta}
@@ -164,6 +169,7 @@ export async function extract(
   const {throws, readFromStdin, flatten, ...opts} = extractOpts
   let rawResults: Array<ExtractionResult | undefined>
   if (readFromStdin) {
+    debug(`Reading input from stdin`)
     // Read from stdin
     if (process.stdin.isTTY) {
       warn('Reading source file from TTY.')
@@ -173,6 +179,7 @@ export async function extract(
   } else {
     rawResults = await Promise.all(
       files.map(async fn => {
+        debug('Extracting file:', fn)
         try {
           const source = await readFile(fn, 'utf8')
           return processFile(source, fn, opts)
@@ -180,7 +187,7 @@ export async function extract(
           if (throws) {
             throw e
           } else {
-            warn(e)
+            warn(String(e))
           }
         }
       })
@@ -253,10 +260,10 @@ export default async function extractAndWrite(
   extractOpts: ExtractCLIOptions
 ) {
   const {outFile, ...opts} = extractOpts
-  const serializedResult = await extract(files, opts)
+  const serializedResult = (await extract(files, opts)) + '\n'
   if (outFile) {
+    debug('Writing output file:', outFile)
     return outputFile(outFile, serializedResult)
   }
-  process.stdout.write(serializedResult)
-  process.stdout.write('\n')
+  await writeStdout(serializedResult)
 }

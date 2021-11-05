@@ -13,8 +13,6 @@ workspace(
     },
 )
 
-_ESBUILD_VERSION = "0.8.48"
-
 load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
 
 # Install the nodejs "bootstrap" package
@@ -23,8 +21,8 @@ load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
 http_archive(
     name = "build_bazel_rules_nodejs",
-    sha256 = "dd7ea7efda7655c218ca707f55c3e1b9c68055a70c31a98f264b3445bc8f4cb1",
-    urls = ["https://github.com/bazelbuild/rules_nodejs/releases/download/3.2.3/rules_nodejs-3.2.3.tar.gz"],
+    sha256 = "4501158976b9da216295ac65d872b1be51e3eeb805273e68c516d2eb36ae1fbb",
+    urls = ["https://github.com/bazelbuild/rules_nodejs/releases/download/4.4.1/rules_nodejs-4.4.1.tar.gz"],
 )
 
 IANA_TZ_VERSION = "2021a"
@@ -44,41 +42,14 @@ http_archive(
 )
 
 load("@build_bazel_rules_nodejs//:index.bzl", "node_repositories", "npm_install")
+load("@build_bazel_rules_nodejs//toolchains/esbuild:esbuild_repositories.bzl", "esbuild_repositories")
 
 node_repositories(
-    node_version = "14.9.0",
+    node_version = "16.1.0",
     package_json = ["//:package.json"],
 )
 
-http_archive(
-    name = "esbuild_darwin",
-    build_file_content = """exports_files(["bin/esbuild"])""",
-    sha256 = "d21a722873ed24586f071973b77223553fca466946f3d7e3976eeaccb14424e6",
-    strip_prefix = "package",
-    urls = [
-        "https://registry.npmjs.org/esbuild-darwin-64/-/esbuild-darwin-64-%s.tgz" % _ESBUILD_VERSION,
-    ],
-)
-
-http_archive(
-    name = "esbuild_windows",
-    build_file_content = """exports_files(["esbuild.exe"])""",
-    sha256 = "fe5dcb97b4c47f9567012f0a45c19c655f3d2e0d76932f6dd12715dbebbd6eb0",
-    strip_prefix = "package",
-    urls = [
-        "https://registry.npmjs.org/esbuild-windows-64/-/esbuild-windows-64-%s.tgz" % _ESBUILD_VERSION,
-    ],
-)
-
-http_archive(
-    name = "esbuild_linux",
-    build_file_content = """exports_files(["bin/esbuild"])""",
-    sha256 = "60dabe141e5dfcf99e7113bded6012868132068a582a102b258fb7b1cfdac14b",
-    strip_prefix = "package",
-    urls = [
-        "https://registry.npmjs.org/esbuild-linux-64/-/esbuild-linux-64-%s.tgz" % _ESBUILD_VERSION,
-    ],
-)
+esbuild_repositories(npm_repository = "npm")
 
 # The npm_install rule runs yarn anytime the package.json or yarn.lock file changes.
 # It also extracts and installs any Bazel rules distributed in an npm package.
@@ -88,6 +59,14 @@ npm_install(
     name = "npm",
     package_json = "//:package.json",
     package_lock_json = "//:package-lock.json",
+    patch_args = ["-p1"],
+    post_install_patches = [
+        "//:npm_package_patches/make-plural-compiler+5.1.0.patch",
+        "//:npm_package_patches/tslib+2.3.0.patch",
+        "//:npm_package_patches/@bazel+typescript+4.4.0.patch",
+    ],
+    # post_install_patches path doesn't work w/o symlink_node_modules = False
+    symlink_node_modules = False,
 )
 
 # Setup skylib

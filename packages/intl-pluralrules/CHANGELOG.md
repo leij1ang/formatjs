@@ -3,6 +3,191 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.1.5](https://github.com/formatjs/formatjs/compare/@formatjs/intl-pluralrules@4.1.4...@formatjs/intl-pluralrules@4.1.5) (2021-10-17)
+
+**Note:** Version bump only for package @formatjs/intl-pluralrules
+
+
+
+
+
+## [4.1.4](https://github.com/formatjs/formatjs/compare/@formatjs/intl-pluralrules@4.1.3...@formatjs/intl-pluralrules@4.1.4) (2021-09-27)
+
+**Note:** Version bump only for package @formatjs/intl-pluralrules
+
+
+
+
+
+## [4.1.3](https://github.com/formatjs/formatjs/compare/@formatjs/intl-pluralrules@4.1.2...@formatjs/intl-pluralrules@4.1.3) (2021-08-21)
+
+**Note:** Version bump only for package @formatjs/intl-pluralrules
+
+
+
+
+
+## [4.1.2](https://github.com/formatjs/formatjs/compare/@formatjs/intl-pluralrules@4.1.1...@formatjs/intl-pluralrules@4.1.2) (2021-08-15)
+
+**Note:** Version bump only for package @formatjs/intl-pluralrules
+
+
+
+
+
+## [4.1.1](https://github.com/formatjs/formatjs/compare/@formatjs/intl-pluralrules@4.1.0...@formatjs/intl-pluralrules@4.1.1) (2021-08-06)
+
+**Note:** Version bump only for package @formatjs/intl-pluralrules
+
+
+
+
+
+# [4.1.0](https://github.com/formatjs/formatjs/compare/@formatjs/intl-pluralrules@4.0.28...@formatjs/intl-pluralrules@4.1.0) (2021-07-24)
+
+
+### Bug Fixes
+
+* **@formatjs/intl-pluralrules:** refactor ([5c039ff](https://github.com/formatjs/formatjs/commit/5c039ff61271f902bcf1287d4a1bbc90f949182c))
+
+
+### Features
+
+* **@formatjs/intl-pluralrules:** add supported locales check to should-polyfill, fix [#3066](https://github.com/formatjs/formatjs/issues/3066) ([395efcb](https://github.com/formatjs/formatjs/commit/395efcb843c1d20ca11b55375d4b2536a415a750))
+
+
+
+
+
+## [4.0.28](https://github.com/formatjs/formatjs/compare/@formatjs/intl-pluralrules@4.0.27...@formatjs/intl-pluralrules@4.0.28) (2021-06-26)
+
+**Note:** Version bump only for package @formatjs/intl-pluralrules
+
+
+
+
+
+## [4.0.27](https://github.com/formatjs/formatjs/compare/@formatjs/intl-pluralrules@4.0.26...@formatjs/intl-pluralrules@4.0.27) (2021-06-05)
+
+
+### Bug Fixes
+
+* **@formatjs/intl-pluralrules:** remove Intl check ([85f221c](https://github.com/formatjs/formatjs/commit/85f221c3435b2c815d580c3ec2e3ee26f79be971))
+
+
+
+
+
+## [4.0.26](https://github.com/formatjs/formatjs/compare/@formatjs/intl-pluralrules@4.0.25...@formatjs/intl-pluralrules@4.0.26) (2021-06-05)
+
+**Note:** Version bump only for package @formatjs/intl-pluralrules
+
+
+
+
+
+## [4.0.25](https://github.com/formatjs/formatjs/compare/@formatjs/intl-pluralrules@4.0.24...@formatjs/intl-pluralrules@4.0.25) (2021-06-04)
+
+**Note:** Version bump only for package @formatjs/intl-pluralrules
+
+
+
+
+
+## [4.0.24](https://github.com/formatjs/formatjs/compare/@formatjs/intl-pluralrules@4.0.23...@formatjs/intl-pluralrules@4.0.24) (2021-06-02)
+
+
+### Bug Fixes
+
+* **react-intl:** make React external to react-intl, fix [#2939](https://github.com/formatjs/formatjs/issues/2939) ([f744ccc](https://github.com/formatjs/formatjs/commit/f744ccc39bc7925a8d9764ef3e644333b28ee4e7))
+
+
+
+
+
+## [4.0.23](https://github.com/formatjs/formatjs/compare/@formatjs/intl-pluralrules@4.0.22...@formatjs/intl-pluralrules@4.0.23) (2021-06-01)
+
+**Note:** Version bump only for package @formatjs/intl-pluralrules
+
+
+
+
+
+## [4.0.22](https://github.com/formatjs/formatjs/compare/@formatjs/intl-pluralrules@4.0.21...@formatjs/intl-pluralrules@4.0.22) (2021-05-23)
+
+**Note:** Version bump only for package @formatjs/intl-pluralrules
+
+
+
+
+
+## [4.0.21](https://github.com/formatjs/formatjs/compare/@formatjs/intl-pluralrules@4.0.20...@formatjs/intl-pluralrules@4.0.21) (2021-05-20)
+
+**Note:** Version bump only for package @formatjs/intl-pluralrules
+
+
+
+
+
+## [4.0.20](https://github.com/formatjs/formatjs/compare/@formatjs/intl-pluralrules@4.0.19...@formatjs/intl-pluralrules@4.0.20) (2021-05-17)
+
+**Note:** Version bump only for package @formatjs/intl-pluralrules
+
+
+
+
+
+## [4.0.19](https://github.com/formatjs/formatjs/compare/@formatjs/intl-pluralrules@4.0.18...@formatjs/intl-pluralrules@4.0.19) (2021-05-14)
+
+**Note:** Version bump only for package @formatjs/intl-pluralrules
+
+
+
+
+
+## [4.0.18](https://github.com/formatjs/formatjs/compare/@formatjs/intl-pluralrules@4.0.17...@formatjs/intl-pluralrules@4.0.18) (2021-05-10)
+
+**Note:** Version bump only for package @formatjs/intl-pluralrules
+
+
+
+
+
+## [4.0.17](https://github.com/formatjs/formatjs/compare/@formatjs/intl-pluralrules@4.0.16...@formatjs/intl-pluralrules@4.0.17) (2021-05-02)
+
+
+### Bug Fixes
+
+* **@formatjs/intl-pluralrules:** add d.ts for locale files, fix [#2850](https://github.com/formatjs/formatjs/issues/2850) ([fdc2185](https://github.com/formatjs/formatjs/commit/fdc21851823d741730ff38358b93e6303c57ac0f))
+
+
+
+
+
+## [4.0.16](https://github.com/formatjs/formatjs/compare/@formatjs/intl-pluralrules@4.0.15...@formatjs/intl-pluralrules@4.0.16) (2021-04-26)
+
+**Note:** Version bump only for package @formatjs/intl-pluralrules
+
+
+
+
+
+## [4.0.15](https://github.com/formatjs/formatjs/compare/@formatjs/intl-pluralrules@4.0.14...@formatjs/intl-pluralrules@4.0.15) (2021-04-26)
+
+**Note:** Version bump only for package @formatjs/intl-pluralrules
+
+
+
+
+
+## [4.0.14](https://github.com/formatjs/formatjs/compare/@formatjs/intl-pluralrules@4.0.13...@formatjs/intl-pluralrules@4.0.14) (2021-04-12)
+
+**Note:** Version bump only for package @formatjs/intl-pluralrules
+
+
+
+
+
 ## [4.0.13](https://github.com/formatjs/formatjs/compare/@formatjs/intl-pluralrules@4.0.12...@formatjs/intl-pluralrules@4.0.13) (2021-03-26)
 
 **Note:** Version bump only for package @formatjs/intl-pluralrules

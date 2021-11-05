@@ -7,13 +7,16 @@ import {
   toLocaleTimeString,
 } from '../src/to_locale_string'
 import {DateTimeFormat} from '../src/core'
-import {DateTimeFormatOptions} from '@formatjs/ecma402-abstract'
 
 // @ts-ignore
 DateTimeFormat.__addLocaleData(en, ko)
 DateTimeFormat.__addTZData(allData)
 
-const tests: Array<{options: DateTimeFormatOptions; ko: string; en: string}> = [
+const tests: Array<{
+  options: Intl.DateTimeFormatOptions
+  ko: string
+  en: string
+}> = [
   {
     options: {
       weekday: 'long',
@@ -29,8 +32,7 @@ const tests: Array<{options: DateTimeFormatOptions; ko: string; en: string}> = [
       timeZoneName: 'long',
     },
     ko: '서기 2020년 6 16일 화요일 AM 4시 48분 20초 협정 세계시',
-    en:
-      'Tuesday, 6 16, 2020 Anno Domini, 4:48:20 AM Coordinated Universal Time',
+    en: 'Tuesday, 6 16, 2020 Anno Domini, 4:48:20 AM Coordinated Universal Time',
   },
   {
     options: {

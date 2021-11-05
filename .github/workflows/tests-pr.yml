@@ -10,15 +10,10 @@ jobs:
     runs-on: ${{ matrix.os }}
 
     steps:
-      - uses: actions/checkout@v2.3.4
+      - uses: actions/checkout@v2.4.0
         with:
           submodules: true
           fetch-depth: 110
-      - name: build
-        run: |
-          bazel build //... --build_metadata=COMMIT_SHA=$(git rev-parse HEAD)
-        env:
-          CI: true
       - name: test
         run: |
           bazel test //... --build_metadata=COMMIT_SHA=$(git rev-parse HEAD)

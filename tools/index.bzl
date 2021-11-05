@@ -6,7 +6,7 @@ load("@build_bazel_rules_nodejs//internal/js_library:js_library.bzl", "js_librar
 load("@npm//@bazel/esbuild:index.bzl", _esbuild = "esbuild")
 load("@npm//@bazel/typescript:index.bzl", "ts_config", "ts_project")
 load("@npm//prettier:index.bzl", "prettier", "prettier_test")
-load("@npm//ts-node:index.bzl", "ts_node")
+load("@npm//ts-node:index.bzl", "ts_node", "ts_node_test")
 
 BUILDIFIER_WARNINGS = [
     "attr-cfg",
@@ -42,7 +42,7 @@ BUILDIFIER_WARNINGS = [
     "unused-variable",
 ]
 
-def ts_compile(name, srcs, deps, package_name = None, skip_esm = True):
+def ts_compile(name, srcs, deps, package_name = None, skip_esm = True, skip_esm_esnext = True):
     """Compile TS with prefilled args.
 
     Args:
@@ -51,6 +51,7 @@ def ts_compile(name, srcs, deps, package_name = None, skip_esm = True):
         deps: deps
         package_name: name from package.json
         skip_esm: skip building ESM bundle
+        skip_esm_esnext: skip building the ESM ESNext bundle
     """
     deps = deps + ["@npm//tslib"]
     ts_config(
@@ -64,6 +65,7 @@ def ts_compile(name, srcs, deps, package_name = None, skip_esm = True):
         declaration = True,
         declaration_map = True,
         tsconfig = ":%s-tsconfig" % name,
+        resolve_json_module = True,
         deps = deps,
     )
     if not skip_esm:
@@ -74,6 +76,18 @@ def ts_compile(name, srcs, deps, package_name = None, skip_esm = True):
             declaration_map = True,
             out_dir = "lib",
             tsconfig = "//:tsconfig.esm",
+            resolve_json_module = True,
+            deps = deps,
+        )
+    if not skip_esm_esnext:
+        ts_project(
+            name = "%s-esm-esnext" % name,
+            srcs = srcs,
+            declaration = True,
+            declaration_map = True,
+            out_dir = "lib_esnext",
+            tsconfig = "//:tsconfig.esm.esnext",
+            resolve_json_module = True,
             deps = deps,
         )
 
@@ -150,6 +164,7 @@ def generate_src_file(name, entry_point, src, args = [], data = [], visibility =
         entry_point = entry_point,
         args = args,
         data = data,
+        visibility = visibility,
     )
 
     generated_file_test(
@@ -177,6 +192,7 @@ def bundle_karma_tests(name, srcs, tests, data = [], deps = [], esbuild_deps = [
         declaration_map = True,
         extends = "//:tsconfig.json",
         out_dir = name,
+        resolve_json_module = True,
         tsconfig = "//:tsconfig.esm.json",
         deps = deps + [
             "@npm//@jest/transform",
@@ -194,9 +210,9 @@ def bundle_karma_tests(name, srcs, tests, data = [], deps = [], esbuild_deps = [
             entry_point = "%s/%s.js" % (name, f[:f.rindex(".")]),
             format = "iife",
             target = "es5",
-            define = [
-                "process.version=0",
-            ],
+            define = {
+                "process.version": "0",
+            },
             deps = [
                 ":%s-compile" % name,
                 "@npm//tslib",
@@ -270,10 +286,39 @@ def check_format(name, srcs, config = "//:.prettierrc.json"):
 def esbuild(name, **kwargs):
     _esbuild(
         name = name,
-        tool = select({
-            "@bazel_tools//src/conditions:darwin": "@esbuild_darwin//:bin/esbuild",
-            "@bazel_tools//src/conditions:linux_x86_64": "@esbuild_linux//:bin/esbuild",
-            "@bazel_tools//src/conditions:windows": "@esbuild_windows//:esbuild.exe",
-        }),
         **kwargs
+    )
+
+def package_json_test(name, packageJson = "package.json", deps = []):
+    external_deps = [s.replace("@npm//", "") for s in deps if s.startswith("@npm//")]
+    internal_dep_package_jsons = ["%s:package.json" % s.split(":")[0] for s in deps if not s.startswith("@npm//")]
+    ts_node_test(
+        name = name,
+        args = [
+                   "--transpile-only",
+                   "$(execpath //tools:check-package-json.ts)",
+                   "--rootPackageJson",
+                   "$(location //:package.json)",
+                   "--packageJson",
+                   "$(location %s)" % packageJson,
+               ] +
+               ["--externalDep %s" % n for n in external_deps] +
+               ["--internalDepPackageJson $(location %s)" % d for d in internal_dep_package_jsons],
+        data = internal_dep_package_jsons + [
+            packageJson,
+            "//tools:check-package-json.ts",
+            "//:package.json",
+            "//:tsconfig.json",
+            "@npm//@types/fs-extra",
+            "@npm//@types/minimist",
+            "@npm//fs-extra",
+            "@npm//json-stable-stringify",
+            "@npm//@types/json-stable-stringify",
+            "@npm//minimist",
+            "@npm//lodash",
+            "@npm//@types/lodash",
+            "@npm//unidiff",
+            "@npm//tslib",
+            "//:tsconfig.node.json",
+        ],
     )

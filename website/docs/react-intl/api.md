@@ -121,6 +121,10 @@ intl.formatNumber(20)
 <RawIntlProvider value={intl}>{foo}</RawIntlProvider>
 ```
 
+## createIntlCache
+
+Creates a cache instance to be used globally across locales. This memoizes previously created `Intl.*` constructors for performance and is only an in-memory cache.
+
 ## IntlShape
 
 ```ts
@@ -136,21 +140,48 @@ interface IntlConfig {
 }
 
 interface IntlFormatters {
-  formatDate(value: number | Date, opts: FormatDateOptions): string
-  formatTime(value: number | Date, opts: FormatDateOptions): string
-  formatDateTimeRange(
-    from: number | Date,
-    to: number | Date,
-    opts: FormatDateOptions
-  ): string
+  formatDate(value: number | Date | string, opts?: FormatDateOptions): string
+  formatTime(value: number | Date | string, opts?: FormatDateOptions): string
+  formatDateToParts(
+    value: number | Date | string,
+    opts?: FormatDateOptions
+  ): Intl.DateTimeFormatPart[]
+  formatTimeToParts(
+    value: number | Date | string,
+    opts?: FormatDateOptions
+  ): Intl.DateTimeFormatPart[]
   formatRelativeTime(
     value: number,
-    unit: Unit,
-    opts: FormatRelativeOptions
+    unit?: FormattableUnit,
+    opts?: FormatRelativeTimeOptions
   ): string
-  formatNumber(value: number, opts: FormatNumberOptions): string
-  formatPlural(value: number, opts: FormatPluralOptions): string
-  formatMessage(descriptor: MessageDescriptor, values: any): string
+  formatNumber(value: number, opts?: FormatNumberOptions): string
+  formatNumberToParts(
+    value: number,
+    opts?: FormatNumberOptions
+  ): Intl.NumberFormatPart[]
+  formatPlural(
+    value: number | string,
+    opts?: FormatPluralOptions
+  ): ReturnType<Intl.PluralRules['select']>
+  formatMessage(
+    descriptor: MessageDescriptor,
+    values?: Record<string, PrimitiveType | FormatXMLElementFn<string, string>>
+  ): string
+  formatMessage(
+    descriptor: MessageDescriptor,
+    values?: Record<string, PrimitiveType | T | FormatXMLElementFn<T, R>>
+  ): R
+  formatList(values: Array<string>, opts?: FormatListOptions): string
+  formatList(
+    values: Array<string | T>,
+    opts?: FormatListOptions
+  ): T | string | Array<string | T>
+  formatListToParts(values: Array<string | T>, opts?: FormatListOptions): Part[]
+  formatDisplayName(
+    value: string,
+    opts?: FormatDisplayNameOptions
+  ): string | undefined
 }
 
 type IntlShape = IntlConfig & IntlFormatters
@@ -169,7 +200,7 @@ The user's current locale and what the app should be rendered in. While `default
 
 ### defaultLocale and defaultFormats
 
-Default locale & formats for when a message is not translated (missing from `messages`). `defaultLocale` should be the locale that `defaultMessage`s are declared in so that a sentence is coherent in a single locale. Without `defaultLocale` and/or if it's set incorrectly, you might run into scenario where a sentence is in English but embeded date/time is in Spanish.
+Default locale & formats for when a message is not translated (missing from `messages`). `defaultLocale` should be the locale that `defaultMessage`s are declared in so that a sentence is coherent in a single locale. Without `defaultLocale` and/or if it's set incorrectly, you might run into scenario where a sentence is in English but embedded date/time is in Spanish.
 
 ### textComponent
 

@@ -1,6 +1,8 @@
 load("@build_bazel_rules_nodejs//:index.bzl", "generated_file_test", "pkg_npm")
-load("//tools:index.bzl", "check_format", "ts_compile")
+load("//tools:index.bzl", "check_format", "package_json_test", "ts_compile")
 load("//tools:jest.bzl", "jest_test")
+
+exports_files(["package.json"])
 
 PACKAGE_NAME = "eslint-plugin-formatjs"
 
@@ -32,10 +34,11 @@ SRCS = glob(["rules/*.ts"]) + [
 ]
 
 SRC_DEPS = [
-    "@npm//emoji-regex",
-    "@npm//@types/emoji-regex",
     "@npm//@types/eslint",
     "@npm//@typescript-eslint/typescript-estree",
+    "@npm//emoji-regex",
+    "@npm//eslint",
+    "@npm//typescript",
     "//packages/icu-messageformat-parser:dist",
     "//packages/ts-transformer:dist",
 ]
@@ -62,7 +65,6 @@ TEST_FILES = glob([
     name = "unit-%s" % f[6:f.index(".test.ts")],
     srcs = TESTS_BASE_SRCS + [f],
     deps = [
-        "@npm//eslint",
         "@npm//@typescript-eslint/parser",
         "@npm//vue-eslint-parser",
         "//packages/icu-messageformat-parser:types",
@@ -86,4 +88,9 @@ check_format(
             "CHANGELOG.md",
         ],
     ),
+)
+
+package_json_test(
+    name = "package_json_test",
+    deps = SRC_DEPS,
 )

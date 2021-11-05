@@ -3,6 +3,187 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.2.5](https://github.com/formatjs/formatjs/compare/@formatjs/intl-datetimeformat@4.2.4...@formatjs/intl-datetimeformat@4.2.5) (2021-10-17)
+
+**Note:** Version bump only for package @formatjs/intl-datetimeformat
+
+
+
+
+
+## [4.2.4](https://github.com/formatjs/formatjs/compare/@formatjs/intl-datetimeformat@4.2.3...@formatjs/intl-datetimeformat@4.2.4) (2021-09-27)
+
+**Note:** Version bump only for package @formatjs/intl-datetimeformat
+
+
+
+
+
+## [4.2.3](https://github.com/formatjs/formatjs/compare/@formatjs/intl-datetimeformat@4.2.2...@formatjs/intl-datetimeformat@4.2.3) (2021-08-21)
+
+
+### Bug Fixes
+
+* **@formatjs/intl-datetimeformat:** use native DateTimeFormatOptions instead of custom one ([eb1d49b](https://github.com/formatjs/formatjs/commit/eb1d49b983ffd4006d9500168e978aeb7a5d8c1c))
+
+
+
+
+
+## [4.2.2](https://github.com/formatjs/formatjs/compare/@formatjs/intl-datetimeformat@4.2.1...@formatjs/intl-datetimeformat@4.2.2) (2021-08-15)
+
+**Note:** Version bump only for package @formatjs/intl-datetimeformat
+
+
+
+
+
+## [4.2.1](https://github.com/formatjs/formatjs/compare/@formatjs/intl-datetimeformat@4.2.0...@formatjs/intl-datetimeformat@4.2.1) (2021-08-06)
+
+**Note:** Version bump only for package @formatjs/intl-datetimeformat
+
+
+
+
+
+# [4.2.0](https://github.com/formatjs/formatjs/compare/@formatjs/intl-datetimeformat@4.1.6...@formatjs/intl-datetimeformat@4.2.0) (2021-07-24)
+
+
+### Bug Fixes
+
+* **@formatjs/intl-datetimeformat:** refactor ([029f7fd](https://github.com/formatjs/formatjs/commit/029f7fdc0bb12a98382b424658e3cc049c271eeb))
+
+
+### Features
+
+* **@formatjs/intl-datetimeformat:** add supported locales check to should-polyfill, fix [#3066](https://github.com/formatjs/formatjs/issues/3066) ([59d297e](https://github.com/formatjs/formatjs/commit/59d297e806a453edcb607cd681b623d833136bab))
+
+
+
+
+
+## [4.1.6](https://github.com/formatjs/formatjs/compare/@formatjs/intl-datetimeformat@4.1.5...@formatjs/intl-datetimeformat@4.1.6) (2021-06-26)
+
+**Note:** Version bump only for package @formatjs/intl-datetimeformat
+
+
+
+
+
+## [4.1.5](https://github.com/formatjs/formatjs/compare/@formatjs/intl-datetimeformat@4.1.4...@formatjs/intl-datetimeformat@4.1.5) (2021-06-05)
+
+
+### Bug Fixes
+
+* **@formatjs/ecma402-abstract:** fix IsValidTimeZoneName to include target zone from backward, fix [#2951](https://github.com/formatjs/formatjs/issues/2951) ([c18ee8b](https://github.com/formatjs/formatjs/commit/c18ee8b8d8aac6aa8718432a39e187321110239f))
+
+
+
+
+
+## [4.1.4](https://github.com/formatjs/formatjs/compare/@formatjs/intl-datetimeformat@4.1.3...@formatjs/intl-datetimeformat@4.1.4) (2021-06-02)
+
+
+### Bug Fixes
+
+* **react-intl:** make React external to react-intl, fix [#2939](https://github.com/formatjs/formatjs/issues/2939) ([f744ccc](https://github.com/formatjs/formatjs/commit/f744ccc39bc7925a8d9764ef3e644333b28ee4e7))
+
+
+
+
+
+## [4.1.3](https://github.com/formatjs/formatjs/compare/@formatjs/intl-datetimeformat@4.1.2...@formatjs/intl-datetimeformat@4.1.3) (2021-06-01)
+
+**Note:** Version bump only for package @formatjs/intl-datetimeformat
+
+
+
+
+
+## [4.1.2](https://github.com/formatjs/formatjs/compare/@formatjs/intl-datetimeformat@4.1.1...@formatjs/intl-datetimeformat@4.1.2) (2021-05-23)
+
+
+### Bug Fixes
+
+* **@formatjs/intl-datetimeformat:** fix crash in [#2909](https://github.com/formatjs/formatjs/issues/2909) ([495d1b8](https://github.com/formatjs/formatjs/commit/495d1b82eb971f0d2421114c34038357085e1693))
+
+
+
+
+
+## [4.1.1](https://github.com/formatjs/formatjs/compare/@formatjs/intl-datetimeformat@4.1.0...@formatjs/intl-datetimeformat@4.1.1) (2021-05-20)
+
+**Note:** Version bump only for package @formatjs/intl-datetimeformat
+
+
+
+
+
+# [4.1.0](https://github.com/formatjs/formatjs/compare/@formatjs/intl-datetimeformat@4.0.0...@formatjs/intl-datetimeformat@4.1.0) (2021-05-17)
+
+
+### Features
+
+* **@formatjs/intl-datetimeformat:** upgrade unicode to v39 ([d0625c3](https://github.com/formatjs/formatjs/commit/d0625c340a6aecd6961be85c7dff056bac3f7674))
+
+
+
+
+
+# [4.0.0](https://github.com/formatjs/formatjs/compare/@formatjs/intl-datetimeformat@3.3.5...@formatjs/intl-datetimeformat@4.0.0) (2021-05-14)
+
+
+### Features
+
+* **@formatjs/intl-datetimeformat:** stop aliasing en-US-POSIX to en-US ([c26406f](https://github.com/formatjs/formatjs/commit/c26406fc94378e47106f79eff177ed57d0fbabc7))
+
+
+### BREAKING CHANGES
+
+* **@formatjs/intl-datetimeformat:** Before we call `en-US-POSIX` as `en-US` but it has subtle pattern differences so it's misleading. If you were importing `en-US` earlier, use `en` instead since they're the same.
+
+
+
+
+
+## [3.3.5](https://github.com/formatjs/formatjs/compare/@formatjs/intl-datetimeformat@3.3.4...@formatjs/intl-datetimeformat@3.3.5) (2021-05-10)
+
+**Note:** Version bump only for package @formatjs/intl-datetimeformat
+
+
+
+
+
+## [3.3.4](https://github.com/formatjs/formatjs/compare/@formatjs/intl-datetimeformat@3.3.3...@formatjs/intl-datetimeformat@3.3.4) (2021-05-02)
+
+
+### Bug Fixes
+
+* **@formatjs/intl-datetimeformat:** add d.ts for locale files, fix [#2850](https://github.com/formatjs/formatjs/issues/2850) ([c9e56b8](https://github.com/formatjs/formatjs/commit/c9e56b89c1c087df48444ae9fd6ea4e5afd07d51))
+
+
+
+
+
+## [3.3.3](https://github.com/formatjs/formatjs/compare/@formatjs/intl-datetimeformat@3.3.2...@formatjs/intl-datetimeformat@3.3.3) (2021-04-26)
+
+**Note:** Version bump only for package @formatjs/intl-datetimeformat
+
+
+
+
+
+## [3.3.2](https://github.com/formatjs/formatjs/compare/@formatjs/intl-datetimeformat@3.3.1...@formatjs/intl-datetimeformat@3.3.2) (2021-04-12)
+
+
+### Bug Fixes
+
+* **vue-intl:** export the same stuff as react-intl ([9123574](https://github.com/formatjs/formatjs/commit/9123574129641eef69795147a265c9c291d87da5))
+
+
+
+
+
 ## [3.3.1](https://github.com/formatjs/formatjs/compare/@formatjs/intl-datetimeformat@3.3.0...@formatjs/intl-datetimeformat@3.3.1) (2021-03-26)
 
 **Note:** Version bump only for package @formatjs/intl-datetimeformat

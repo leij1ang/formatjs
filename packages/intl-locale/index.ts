@@ -16,12 +16,9 @@ import {
   emitUnicodeLanguageId,
   getCanonicalLocales,
   UnicodeLanguageId,
+  likelySubtags,
 } from '@formatjs/intl-getcanonicallocales'
-import * as likelySubtagsData from 'cldr-core/supplemental/likelySubtags.json'
 import getInternalSlots from './get_internal_slots'
-const {
-  supplemental: {likelySubtags},
-} = likelySubtagsData
 
 export interface IntlLocaleOptions {
   language?: string
@@ -153,10 +150,9 @@ function applyUnicodeExtensionToTag(
   } else {
     unicodeExtension.keywords = keywords
   }
-  result.locale = ((Intl as any)
-    .getCanonicalLocales as typeof getCanonicalLocales)(
-    emitUnicodeLocaleId(ast)
-  )[0]
+  result.locale = (
+    (Intl as any).getCanonicalLocales as typeof getCanonicalLocales
+  )(emitUnicodeLocaleId(ast))[0]
   return result
 }
 

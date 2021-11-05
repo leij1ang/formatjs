@@ -41,21 +41,16 @@ interface State {
    * This is important since creating intl is
    * very expensive
    */
-  prevConfig: OptionalIntlConfig
+  prevConfig: IntlConfig
 }
 
-export type OptionalIntlConfig = Omit<
-  IntlConfig,
-  keyof typeof DEFAULT_INTL_CONFIG
-> &
-  Partial<typeof DEFAULT_INTL_CONFIG>
-
-function processIntlConfig<P extends OptionalIntlConfig = OptionalIntlConfig>(
+function processIntlConfig<P extends IntlConfig = IntlConfig>(
   config: P
-): OptionalIntlConfig {
+): IntlConfig {
   return {
     locale: config.locale,
     timeZone: config.timeZone,
+    fallbackOnEmptyString: config.fallbackOnEmptyString,
     formats: config.formats,
     textComponent: config.textComponent,
     messages: config.messages,
@@ -118,49 +113,42 @@ const formatMessage: typeof coreFormatMessage = (
  * @param config intl config
  * @param cache cache for formatter instances to prevent memory leak
  */
-export const createIntl: CreateIntlFn<
-  React.ReactNode,
-  OptionalIntlConfig,
-  IntlShape
-> = (
-  {defaultRichTextElements: rawDefaultRichTextElements, ...config},
-  cache
-) => {
-  const defaultRichTextElements = assignUniqueKeysToFormatXMLElementFnArgument(
-    rawDefaultRichTextElements
-  )
-  const coreIntl = coreCreateIntl<React.ReactNode>(
-    {
-      ...DEFAULT_INTL_CONFIG,
-      ...config,
-      defaultRichTextElements,
-    },
-    cache
-  )
-
-  return {
-    ...coreIntl,
-    formatMessage: formatMessage.bind(
-      null,
+export const createIntl: CreateIntlFn<React.ReactNode, IntlConfig, IntlShape> =
+  ({defaultRichTextElements: rawDefaultRichTextElements, ...config}, cache) => {
+    const defaultRichTextElements =
+      assignUniqueKeysToFormatXMLElementFnArgument(rawDefaultRichTextElements)
+    const coreIntl = coreCreateIntl<React.ReactNode>(
       {
-        locale: coreIntl.locale,
-        timeZone: coreIntl.timeZone,
-        formats: coreIntl.formats,
-        defaultLocale: coreIntl.defaultLocale,
-        defaultFormats: coreIntl.defaultFormats,
-        messages: coreIntl.messages,
-        onError: coreIntl.onError,
+        ...DEFAULT_INTL_CONFIG,
+        ...config,
         defaultRichTextElements,
       },
-      coreIntl.formatters
-    ),
+      cache
+    )
+
+    return {
+      ...coreIntl,
+      formatMessage: formatMessage.bind(
+        null,
+        {
+          locale: coreIntl.locale,
+          timeZone: coreIntl.timeZone,
+          formats: coreIntl.formats,
+          defaultLocale: coreIntl.defaultLocale,
+          defaultFormats: coreIntl.defaultFormats,
+          messages: coreIntl.messages,
+          onError: coreIntl.onError,
+          defaultRichTextElements,
+        },
+        coreIntl.formatters
+      ),
+    }
   }
-}
 
 export default class IntlProvider extends React.PureComponent<
   // Exporting children props so it is composable with other HOCs.
   // See: https://github.com/formatjs/formatjs/issues/1697
-  React.PropsWithChildren<OptionalIntlConfig>,
+  React.PropsWithChildren<IntlConfig>,
   State
 > {
   static displayName = 'IntlProvider'
@@ -173,7 +161,7 @@ export default class IntlProvider extends React.PureComponent<
   }
 
   static getDerivedStateFromProps(
-    props: OptionalIntlConfig,
+    props: Readonly<IntlConfig>,
     {prevConfig, cache}: State
   ): Partial<State> | null {
     const config = processIntlConfig(props)

@@ -2,22 +2,14 @@ import {
   invariant,
   defineProperty,
   SupportedLocales,
-  InitializeDateTimeFormat,
   IsValidTimeZoneName,
   CanonicalizeTimeZoneName,
-  DateTimeFormatOptions,
   TABLE_6,
   DateTimeFormat as IDateTimeFormat,
-  DATE_TIME_PROPS,
-  FormatDateTime,
-  FormatDateTimeToParts,
   CanonicalizeLocaleList,
   DateTimeFormatLocaleInternalData,
   UnpackedZoneData,
-  parseDateTimeSkeleton,
   ToNumber,
-  FormatDateTimeRange,
-  FormatDateTimeRangeToParts,
   IntlDateTimeFormatInternal,
   OrdinaryHasInstance,
 } from '@formatjs/ecma402-abstract'
@@ -25,6 +17,13 @@ import getInternalSlots from './get_internal_slots'
 import links from './data/links'
 import {PackedData, RawDateTimeLocaleData} from './types'
 import {unpack} from './packer'
+import {FormatDateTime} from './abstract/FormatDateTime'
+import {InitializeDateTimeFormat} from './abstract/InitializeDateTimeFormat'
+import {DATE_TIME_PROPS} from './abstract/utils'
+import {FormatDateTimeToParts} from './abstract/FormatDateTimeToParts'
+import {FormatDateTimeRangeToParts} from './abstract/FormatDateTimeRangeToParts'
+import {FormatDateTimeRange} from './abstract/FormatDateTimeRange'
+import {parseDateTimeSkeleton} from './abstract/skeleton'
 
 const UPPERCASED_LINKS = Object.keys(links).reduce(
   (all: Record<string, string>, l) => {
@@ -120,17 +119,17 @@ try {
 export interface DateTimeFormatConstructor {
   new (
     locales?: string | string[],
-    options?: DateTimeFormatOptions
+    options?: Intl.DateTimeFormatOptions
   ): IDateTimeFormat
   (
     locales?: string | string[],
-    options?: DateTimeFormatOptions
+    options?: Intl.DateTimeFormatOptions
   ): IDateTimeFormat
 
   __addLocaleData(...data: RawDateTimeLocaleData[]): void
   supportedLocalesOf(
     locales: string | string[],
-    options?: Pick<DateTimeFormatOptions, 'localeMatcher'>
+    options?: Pick<Intl.DateTimeFormatOptions, 'localeMatcher'>
   ): string[]
   getDefaultLocale(): string
   relevantExtensionKeys: string[]
@@ -148,7 +147,7 @@ export interface DateTimeFormatConstructor {
 export const DateTimeFormat = function (
   this: IDateTimeFormat,
   locales?: string | string[],
-  options?: DateTimeFormatOptions
+  options?: Intl.DateTimeFormatOptions
 ) {
   // Cannot use `new.target` bc of IE11 & TS transpiles it to something else
   if (!this || !OrdinaryHasInstance(DateTimeFormat, this)) {
@@ -182,7 +181,7 @@ export const DateTimeFormat = function (
 defineProperty(DateTimeFormat, 'supportedLocalesOf', {
   value: function supportedLocalesOf(
     locales: string | string[],
-    options?: Pick<DateTimeFormatOptions, 'localeMatcher'>
+    options?: Pick<Intl.DateTimeFormatOptions, 'localeMatcher'>
   ) {
     return SupportedLocales(
       DateTimeFormat.availableLocales,
@@ -359,15 +358,14 @@ DateTimeFormat.__addLocaleData = function __addLocaleData(
     }
 
     for (const calendar in formats) {
-      processedData.formats[calendar] = Object.keys(
-        formats[calendar]
-      ).map(skeleton =>
-        parseDateTimeSkeleton(
-          skeleton,
-          formats[calendar][skeleton],
-          intervalFormats[skeleton],
-          intervalFormats.intervalFormatFallback
-        )
+      processedData.formats[calendar] = Object.keys(formats[calendar]).map(
+        skeleton =>
+          parseDateTimeSkeleton(
+            skeleton,
+            formats[calendar][skeleton],
+            intervalFormats[skeleton],
+            intervalFormats.intervalFormatFallback
+          )
       )
     }
 

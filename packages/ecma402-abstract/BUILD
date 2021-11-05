@@ -1,6 +1,8 @@
 load("@build_bazel_rules_nodejs//:index.bzl", "generated_file_test", "pkg_npm")
-load("//tools:index.bzl", "check_format", "generate_src_file", "ts_compile")
+load("//tools:index.bzl", "check_format", "generate_src_file", "package_json_test", "ts_compile")
 load("//tools:jest.bzl", "jest_test")
+
+exports_files(["package.json"])
 
 PACKAGE_NAME = "ecma402-abstract"
 
@@ -32,12 +34,14 @@ SRCS = glob(
         "NumberFormat/*.json",
     ],
     exclude = [
-        "tools/*.ts",
+        "scripts/*.ts",
         "tests/*.ts",
     ],
 )
 
-SRC_DEPS = []
+SRC_DEPS = [
+    "//packages/intl-localematcher:dist",
+]
 
 ts_compile(
     name = "dist",
@@ -54,7 +58,9 @@ jest_test(
         "tests/**/*.tsx",
         "tests/**/*.snap",
     ]),
-    deps = SRC_DEPS,
+    deps = SRC_DEPS + [
+        "//packages/intl-localematcher:types",
+    ],
 )
 
 generated_file_test(
@@ -66,8 +72,8 @@ generated_file_test(
 # digit-mapping
 generate_src_file(
     name = "digit-mapping",
-    src = "NumberFormat/digit-mapping.json",
-    entry_point = "tools/digit-mapping.ts",
+    src = "NumberFormat/digit-mapping.generated.ts",
+    entry_point = "scripts/digit-mapping.ts",
 )
 
 check_format(
@@ -77,8 +83,25 @@ check_format(
             "**/*",
         ],
         exclude = [
+            "**/*.generated.*",
             "CHANGELOG.md",
             "NumberFormat/digit-mapping.json",
         ],
     ),
+)
+
+generate_src_file(
+    name = "regex",
+    src = "regex.generated.ts",
+    data = [
+        "scripts/global.ts",
+        "@npm//@unicode/unicode-13.0.0",
+        "@npm//regenerate",
+    ],
+    entry_point = "scripts/regex-gen.ts",
+)
+
+package_json_test(
+    name = "package_json_test",
+    deps = SRC_DEPS,
 )

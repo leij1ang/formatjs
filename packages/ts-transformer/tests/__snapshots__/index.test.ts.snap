@@ -126,6 +126,7 @@ export default class Foo extends Component {
         this.props.intl.formatMessage({ id: \\"HELLO..5.string\\", defaultMessage: [{ type: 0, value: \\"no-id\\" }] });
         intl.formatMessage({ id: \\"HELLO..18.string\\", defaultMessage: [{ type: 0, value: \\"intl.formatMessage\\" }] });
         formatMessage({ id: \\"HELLO..13.string\\", defaultMessage: [{ type: 0, value: \\"formatMessage\\" }] });
+        formatMessage({ id: \\"HELLO..39.string\\", defaultMessage: [{ type: 6, value: \\"count\\", options: { \\"=0\\": { value: [{ type: 0, value: \\"zero\\" }] }, other: { value: [{ type: 0, value: \\"other\\" }] } }, offset: 0, pluralType: \\"cardinal\\" }] });
         return (<div>
         <h1>
           <FormattedMessage {...msgs.header}/>
@@ -135,6 +136,8 @@ export default class Foo extends Component {
         </p>
         <FormattedMessage id=\\"HELLO.foo.bar.zoo.18.undefined\\" defaultMessage={[{ type: 0, value: \\"Hello World! \\" }, { type: 1, value: \\"abc\\" }]} values={{ abc: 2 }}/>
         <FormattedMessage id=\\"HELLO..18.undefined\\" defaultMessage={[{ type: 0, value: \\"Hello World! \\" }, { type: 1, value: \\"abc\\" }]} values={{ abc: 2 }}/>
+
+        <FormattedMessage id=\\"HELLO..15.undefined\\" defaultMessage={[{ type: 2, value: \\"value\\", style: null }]} values={{ abc: 2 }}/>
       </div>);
     }
 }
@@ -171,12 +174,21 @@ export default class Foo extends Component {
       "id": "HELLO..13.string",
     },
     Object {
+      "defaultMessage": "{count, plural, =0 {zero} other{other}}",
+      "description": "no-id",
+      "id": "HELLO..39.string",
+    },
+    Object {
       "defaultMessage": "Hello World! {abc}",
       "id": "HELLO.foo.bar.zoo.18.undefined",
     },
     Object {
       "defaultMessage": "Hello World! {abc}",
       "id": "HELLO..18.undefined",
+    },
+    Object {
+      "defaultMessage": "{value, number}",
+      "id": "HELLO..15.undefined",
     },
   ],
 }
@@ -473,8 +485,9 @@ const objectPointer = {
 class Foo extends Component {
     render() {
         const msgs = {
-            baz: this.props.intl.formatMessage({ id: \\"foo.bar.baz\\", defaultMessage: \\"Hello World!\\" }),
-            biff: this.props.intl.formatMessage({ id: \\"foo.bar.biff\\", defaultMessage: \\"Hello Nurse!\\" }),
+            baz: formatMessage({ id: \\"foo.bar.baz\\", defaultMessage: \\"Hello World!\\" }),
+            baz2: this.props.intl.$formatMessage({ id: \\"foo.bar.baz2\\", defaultMessage: \\"Hello World!\\" }),
+            biff: $formatMessage({ id: \\"foo.bar.biff\\", defaultMessage: \\"Hello Nurse!\\" }),
             invalid: this.props.intl.formatMessage(objectPointer),
         };
         return (<div>
@@ -495,6 +508,11 @@ export default injectIntl(Foo);
       "defaultMessage": "Hello World!",
       "description": "The default message",
       "id": "foo.bar.baz",
+    },
+    Object {
+      "defaultMessage": "Hello World!",
+      "description": "The default message $$$",
+      "id": "foo.bar.baz2",
     },
     Object {
       "defaultMessage": "Hello Nurse!",

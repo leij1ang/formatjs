@@ -5,7 +5,7 @@ import {
 } from '../types/number'
 import {CanonicalizeLocaleList} from '../CanonicalizeLocaleList'
 import {GetOption} from '../GetOption'
-import {ResolveLocale} from '../ResolveLocale'
+import {ResolveLocale} from '@formatjs/intl-localematcher'
 import {SetNumberFormatUnitOptions} from './SetNumberFormatUnitOptions'
 import {CurrencyDigits} from './CurrencyDigits'
 import {SetNumberFormatDigitOptions} from './SetNumberFormatDigitOptions'
@@ -17,7 +17,7 @@ import {CoerceOptionsToObject} from '../CoerceOptionsToObject'
  */
 export function InitializeNumberFormat(
   nf: Intl.NumberFormat,
-  locales: string | string[] | undefined,
+  locales: string | ReadonlyArray<string> | undefined,
   opts: NumberFormatOptions | undefined,
   {
     getInternalSlots,
@@ -30,7 +30,7 @@ export function InitializeNumberFormat(
     getInternalSlots(nf: Intl.NumberFormat): NumberFormatInternal
     localeData: Record<string, NumberFormatLocaleInternalData | undefined>
     availableLocales: Set<string>
-    numberingSystemNames: string[]
+    numberingSystemNames: ReadonlyArray<string>
     getDefaultLocale(): string
     currencyDigitsData: Record<string, number>
   }

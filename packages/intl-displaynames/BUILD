@@ -2,8 +2,10 @@ load("@build_bazel_rules_nodejs//:index.bzl", "generated_file_test", "pkg_npm")
 load("@com_github_ash2k_bazel_tools//multirun:def.bzl", "multirun")
 load("@npm//@bazel/typescript:index.bzl", "ts_project")
 load("@npm//test262-harness:index.bzl", "test262_harness_test")
-load("//tools:index.bzl", "bundle_karma_tests", "check_format", "esbuild", "generate_src_file", "ts_compile", "ts_script")
+load("//tools:index.bzl", "bundle_karma_tests", "check_format", "esbuild", "generate_src_file", "package_json_test", "ts_compile", "ts_script")
 load("//tools:jest.bzl", "jest_test")
+
+exports_files(["package.json"])
 
 PACKAGE_NAME = "intl-displaynames"
 
@@ -42,8 +44,7 @@ alias(
 SRCS = glob(
     [
         "*.ts",
-        "src/*.ts",
-        "src/data/*",
+        "abstract/*.ts",
     ],
     exclude = ["test*.*"],
 )
@@ -54,10 +55,12 @@ TESTS = glob([
 
 SRC_DEPS = [
     "//packages/ecma402-abstract:dist",
+    "//packages/intl-localematcher:dist",
 ]
 
 TEST_DEPS = SRC_DEPS + [
     "//packages/ecma402-abstract:types",
+    "//packages/intl-localematcher:types",
     "//packages/intl-getcanonicallocales:dist",
     "//packages/intl-getcanonicallocales:types",
     "//packages/intl-locale:dist",
@@ -144,7 +147,7 @@ generate_src_file(
         "--cldrFolder",
         "$(location :cldr-raw)",
         "--locales",
-        "ar,de,en,en-US,ja,ko,th,zh,zh-Hant,zh-Hans",
+        "ar,de,en,en-US-POSIX,ja,ko,th,zh,zh-Hant,zh-Hans",
     ],
     data = CLDR_DEPS,
     entry_point = "scripts/test262-main-gen.ts",
@@ -161,6 +164,7 @@ ts_project(
     declaration_map = True,
     extends = "//:tsconfig.json",
     out_dir = "test262",
+    resolve_json_module = True,
     tsconfig = "//:tsconfig.es6.json",
     deps = SRC_DEPS,
 )
@@ -185,6 +189,7 @@ test262_harness_test(
     templated_args = [
         "--reporter-keys",
         "file,attrs,result",
+        "--errorForFailures",
         "--timeout",
         "30000",
         "--prelude",
@@ -216,6 +221,7 @@ generated_file_test(
 esbuild(
     name = "polyfill.iife",
     entry_point = "lib/polyfill.js",
+    target = "es5",
     deps = [
         ":dist-esm",
         "@npm//tslib",
@@ -234,4 +240,9 @@ check_format(
             "test262-main.ts",
         ],
     ),
+)
+
+package_json_test(
+    name = "package_json_test",
+    deps = SRC_DEPS,
 )

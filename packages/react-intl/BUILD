@@ -1,6 +1,8 @@
 load("@build_bazel_rules_nodejs//:index.bzl", "generated_file_test", "pkg_npm")
-load("//tools:index.bzl", "check_format", "ts_compile")
+load("//tools:index.bzl", "check_format", "esbuild", "package_json_test", "ts_compile")
 load("//tools:jest.bzl", "jest_test")
+
+exports_files(["package.json"])
 
 PACKAGE_NAME = "react-intl"
 
@@ -12,7 +14,9 @@ pkg_npm(
         "README.md",
     ],
     deps = [
+        "%s.iife.js" % PACKAGE_NAME,
         ":dist",
+        ":dist-esm",
     ],
 )
 
@@ -29,14 +33,16 @@ alias(
 SRCS = glob(["src/**/*.ts*"]) + ["index.ts"]
 
 SRC_DEPS = [
-    "@npm//react",
-    "@npm//@types/react",
-    "//packages/intl:dist",
-    "//packages/intl-listformat:dist",
-    "//packages/intl-displaynames:dist",
-    "//packages/intl-messageformat:dist",
-    "@npm//hoist-non-react-statics",
     "@npm//@types/hoist-non-react-statics",
+    "@npm//@types/react",
+    "@npm//hoist-non-react-statics",
+    "@npm//react",
+    "//packages/ecma402-abstract:dist",
+    "//packages/icu-messageformat-parser:dist",
+    "//packages/intl-displaynames:dist",
+    "//packages/intl-listformat:dist",
+    "//packages/intl-messageformat:dist",
+    "//packages/intl:dist",
 ]
 
 TESTS = glob([
@@ -49,9 +55,9 @@ TEST_DEPS = SRC_DEPS + [
     "@npm//@testing-library/react",
     "@npm//react-dom",
     "//packages/ecma402-abstract:types",
+    "//packages/icu-messageformat-parser:types",
     "//packages/intl-displaynames:types",
     "//packages/intl-listformat:types",
-    "//packages/icu-messageformat-parser:types",
     "//packages/intl-messageformat:types",
     "//packages/intl-numberformat:dist",
     "//packages/intl-relativetimeformat:dist",
@@ -64,6 +70,26 @@ ts_compile(
     srcs = SRCS,
     skip_esm = False,
     deps = SRC_DEPS,
+)
+
+esbuild(
+    name = "%s.esbuild.iife" % PACKAGE_NAME,
+    args = {
+        "globalName": "ReactIntl",
+    },
+    entry_point = "lib/index.js",
+    external = ["react"],
+    target = "es5",
+    deps = [
+        ":dist-esm",
+    ] + SRC_DEPS,
+)
+
+genrule(
+    name = "external-rename",
+    srcs = [":%s.esbuild.iife.js" % PACKAGE_NAME],
+    outs = ["%s.iife.js" % PACKAGE_NAME],
+    cmd = "cat $< | sed -E 's/__require\\(\"react\"\\)/window.React/g' > $@",
 )
 
 jest_test(
@@ -106,4 +132,9 @@ check_format(
             "tests/unit/components/__snapshots__/*",
         ],
     ),
+)
+
+package_json_test(
+    name = "package_json_test",
+    deps = SRC_DEPS,
 )

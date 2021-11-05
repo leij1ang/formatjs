@@ -2,8 +2,10 @@ load("@build_bazel_rules_nodejs//:index.bzl", "generated_file_test", "pkg_npm")
 load("@com_github_ash2k_bazel_tools//multirun:def.bzl", "multirun")
 load("@npm//@bazel/typescript:index.bzl", "ts_project")
 load("@npm//test262-harness:index.bzl", "test262_harness_test")
-load("//tools:index.bzl", "check_format", "esbuild", "generate_src_file", "ts_compile", "ts_script")
+load("//tools:index.bzl", "check_format", "esbuild", "generate_src_file", "package_json_test", "ts_compile", "ts_script")
 load("//tools:jest.bzl", "jest_test")
+
+exports_files(["package.json"])
 
 PACKAGE_NAME = "intl-numberformat"
 
@@ -193,7 +195,7 @@ generate_src_file(
 # currency-digits
 generate_src_file(
     name = "currency-digits",
-    src = "src/data/currency-digits.json",
+    src = "src/currency-digits.generated.ts",
     data = [
         "scripts/extract-currencies.ts",
         "scripts/utils.ts",
@@ -211,7 +213,7 @@ generate_src_file(
 # numbering-systems
 generate_src_file(
     name = "numbering-systems",
-    src = "src/data/numbering-systems.json",
+    src = "src/numbering-systems.generated.ts",
     data = [
         "scripts/extract-numbers.ts",
         "scripts/utils.ts",
@@ -226,15 +228,15 @@ generate_src_file(
 )
 
 # units-constants
-generate_src_file(
-    name = "units-constants",
-    src = "src/data/units-constants.ts",
-    data = [
-        "//packages/ecma402-abstract:dist",
-        "//packages/ecma402-abstract:types",
-    ],
-    entry_point = "scripts/units-constants.ts",
-)
+# generate_src_file(
+#     name = "units-constants",
+#     src = "src/units-constants.generated.ts",
+#     data = [
+#         "//packages/ecma402-abstract:dist",
+#         "//packages/ecma402-abstract:types",
+#     ],
+#     entry_point = "scripts/units-constants.ts",
+# )
 
 # Test262
 ts_project(
@@ -245,6 +247,7 @@ ts_project(
     extends =
         "//:tsconfig.json",
     out_dir = "test262",
+    resolve_json_module = True,
     tsconfig = "//:tsconfig.es6.json",
     deps = SRC_DEPS,
 )
@@ -304,11 +307,16 @@ check_format(
             "**/*",
         ],
         exclude = [
-            "src/data/*",
+            "**/*.generated.*",
             "test262-main.ts",
             "tests/__snapshots__/*",
             "tests/locale-data/*",
             "CHANGELOG.md",
         ],
     ),
+)
+
+package_json_test(
+    name = "package_json_test",
+    deps = SRC_DEPS,
 )

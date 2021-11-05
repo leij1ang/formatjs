@@ -3,6 +3,186 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.3.5](https://github.com/formatjs/formatjs/compare/@formatjs/intl-listformat@6.3.4...@formatjs/intl-listformat@6.3.5) (2021-10-17)
+
+**Note:** Version bump only for package @formatjs/intl-listformat
+
+
+
+
+
+## [6.3.4](https://github.com/formatjs/formatjs/compare/@formatjs/intl-listformat@6.3.3...@formatjs/intl-listformat@6.3.4) (2021-09-27)
+
+**Note:** Version bump only for package @formatjs/intl-listformat
+
+
+
+
+
+## [6.3.3](https://github.com/formatjs/formatjs/compare/@formatjs/intl-listformat@6.3.2...@formatjs/intl-listformat@6.3.3) (2021-08-21)
+
+**Note:** Version bump only for package @formatjs/intl-listformat
+
+
+
+
+
+## [6.3.2](https://github.com/formatjs/formatjs/compare/@formatjs/intl-listformat@6.3.1...@formatjs/intl-listformat@6.3.2) (2021-08-15)
+
+**Note:** Version bump only for package @formatjs/intl-listformat
+
+
+
+
+
+## [6.3.1](https://github.com/formatjs/formatjs/compare/@formatjs/intl-listformat@6.3.0...@formatjs/intl-listformat@6.3.1) (2021-08-06)
+
+**Note:** Version bump only for package @formatjs/intl-listformat
+
+
+
+
+
+# [6.3.0](https://github.com/formatjs/formatjs/compare/@formatjs/intl-listformat@6.2.6...@formatjs/intl-listformat@6.3.0) (2021-07-24)
+
+
+### Bug Fixes
+
+* **@formatjs/intl-listformat:** refactor ([65c5a20](https://github.com/formatjs/formatjs/commit/65c5a20db4287106aef42a5c745bdd55603e146b))
+
+
+### Features
+
+* **@formatjs/intl-listformat:** add supported locales check to should-polyfill, fix [#3066](https://github.com/formatjs/formatjs/issues/3066) ([4640c81](https://github.com/formatjs/formatjs/commit/4640c81df591a126ecc33d919884c219e0c3f58d))
+
+
+
+
+
+## [6.2.6](https://github.com/formatjs/formatjs/compare/@formatjs/intl-listformat@6.2.5...@formatjs/intl-listformat@6.2.6) (2021-06-26)
+
+**Note:** Version bump only for package @formatjs/intl-listformat
+
+
+
+
+
+## [6.2.5](https://github.com/formatjs/formatjs/compare/@formatjs/intl-listformat@6.2.4...@formatjs/intl-listformat@6.2.5) (2021-06-05)
+
+
+### Bug Fixes
+
+* **@formatjs/intl-listformat:** remove Intl check ([8a60986](https://github.com/formatjs/formatjs/commit/8a609866640f9838c1f99c1a1c4efae07ec8ae02))
+
+
+
+
+
+## [6.2.4](https://github.com/formatjs/formatjs/compare/@formatjs/intl-listformat@6.2.3...@formatjs/intl-listformat@6.2.4) (2021-06-05)
+
+**Note:** Version bump only for package @formatjs/intl-listformat
+
+
+
+
+
+## [6.2.3](https://github.com/formatjs/formatjs/compare/@formatjs/intl-listformat@6.2.2...@formatjs/intl-listformat@6.2.3) (2021-06-04)
+
+**Note:** Version bump only for package @formatjs/intl-listformat
+
+
+
+
+
+## [6.2.2](https://github.com/formatjs/formatjs/compare/@formatjs/intl-listformat@6.2.1...@formatjs/intl-listformat@6.2.2) (2021-06-01)
+
+**Note:** Version bump only for package @formatjs/intl-listformat
+
+
+
+
+
+## [6.2.1](https://github.com/formatjs/formatjs/compare/@formatjs/intl-listformat@6.2.0...@formatjs/intl-listformat@6.2.1) (2021-05-23)
+
+**Note:** Version bump only for package @formatjs/intl-listformat
+
+
+
+
+
+# [6.2.0](https://github.com/formatjs/formatjs/compare/@formatjs/intl-listformat@6.1.0...@formatjs/intl-listformat@6.2.0) (2021-05-20)
+
+
+### Features
+
+* **@formatjs/intl:** add intl.formatListToParts, fix [#2901](https://github.com/formatjs/formatjs/issues/2901) ([eb40bd3](https://github.com/formatjs/formatjs/commit/eb40bd3e9c2e788c4e13e3ea94bcdd786b99c095))
+
+
+
+
+
+# [6.1.0](https://github.com/formatjs/formatjs/compare/@formatjs/intl-listformat@6.0.0...@formatjs/intl-listformat@6.1.0) (2021-05-17)
+
+
+### Features
+
+* **@formatjs/intl-listformat:** upgrade unicode to v39 ([2233299](https://github.com/formatjs/formatjs/commit/2233299aefe62d7656a42c93ed7da004180ffc47))
+
+
+
+
+
+# [6.0.0](https://github.com/formatjs/formatjs/compare/@formatjs/intl-listformat@5.0.17...@formatjs/intl-listformat@6.0.0) (2021-05-14)
+
+
+### Features
+
+* **@formatjs/intl-listformat:** stop aliasing en-US-POSIX to en-US ([0d8a9a6](https://github.com/formatjs/formatjs/commit/0d8a9a6db05c2b0eaf1f548c22d61f2a1a625f0a))
+
+
+### BREAKING CHANGES
+
+* **@formatjs/intl-listformat:** Before we call `en-US-POSIX` as `en-US` but it has subtle pattern differences so it's misleading. If you were importing `en-US` earlier, use `en` instead since they're the same.
+
+
+
+
+
+## [5.0.17](https://github.com/formatjs/formatjs/compare/@formatjs/intl-listformat@5.0.16...@formatjs/intl-listformat@5.0.17) (2021-05-10)
+
+**Note:** Version bump only for package @formatjs/intl-listformat
+
+
+
+
+
+## [5.0.16](https://github.com/formatjs/formatjs/compare/@formatjs/intl-listformat@5.0.15...@formatjs/intl-listformat@5.0.16) (2021-05-02)
+
+
+### Bug Fixes
+
+* **@formatjs/intl-listformat:** add d.ts for locale files, fix [#2850](https://github.com/formatjs/formatjs/issues/2850) ([8093fa0](https://github.com/formatjs/formatjs/commit/8093fa0cb7cdb2f083cdae9b731c417230703919))
+
+
+
+
+
+## [5.0.15](https://github.com/formatjs/formatjs/compare/@formatjs/intl-listformat@5.0.14...@formatjs/intl-listformat@5.0.15) (2021-04-26)
+
+**Note:** Version bump only for package @formatjs/intl-listformat
+
+
+
+
+
+## [5.0.14](https://github.com/formatjs/formatjs/compare/@formatjs/intl-listformat@5.0.13...@formatjs/intl-listformat@5.0.14) (2021-04-12)
+
+**Note:** Version bump only for package @formatjs/intl-listformat
+
+
+
+
+
 ## [5.0.13](https://github.com/formatjs/formatjs/compare/@formatjs/intl-listformat@5.0.12...@formatjs/intl-listformat@5.0.13) (2021-03-26)
 
 **Note:** Version bump only for package @formatjs/intl-listformat

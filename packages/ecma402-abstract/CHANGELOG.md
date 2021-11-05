@@ -3,6 +3,157 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.10.0](https://github.com/formatjs/formatjs/compare/@formatjs/ecma402-abstract@1.9.9...@formatjs/ecma402-abstract@1.10.0) (2021-10-17)
+
+
+### Features
+
+* **@formatjs/icu-skeleton-parser:** parse out NumberFormat v3 options, fix [#3191](https://github.com/formatjs/formatjs/issues/3191) ([24e14d0](https://github.com/formatjs/formatjs/commit/24e14d072467401727a5a96324e5d7e7b758c630))
+
+
+
+
+
+## [1.9.9](https://github.com/formatjs/formatjs/compare/@formatjs/ecma402-abstract@1.9.8...@formatjs/ecma402-abstract@1.9.9) (2021-09-27)
+
+**Note:** Version bump only for package @formatjs/ecma402-abstract
+
+
+
+
+
+## [1.9.8](https://github.com/formatjs/formatjs/compare/@formatjs/ecma402-abstract@1.9.7...@formatjs/ecma402-abstract@1.9.8) (2021-08-21)
+
+
+### Bug Fixes
+
+* **@formatjs/ecma402-abstract:** rm custom DateTimeFormatOptions and use the native one ([61ea5c9](https://github.com/formatjs/formatjs/commit/61ea5c9ee6819b8af8925e2352275e9e86f2cb1a))
+
+
+
+
+
+## [1.9.7](https://github.com/formatjs/formatjs/compare/@formatjs/ecma402-abstract@1.9.6...@formatjs/ecma402-abstract@1.9.7) (2021-08-15)
+
+**Note:** Version bump only for package @formatjs/ecma402-abstract
+
+
+
+
+
+## [1.9.6](https://github.com/formatjs/formatjs/compare/@formatjs/ecma402-abstract@1.9.5...@formatjs/ecma402-abstract@1.9.6) (2021-08-06)
+
+**Note:** Version bump only for package @formatjs/ecma402-abstract
+
+
+
+
+
+## [1.9.5](https://github.com/formatjs/formatjs/compare/@formatjs/ecma402-abstract@1.9.4...@formatjs/ecma402-abstract@1.9.5) (2021-07-24)
+
+
+### Bug Fixes
+
+* **@formatjs/ecma402-abstract:** refactoring ([bb01687](https://github.com/formatjs/formatjs/commit/bb01687d5202641a7cb7949796bee8c64232cc9f))
+
+
+
+
+
+## [1.9.4](https://github.com/formatjs/formatjs/compare/@formatjs/ecma402-abstract@1.9.3...@formatjs/ecma402-abstract@1.9.4) (2021-06-26)
+
+
+### Bug Fixes
+
+* **@formatjs/ecma402-abstract:** rm json import to be more ESM-friendly, fix [#2961](https://github.com/formatjs/formatjs/issues/2961) ([2bfedbb](https://github.com/formatjs/formatjs/commit/2bfedbbb54e1a6018e701757e19ba901529a1713))
+
+
+
+
+
+## [1.9.3](https://github.com/formatjs/formatjs/compare/@formatjs/ecma402-abstract@1.9.2...@formatjs/ecma402-abstract@1.9.3) (2021-06-05)
+
+
+### Bug Fixes
+
+* **@formatjs/ecma402-abstract:** fix IsValidTimeZoneName to include target zone from backward, fix [#2951](https://github.com/formatjs/formatjs/issues/2951) ([c18ee8b](https://github.com/formatjs/formatjs/commit/c18ee8b8d8aac6aa8718432a39e187321110239f))
+
+
+
+
+
+## [1.9.2](https://github.com/formatjs/formatjs/compare/@formatjs/ecma402-abstract@1.9.1...@formatjs/ecma402-abstract@1.9.2) (2021-06-01)
+
+**Note:** Version bump only for package @formatjs/ecma402-abstract
+
+
+
+
+
+## [1.9.1](https://github.com/formatjs/formatjs/compare/@formatjs/ecma402-abstract@1.9.0...@formatjs/ecma402-abstract@1.9.1) (2021-05-23)
+
+
+### Bug Fixes
+
+* **@formatjs/intl-datetimeformat:** fix crash in [#2909](https://github.com/formatjs/formatjs/issues/2909) ([495d1b8](https://github.com/formatjs/formatjs/commit/495d1b82eb971f0d2421114c34038357085e1693))
+
+
+
+
+
+# [1.9.0](https://github.com/formatjs/formatjs/compare/@formatjs/ecma402-abstract@1.8.0...@formatjs/ecma402-abstract@1.9.0) (2021-05-20)
+
+
+### Features
+
+* **@formatjs/ecma-376:** new package that generate ecma-376 numFmt pattern ([2a57d16](https://github.com/formatjs/formatjs/commit/2a57d1676f8fc840915b2750a5469934dfd765e8)), closes [#2885](https://github.com/formatjs/formatjs/issues/2885)
+
+
+
+
+
+# [1.8.0](https://github.com/formatjs/formatjs/compare/@formatjs/ecma402-abstract@1.7.1...@formatjs/ecma402-abstract@1.8.0) (2021-05-17)
+
+
+### Features
+
+* **@formatjs/ecma402-abstract:** upgrade symbol regex to unicode 13 ([c991b8c](https://github.com/formatjs/formatjs/commit/c991b8c4bb1b8244eb7fd5490b75727576e1bbd9))
+
+
+
+
+
+## [1.7.1](https://github.com/formatjs/formatjs/compare/@formatjs/ecma402-abstract@1.7.0...@formatjs/ecma402-abstract@1.7.1) (2021-05-10)
+
+**Note:** Version bump only for package @formatjs/ecma402-abstract
+
+
+
+
+
+# [1.7.0](https://github.com/formatjs/formatjs/compare/@formatjs/ecma402-abstract@1.6.5...@formatjs/ecma402-abstract@1.7.0) (2021-04-26)
+
+
+### Features
+
+* **@formatjs/ecma402-abstract:** add abstract ops for fractionalSecondDigits ([5b1b1d1](https://github.com/formatjs/formatjs/commit/5b1b1d1261b8c4bac2c01ad1c1623abaf7c1f2c1))
+
+
+
+
+
+## [1.6.5](https://github.com/formatjs/formatjs/compare/@formatjs/ecma402-abstract@1.6.4...@formatjs/ecma402-abstract@1.6.5) (2021-04-12)
+
+
+### Bug Fixes
+
+* **@formatjs/ecma402-abstract:** modify the constant in function TimeClip ([#2805](https://github.com/formatjs/formatjs/issues/2805)) ([4324002](https://github.com/formatjs/formatjs/commit/4324002ef24207b354115dbc9ba05758505276a1))
+* **@formatjs/ecma402-abstract:** swap out some impls with native Date, 2x speed, [#2813](https://github.com/formatjs/formatjs/issues/2813) ([463420c](https://github.com/formatjs/formatjs/commit/463420c21ca9c64f629f31fee2dc63031be9122c))
+
+
+
+
+
 ## [1.6.4](https://github.com/formatjs/formatjs/compare/@formatjs/ecma402-abstract@1.6.3...@formatjs/ecma402-abstract@1.6.4) (2021-03-26)
 
 **Note:** Version bump only for package @formatjs/ecma402-abstract

@@ -15,11 +15,8 @@ import {
 } from '@formatjs/intl'
 import {IntlListFormatOptions} from '@formatjs/intl-listformat'
 import {DisplayNamesOptions} from '@formatjs/intl-displaynames'
-import {
-  DateTimeFormatOptions,
-  NumberFormatOptions,
-} from '@formatjs/ecma402-abstract'
-export {IntlConfig, IntlShape} from './src/types'
+import {NumberFormatOptions} from '@formatjs/ecma402-abstract'
+export {IntlConfig, ResolvedIntlConfig, IntlShape} from './src/types'
 export {
   createIntlCache,
   MessageDescriptor,
@@ -51,7 +48,7 @@ export function defineMessages<
   return msgs
 }
 
-export function defineMessage<T>(msg: T): T {
+export function defineMessage<T extends MessageDescriptor>(msg: T): T {
   return msg
 }
 export {
@@ -65,17 +62,18 @@ export {default as useIntl} from './src/components/useIntl'
 export {default as IntlProvider, createIntl} from './src/components/provider'
 // IMPORTANT: Explicit here to prevent api-extractor from outputing `import('./src/types').CustomFormatConfig`
 export const FormattedDate: React.FC<
-  DateTimeFormatOptions &
+  Intl.DateTimeFormatOptions &
     CustomFormatConfig & {
       value: string | number | Date | undefined
     }
 > = createFormattedComponent('formatDate')
 export const FormattedTime: React.FC<
-  DateTimeFormatOptions &
+  Intl.DateTimeFormatOptions &
     CustomFormatConfig & {
       value: string | number | Date | undefined
     }
 > = createFormattedComponent('formatTime')
+// @ts-ignore issue w/ TS Intl types
 export const FormattedNumber: React.FC<
   NumberFormatOptions &
     CustomFormatConfig & {
@@ -84,7 +82,7 @@ export const FormattedNumber: React.FC<
 > = createFormattedComponent('formatNumber')
 export const FormattedList: React.FC<
   IntlListFormatOptions & {
-    value: React.ReactNode[]
+    value: readonly React.ReactNode[]
   }
 > = createFormattedComponent('formatList')
 export const FormattedDisplayName: React.FC<
@@ -105,7 +103,10 @@ export const FormattedTimeParts: React.FC<
   }
 > = createFormattedDateTimePartsComponent('formatTime')
 
-export {FormattedNumberParts} from './src/components/createFormattedComponent'
+export {
+  FormattedNumberParts,
+  FormattedListParts,
+} from './src/components/createFormattedComponent'
 export {default as FormattedRelativeTime} from './src/components/relative'
 export {default as FormattedPlural} from './src/components/plural'
 export {default as FormattedMessage} from './src/components/message'

@@ -78,7 +78,7 @@ const INCREMENTABLE_UNITS: RelativeTimeFormatSingularUnit[] = [
 function canIncrement(
   unit: RelativeTimeFormatSingularUnit = 'second'
 ): boolean {
-  return INCREMENTABLE_UNITS.includes(unit)
+  return INCREMENTABLE_UNITS.indexOf(unit) > -1
 }
 
 const SimpleFormattedRelativeTime: React.FC<
@@ -113,10 +113,8 @@ const FormattedRelativeTime: React.FC<Props> = ({
     RelativeTimeFormatSingularUnit | undefined
   >()
   const [prevValue, setPrevValue] = React.useState<number>(0)
-  const [
-    currentValueInSeconds,
-    setCurrentValueInSeconds,
-  ] = React.useState<number>(0)
+  const [currentValueInSeconds, setCurrentValueInSeconds] =
+    React.useState<number>(0)
   let updateTimer: number
 
   if (unit !== prevUnit || value !== prevValue) {
@@ -156,10 +154,10 @@ const FormattedRelativeTime: React.FC<Props> = ({
     )
 
     if (currentValueInSeconds !== nextInterestingValueInSeconds) {
-      updateTimer = (setTimeout(
+      updateTimer = setTimeout(
         () => setCurrentValueInSeconds(nextInterestingValueInSeconds),
         delayInSeconds * 1e3
-      ) as unknown) as number
+      ) as unknown as number
     }
     return clearUpdateTimer
   }, [currentValueInSeconds, updateIntervalInSeconds, unit])

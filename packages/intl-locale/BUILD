@@ -1,8 +1,10 @@
 load("@build_bazel_rules_nodejs//:index.bzl", "generated_file_test", "pkg_npm")
 load("@npm//@bazel/typescript:index.bzl", "ts_project")
 load("@npm//test262-harness:index.bzl", "test262_harness_test")
-load("//tools:index.bzl", "check_format", "esbuild", "ts_compile")
+load("//tools:index.bzl", "check_format", "esbuild", "package_json_test", "ts_compile")
 load("//tools:jest.bzl", "jest_test")
+
+exports_files(["package.json"])
 
 PACKAGE_NAME = "intl-locale"
 
@@ -33,7 +35,6 @@ alias(
 SRCS = glob(["*.ts"])
 
 SRC_DEPS = [
-    "@npm//cldr-core",
     "//packages/ecma402-abstract:dist",
     "//packages/intl-getcanonicallocales:dist",
 ]
@@ -67,6 +68,7 @@ ts_project(
     declaration_map = True,
     extends = "//:tsconfig.json",
     out_dir = "test262",
+    resolve_json_module = True,
     tsconfig = "//:tsconfig.es6.json",
     deps = SRC_DEPS,
 )
@@ -91,6 +93,7 @@ test262_harness_test(
     templated_args = [
         "--reporter-keys",
         "file,attrs,result",
+        "--errorForFailures",
         "--timeout",
         "30000",
         "--prelude",
@@ -127,4 +130,9 @@ check_format(
             "CHANGELOG.md",
         ],
     ),
+)
+
+package_json_test(
+    name = "package_json_test",
+    deps = SRC_DEPS,
 )

@@ -1,13 +1,16 @@
-import {Rule, Scope} from 'eslint'
+import {Rule, SourceCode} from 'eslint'
 import {extractMessages} from '../util'
 import {TSESTree} from '@typescript-eslint/typescript-estree'
+import * as ESTree from 'estree'
 
-function checkNode(
-  context: Rule.RuleContext,
-  node: TSESTree.Node,
-  importedMacroVars: Scope.Variable[]
-) {
-  const msgs = extractMessages(node, importedMacroVars)
+function isComment(
+  token: ReturnType<SourceCode['getTokenAfter']>
+): token is ESTree.Comment {
+  return !!token && (token.type === 'Block' || token.type === 'Line')
+}
+
+function checkNode(context: Rule.RuleContext, node: TSESTree.Node) {
+  const msgs = extractMessages(node, context.settings)
   for (const [{idPropNode}] of msgs) {
     if (idPropNode) {
       context.report({
@@ -17,7 +20,7 @@ function checkNode(
           const src = context.getSourceCode()
           const token = src.getTokenAfter(idPropNode as any)
           const fixes = [fixer.remove(idPropNode as any)]
-          if (token?.value === ',') {
+          if (token && !isComment(token) && token?.value === ',') {
             fixes.push(fixer.remove(token))
           }
           return fixes
@@ -39,9 +42,8 @@ export default {
     fixable: 'code',
   },
   create(context) {
-    let importedMacroVars: Scope.Variable[] = []
     const callExpressionVisitor = (node: TSESTree.Node) =>
-      checkNode(context, node, importedMacroVars)
+      checkNode(context, node)
 
     if (context.parserServices.defineTemplateBodyVisitor) {
       return context.parserServices.defineTemplateBodyVisitor(
@@ -54,14 +56,7 @@ export default {
       )
     }
     return {
-      ImportDeclaration: node => {
-        const moduleName = node.source.value
-        if (moduleName === 'react-intl') {
-          importedMacroVars = context.getDeclaredVariables(node)
-        }
-      },
-      JSXOpeningElement: (node: TSESTree.Node) =>
-        checkNode(context, node, importedMacroVars),
+      JSXOpeningElement: (node: TSESTree.Node) => checkNode(context, node),
       CallExpression: callExpressionVisitor,
     }
   },

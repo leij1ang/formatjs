@@ -1,6 +1,9 @@
 load("@build_bazel_rules_nodejs//:index.bzl", "generated_file_test", "pkg_npm")
-load("//tools:index.bzl", "check_format", "esbuild", "ts_compile")
+load("@npm//ts-node:index.bzl", "ts_node")
+load("//tools:index.bzl", "check_format", "esbuild", "package_json_test", "ts_compile")
 load("//tools:jest.bzl", "jest_test")
+
+exports_files(["package.json"])
 
 PACKAGE_NAME = "intl-messageformat"
 
@@ -12,6 +15,7 @@ pkg_npm(
         "README.md",
     ],
     deps = [
+        "%s.esm.js" % PACKAGE_NAME,
         "%s.iife.js" % PACKAGE_NAME,
         ":dist",
     ],
@@ -31,7 +35,7 @@ SRCS = glob(["src/*.ts"]) + ["index.ts"]
 
 SRC_DEPS = [
     "//packages/icu-messageformat-parser:dist",
-    "@npm//fast-memoize",
+    "//packages/fast-memoize:dist",
 ]
 
 TESTS = glob([
@@ -47,6 +51,7 @@ ts_compile(
     package_name = PACKAGE_NAME,
     srcs = SRCS,
     skip_esm = False,
+    skip_esm_esnext = False,
     deps = SRC_DEPS,
 )
 
@@ -60,13 +65,26 @@ jest_test(
 
 esbuild(
     name = "%s.iife" % PACKAGE_NAME,
-    args = [
-        "--global-name=IntlMessageFormat",
-    ],
+    args = {
+        "globalName": "IntlMessageFormat",
+    },
     entry_point = "lib/index.js",
     target = "es5",
     deps = [
         ":dist-esm",
+    ] + SRC_DEPS,
+)
+
+esbuild(
+    name = "%s.esm" % PACKAGE_NAME,
+    args = {
+        "globalName": "IntlMessageFormat",
+    },
+    entry_point = "lib_esnext/index.js",
+    format = "esm",
+    target = "esnext",
+    deps = [
+        ":dist-esm-esnext",
     ] + SRC_DEPS,
 )
 
@@ -86,4 +104,25 @@ check_format(
             "CHANGELOG.md",
         ],
     ),
+)
+
+ts_node(
+    name = "benchmark",
+    args = [
+        "--transpile-only",
+        "$(execpath tests/benchmark.ts)",
+    ],
+    data = SRCS + SRC_DEPS + [
+        "tests/benchmark.ts",
+        "//:tsconfig.json",
+        "@npm//tslib",
+        "//packages/intl-pluralrules",
+        "//packages/intl-pluralrules:locale-data",
+        "//:tsconfig.node.json",
+    ],
+)
+
+package_json_test(
+    name = "package_json_test",
+    deps = SRC_DEPS,
 )

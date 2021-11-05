@@ -3,6 +3,234 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.6.0](https://github.com/formatjs/formatjs/compare/@formatjs/ts-transformer@3.5.1...@formatjs/ts-transformer@3.6.0) (2021-10-22)
+
+
+### Features
+
+* **@formatjs/ts-transformer:** upgrade to TS 4.4 ([5867563](https://github.com/formatjs/formatjs/commit/5867563f554aef98f467d6b874d69b9aaa49c36e))
+
+
+
+
+
+## [3.5.1](https://github.com/formatjs/formatjs/compare/@formatjs/ts-transformer@3.5.0...@formatjs/ts-transformer@3.5.1) (2021-10-17)
+
+**Note:** Version bump only for package @formatjs/ts-transformer
+
+
+
+
+
+# [3.5.0](https://github.com/formatjs/formatjs/compare/@formatjs/ts-transformer@3.4.10...@formatjs/ts-transformer@3.5.0) (2021-09-27)
+
+
+### Bug Fixes
+
+* **@formatjs/ts-transformer:** move @types/node to dep ([6a07668](https://github.com/formatjs/formatjs/commit/6a07668010a68b0a3e3aed9b3801c74cbd860101))
+* **@formatjs/ts-transformer:** move typescript back to dep, fix [#3173](https://github.com/formatjs/formatjs/issues/3173) ([3b52418](https://github.com/formatjs/formatjs/commit/3b5241828ed4d1705eb00d2e32136b1fc6f5ba6d))
+
+
+### Features
+
+* **@formatjs/cli:** upgrade vue libs, handle script setup, fix [#3181](https://github.com/formatjs/formatjs/issues/3181) ([a7b2960](https://github.com/formatjs/formatjs/commit/a7b296088367d1eeea3b142f0651920ffc2bc505))
+
+
+
+
+
+## [3.4.10](https://github.com/formatjs/formatjs/compare/@formatjs/ts-transformer@3.4.9...@formatjs/ts-transformer@3.4.10) (2021-08-24)
+
+
+### Bug Fixes
+
+* **@formatjs/ts-transformer:** add chalk to dependencies ([b355b9b](https://github.com/formatjs/formatjs/commit/b355b9b15e96ea8f71c035005b8366681288c817))
+
+
+
+
+
+## [3.4.9](https://github.com/formatjs/formatjs/compare/@formatjs/ts-transformer@3.4.8...@formatjs/ts-transformer@3.4.9) (2021-08-21)
+
+
+### Bug Fixes
+
+* **@formatjs/ts-transformer:** use console.error to avoid async process.stderr issue ([b7886a9](https://github.com/formatjs/formatjs/commit/b7886a9552c62b1c4e311cf74960fbec6ccb3a05))
+
+
+
+
+
+## [3.4.8](https://github.com/formatjs/formatjs/compare/@formatjs/ts-transformer@3.4.7...@formatjs/ts-transformer@3.4.8) (2021-08-15)
+
+**Note:** Version bump only for package @formatjs/ts-transformer
+
+
+
+
+
+## [3.4.7](https://github.com/formatjs/formatjs/compare/@formatjs/ts-transformer@3.4.6...@formatjs/ts-transformer@3.4.7) (2021-08-06)
+
+**Note:** Version bump only for package @formatjs/ts-transformer
+
+
+
+
+
+## [3.4.6](https://github.com/formatjs/formatjs/compare/@formatjs/ts-transformer@3.4.5...@formatjs/ts-transformer@3.4.6) (2021-07-24)
+
+**Note:** Version bump only for package @formatjs/ts-transformer
+
+
+
+
+
+## [3.4.5](https://github.com/formatjs/formatjs/compare/@formatjs/ts-transformer@3.4.4...@formatjs/ts-transformer@3.4.5) (2021-07-06)
+
+
+### Bug Fixes
+
+* **@formatjs/cli:** stringify opts when log debug msg ([243cac8](https://github.com/formatjs/formatjs/commit/243cac8839afab27007d00c97c690f2a5cb98dd3))
+
+
+
+
+
+## [3.4.4](https://github.com/formatjs/formatjs/compare/@formatjs/ts-transformer@3.4.3...@formatjs/ts-transformer@3.4.4) (2021-06-26)
+
+
+### Bug Fixes
+
+* **@formatjs/ts-transformer:** fix issue with null number style, fix [#2993](https://github.com/formatjs/formatjs/issues/2993) ([8d1be8c](https://github.com/formatjs/formatjs/commit/8d1be8ce7dc72d8b1be178063090de5d6d389a0b))
+
+
+
+
+
+## [3.4.3](https://github.com/formatjs/formatjs/compare/@formatjs/ts-transformer@3.4.2...@formatjs/ts-transformer@3.4.3) (2021-06-21)
+
+
+### Bug Fixes
+
+* **@formatjs/ts-transformer:** move typescript to peerDependencies ([42efc60](https://github.com/formatjs/formatjs/commit/42efc604a47a73bc142903aebf3c23f1f16763ad)), closes [#2991](https://github.com/formatjs/formatjs/issues/2991)
+
+
+
+
+
+## [3.4.2](https://github.com/formatjs/formatjs/compare/@formatjs/ts-transformer@3.4.1...@formatjs/ts-transformer@3.4.2) (2021-06-09)
+
+**Note:** Version bump only for package @formatjs/ts-transformer
+
+
+
+
+
+## [3.4.1](https://github.com/formatjs/formatjs/compare/@formatjs/ts-transformer@3.4.0...@formatjs/ts-transformer@3.4.1) (2021-06-05)
+
+**Note:** Version bump only for package @formatjs/ts-transformer
+
+
+
+
+
+# [3.4.0](https://github.com/formatjs/formatjs/compare/@formatjs/ts-transformer@3.3.16...@formatjs/ts-transformer@3.4.0) (2021-06-04)
+
+
+### Features
+
+* **@formatjs/ts-transformer:** support ts-jest 27, fix [#2942](https://github.com/formatjs/formatjs/issues/2942) ([7d994e4](https://github.com/formatjs/formatjs/commit/7d994e485f0e615f8e08fe3befb78d4416edbaaa))
+
+
+
+
+
+## [3.3.16](https://github.com/formatjs/formatjs/compare/@formatjs/ts-transformer@3.3.15...@formatjs/ts-transformer@3.3.16) (2021-06-01)
+
+**Note:** Version bump only for package @formatjs/ts-transformer
+
+
+
+
+
+## [3.3.15](https://github.com/formatjs/formatjs/compare/@formatjs/ts-transformer@3.3.14...@formatjs/ts-transformer@3.3.15) (2021-05-23)
+
+**Note:** Version bump only for package @formatjs/ts-transformer
+
+
+
+
+
+## [3.3.14](https://github.com/formatjs/formatjs/compare/@formatjs/ts-transformer@3.3.13...@formatjs/ts-transformer@3.3.14) (2021-05-20)
+
+**Note:** Version bump only for package @formatjs/ts-transformer
+
+
+
+
+
+## [3.3.13](https://github.com/formatjs/formatjs/compare/@formatjs/ts-transformer@3.3.12...@formatjs/ts-transformer@3.3.13) (2021-05-17)
+
+**Note:** Version bump only for package @formatjs/ts-transformer
+
+
+
+
+
+## [3.3.12](https://github.com/formatjs/formatjs/compare/@formatjs/ts-transformer@3.3.11...@formatjs/ts-transformer@3.3.12) (2021-05-10)
+
+**Note:** Version bump only for package @formatjs/ts-transformer
+
+
+
+
+
+## [3.3.11](https://github.com/formatjs/formatjs/compare/@formatjs/ts-transformer@3.3.10...@formatjs/ts-transformer@3.3.11) (2021-05-02)
+
+**Note:** Version bump only for package @formatjs/ts-transformer
+
+
+
+
+
+## [3.3.10](https://github.com/formatjs/formatjs/compare/@formatjs/ts-transformer@3.3.9...@formatjs/ts-transformer@3.3.10) (2021-04-26)
+
+**Note:** Version bump only for package @formatjs/ts-transformer
+
+
+
+
+
+## [3.3.9](https://github.com/formatjs/formatjs/compare/@formatjs/ts-transformer@3.3.8...@formatjs/ts-transformer@3.3.9) (2021-04-26)
+
+**Note:** Version bump only for package @formatjs/ts-transformer
+
+
+
+
+
+## [3.3.8](https://github.com/formatjs/formatjs/compare/@formatjs/ts-transformer@3.3.7...@formatjs/ts-transformer@3.3.8) (2021-04-21)
+
+
+### Bug Fixes
+
+* **@formatjs/ts-transformer:** fix AST node construction when key is invalid identifier, fix [#2823](https://github.com/formatjs/formatjs/issues/2823) ([ddb4375](https://github.com/formatjs/formatjs/commit/ddb4375986776d9ce1041b6e955e1bc6de7c242d))
+
+
+
+
+
+## [3.3.7](https://github.com/formatjs/formatjs/compare/@formatjs/ts-transformer@3.3.6...@formatjs/ts-transformer@3.3.7) (2021-04-12)
+
+
+### Bug Fixes
+
+* **@formatjs/ts-transformer:** relax member method AST check, [#2808](https://github.com/formatjs/formatjs/issues/2808) ([4260ab4](https://github.com/formatjs/formatjs/commit/4260ab471d02bed8f6667d0606e6a373ebbbb517))
+
+
+
+
+
 ## [3.3.6](https://github.com/formatjs/formatjs/compare/@formatjs/ts-transformer@3.3.5...@formatjs/ts-transformer@3.3.6) (2021-04-04)
 
 **Note:** Version bump only for package @formatjs/ts-transformer

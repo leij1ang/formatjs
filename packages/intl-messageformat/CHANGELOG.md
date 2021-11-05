@@ -3,6 +3,195 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.9.4](https://github.com/formatjs/formatjs/compare/intl-messageformat@9.9.3...intl-messageformat@9.9.4) (2021-10-22)
+
+**Note:** Version bump only for package intl-messageformat
+
+
+
+
+
+## [9.9.3](https://github.com/formatjs/formatjs/compare/intl-messageformat@9.9.2...intl-messageformat@9.9.3) (2021-10-17)
+
+**Note:** Version bump only for package intl-messageformat
+
+
+
+
+
+## [9.9.2](https://github.com/formatjs/formatjs/compare/intl-messageformat@9.9.1...intl-messageformat@9.9.2) (2021-09-27)
+
+**Note:** Version bump only for package intl-messageformat
+
+
+
+
+
+## [9.9.1](https://github.com/formatjs/formatjs/compare/intl-messageformat@9.9.0...intl-messageformat@9.9.1) (2021-08-21)
+
+**Note:** Version bump only for package intl-messageformat
+
+
+
+
+
+# [9.9.0](https://github.com/formatjs/formatjs/compare/intl-messageformat@9.8.2...intl-messageformat@9.9.0) (2021-08-15)
+
+
+### Features
+
+* **@formatjs/fast-memoize:** remove unused Cache.has ([#3102](https://github.com/formatjs/formatjs/issues/3102)) ([5e9a425](https://github.com/formatjs/formatjs/commit/5e9a425519fd2b2473172687fccb58a6979ec81e))
+
+
+
+
+
+## [9.8.2](https://github.com/formatjs/formatjs/compare/intl-messageformat@9.8.1...intl-messageformat@9.8.2) (2021-08-06)
+
+**Note:** Version bump only for package intl-messageformat
+
+
+
+
+
+## [9.8.1](https://github.com/formatjs/formatjs/compare/intl-messageformat@9.8.0...intl-messageformat@9.8.1) (2021-07-24)
+
+**Note:** Version bump only for package intl-messageformat
+
+
+
+
+
+# [9.8.0](https://github.com/formatjs/formatjs/compare/intl-messageformat@9.7.1...intl-messageformat@9.8.0) (2021-07-23)
+
+
+### Features
+
+* **intl-messageformat:** generate modern web bundle as intl-messageformat.esm.js ([#3063](https://github.com/formatjs/formatjs/issues/3063)) ([829870d](https://github.com/formatjs/formatjs/commit/829870d8256957a7f46ec2a516e4a8b19cfb3e02))
+
+
+
+
+
+## [9.7.1](https://github.com/formatjs/formatjs/compare/intl-messageformat@9.7.0...intl-messageformat@9.7.1) (2021-06-26)
+
+**Note:** Version bump only for package intl-messageformat
+
+
+
+
+
+# [9.7.0](https://github.com/formatjs/formatjs/compare/intl-messageformat@9.6.18...intl-messageformat@9.7.0) (2021-06-21)
+
+
+### Features
+
+* **intl-messageformat:** support argstyle integer natively, fix [#2989](https://github.com/formatjs/formatjs/issues/2989) ([ac94068](https://github.com/formatjs/formatjs/commit/ac94068752b38cb53f8c49a08adce16336e7b721))
+
+
+
+
+
+## [9.6.18](https://github.com/formatjs/formatjs/compare/intl-messageformat@9.6.17...intl-messageformat@9.6.18) (2021-06-05)
+
+**Note:** Version bump only for package intl-messageformat
+
+
+
+
+
+## [9.6.17](https://github.com/formatjs/formatjs/compare/intl-messageformat@9.6.16...intl-messageformat@9.6.17) (2021-06-01)
+
+**Note:** Version bump only for package intl-messageformat
+
+
+
+
+
+## [9.6.16](https://github.com/formatjs/formatjs/compare/intl-messageformat@9.6.15...intl-messageformat@9.6.16) (2021-05-23)
+
+**Note:** Version bump only for package intl-messageformat
+
+
+
+
+
+## [9.6.15](https://github.com/formatjs/formatjs/compare/intl-messageformat@9.6.14...intl-messageformat@9.6.15) (2021-05-20)
+
+**Note:** Version bump only for package intl-messageformat
+
+
+
+
+
+## [9.6.14](https://github.com/formatjs/formatjs/compare/intl-messageformat@9.6.13...intl-messageformat@9.6.14) (2021-05-17)
+
+**Note:** Version bump only for package intl-messageformat
+
+
+
+
+
+## [9.6.13](https://github.com/formatjs/formatjs/compare/intl-messageformat@9.6.12...intl-messageformat@9.6.13) (2021-05-10)
+
+**Note:** Version bump only for package intl-messageformat
+
+
+
+
+
+## [9.6.12](https://github.com/formatjs/formatjs/compare/intl-messageformat@9.6.11...intl-messageformat@9.6.12) (2021-05-02)
+
+**Note:** Version bump only for package intl-messageformat
+
+
+
+
+
+## [9.6.11](https://github.com/formatjs/formatjs/compare/intl-messageformat@9.6.10...intl-messageformat@9.6.11) (2021-04-26)
+
+**Note:** Version bump only for package intl-messageformat
+
+
+
+
+
+## [9.6.10](https://github.com/formatjs/formatjs/compare/intl-messageformat@9.6.9...intl-messageformat@9.6.10) (2021-04-26)
+
+**Note:** Version bump only for package intl-messageformat
+
+
+
+
+
+## [9.6.9](https://github.com/formatjs/formatjs/compare/intl-messageformat@9.6.8...intl-messageformat@9.6.9) (2021-04-26)
+
+
+### Bug Fixes
+
+* **intl-messageformat:** fix fast-memoize import ([0065f99](https://github.com/formatjs/formatjs/commit/0065f990b084dee0abea1c5ad21517091c50c2e4))
+* **intl-messageformat:** use fast-memoize ESM fork ([87596b1](https://github.com/formatjs/formatjs/commit/87596b1535eea645b3d140d8b79b9b465e61cb5e))
+
+
+
+
+
+## [9.6.8](https://github.com/formatjs/formatjs/compare/intl-messageformat@9.6.7...intl-messageformat@9.6.8) (2021-04-21)
+
+**Note:** Version bump only for package intl-messageformat
+
+
+
+
+
+## [9.6.7](https://github.com/formatjs/formatjs/compare/intl-messageformat@9.6.6...intl-messageformat@9.6.7) (2021-04-12)
+
+**Note:** Version bump only for package intl-messageformat
+
+
+
+
+
 ## [9.6.6](https://github.com/formatjs/formatjs/compare/intl-messageformat@9.6.5...intl-messageformat@9.6.6) (2021-04-04)
 
 **Note:** Version bump only for package intl-messageformat

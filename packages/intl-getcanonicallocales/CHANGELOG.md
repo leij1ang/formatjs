@@ -3,6 +3,93 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.8.0](https://github.com/formatjs/formatjs/compare/@formatjs/intl-getcanonicallocales@1.7.3...@formatjs/intl-getcanonicallocales@1.8.0) (2021-10-22)
+
+
+### Features
+
+* **@formatjs/intl-getcanonicallocales:** upgrade to TS 4.4 ([8b9b381](https://github.com/formatjs/formatjs/commit/8b9b38121f42d35edb189d94fef4a4f03da0871a))
+
+
+
+
+
+## [1.7.3](https://github.com/formatjs/formatjs/compare/@formatjs/intl-getcanonicallocales@1.7.2...@formatjs/intl-getcanonicallocales@1.7.3) (2021-08-15)
+
+**Note:** Version bump only for package @formatjs/intl-getcanonicallocales
+
+
+
+
+
+## [1.7.2](https://github.com/formatjs/formatjs/compare/@formatjs/intl-getcanonicallocales@1.7.1...@formatjs/intl-getcanonicallocales@1.7.2) (2021-08-06)
+
+**Note:** Version bump only for package @formatjs/intl-getcanonicallocales
+
+
+
+
+
+## [1.7.1](https://github.com/formatjs/formatjs/compare/@formatjs/intl-getcanonicallocales@1.7.0...@formatjs/intl-getcanonicallocales@1.7.1) (2021-06-26)
+
+
+### Bug Fixes
+
+* **@formatjs/intl-getcanonicallocales:** rm json import to be more ESM-friendly, fix [#2961](https://github.com/formatjs/formatjs/issues/2961) ([9d491e2](https://github.com/formatjs/formatjs/commit/9d491e2b0ac4ae50cda39a0c59b991c9c663d565))
+
+
+
+
+
+# [1.7.0](https://github.com/formatjs/formatjs/compare/@formatjs/intl-getcanonicallocales@1.6.0...@formatjs/intl-getcanonicallocales@1.7.0) (2021-05-20)
+
+
+### Features
+
+* **@formatjs/ecma-376:** new package that generate ecma-376 numFmt pattern ([2a57d16](https://github.com/formatjs/formatjs/commit/2a57d1676f8fc840915b2750a5469934dfd765e8)), closes [#2885](https://github.com/formatjs/formatjs/issues/2885)
+
+
+
+
+
+# [1.6.0](https://github.com/formatjs/formatjs/compare/@formatjs/intl-getcanonicallocales@1.5.11...@formatjs/intl-getcanonicallocales@1.6.0) (2021-05-17)
+
+
+### Features
+
+* **@formatjs/intl-getcanonicallocales:** upgrade unicode to v39 ([ee3a069](https://github.com/formatjs/formatjs/commit/ee3a0694bb9e5418cbd04664016b47fc5b0e079c))
+
+
+
+
+
+## [1.5.11](https://github.com/formatjs/formatjs/compare/@formatjs/intl-getcanonicallocales@1.5.10...@formatjs/intl-getcanonicallocales@1.5.11) (2021-05-14)
+
+**Note:** Version bump only for package @formatjs/intl-getcanonicallocales
+
+
+
+
+
+## [1.5.10](https://github.com/formatjs/formatjs/compare/@formatjs/intl-getcanonicallocales@1.5.9...@formatjs/intl-getcanonicallocales@1.5.10) (2021-05-10)
+
+**Note:** Version bump only for package @formatjs/intl-getcanonicallocales
+
+
+
+
+
+## [1.5.9](https://github.com/formatjs/formatjs/compare/@formatjs/intl-getcanonicallocales@1.5.8...@formatjs/intl-getcanonicallocales@1.5.9) (2021-04-12)
+
+
+### Bug Fixes
+
+* **@formatjs/intl-getcanonicallocales:** check for chunks length before regex, [#2813](https://github.com/formatjs/formatjs/issues/2813) ([89b40b9](https://github.com/formatjs/formatjs/commit/89b40b9aa0c9c2a64ab14a596404d91bf93d6cac))
+
+
+
+
+
 ## [1.5.8](https://github.com/formatjs/formatjs/compare/@formatjs/intl-getcanonicallocales@1.5.7...@formatjs/intl-getcanonicallocales@1.5.8) (2021-03-26)
 
 **Note:** Version bump only for package @formatjs/intl-getcanonicallocales

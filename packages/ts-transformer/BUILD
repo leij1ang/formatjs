@@ -1,6 +1,8 @@
 load("@build_bazel_rules_nodejs//:index.bzl", "generated_file_test", "pkg_npm")
-load("//tools:index.bzl", "check_format", "ts_compile")
+load("//tools:index.bzl", "check_format", "package_json_test", "ts_compile")
 load("//tools:jest.bzl", "jest_test")
+
+exports_files(["package.json"])
 
 PACKAGE_NAME = "ts-transformer"
 
@@ -30,8 +32,9 @@ SRCS = glob([
 ])
 
 SRC_DEPS = [
-    "@npm//typescript",
     "@npm//@types/node",
+    "@npm//typescript",
+    "@npm//chalk",
     "//packages/icu-messageformat-parser:dist",
 ]
 
@@ -39,7 +42,10 @@ ts_compile(
     name = "dist",
     package_name = "@formatjs/%s" % PACKAGE_NAME,
     srcs = SRCS,
-    deps = SRC_DEPS,
+    deps = SRC_DEPS + [
+        "@npm//ts-jest",
+        "@npm//@jest/types",
+    ],
 )
 
 jest_test(
@@ -87,4 +93,30 @@ check_format(
             "tests/__snapshots__/*",
         ],
     ),
+)
+
+jest_test(
+    name = "integration-vue",
+    srcs = ["tests/integration-vue/integration.test.ts"] + glob([
+        "tests/integration-vue/fixtures/*",
+    ]),
+    flaky = True,
+    deps = [
+        ":dist",
+        ":types",
+        "//packages/icu-messageformat-parser:types",
+        "@npm//@types/node",
+        "@npm//@types/webpack",
+        "@npm//@vue/compiler-sfc",
+        "@npm//ts-loader",
+        "@npm//vue",
+        "@npm//vue-class-component",
+        "@npm//vue-loader",
+        "@npm//webpack",
+    ],
+)
+
+package_json_test(
+    name = "package_json_test",
+    deps = SRC_DEPS,
 )

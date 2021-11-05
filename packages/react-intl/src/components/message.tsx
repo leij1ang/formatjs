@@ -16,7 +16,7 @@ export interface Props<
 > extends MessageDescriptor {
   values?: V
   tagName?: React.ElementType<any>
-  children?(...nodes: React.ReactNodeArray): React.ReactElement | null
+  children?(nodes: React.ReactNodeArray): React.ReactElement | null
   ignoreTag?: IntlMessageFormatOptions['ignoreTag']
 }
 
@@ -47,18 +47,12 @@ function FormattedMessage(props: Props) {
     ignoreTag,
   })
 
-  if (!Array.isArray(nodes)) {
-    nodes = [nodes]
-  }
-
   if (typeof children === 'function') {
-    return children(nodes)
+    return children(Array.isArray(nodes) ? nodes : [nodes])
   }
 
   if (Component) {
-    // Needs to use `createElement()` instead of JSX, otherwise React will
-    // warn about a missing `key` prop with rich-text message formatting.
-    return React.createElement(Component, null, ...(nodes as any))
+    return <Component>{React.Children.toArray(nodes)}</Component>
   }
   return <>{nodes}</>
 }

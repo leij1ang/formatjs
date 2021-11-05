@@ -1,9 +1,10 @@
-import commander from 'commander'
+import {program} from 'commander'
 import loudRejection from 'loud-rejection'
 import extract, {ExtractCLIOptions} from './extract'
 import compile, {CompileCLIOpts, Opts} from './compile'
 import compileFolder from './compile_folder'
 import {sync as globSync} from 'fast-glob'
+import {debug} from './console_utils'
 
 const KNOWN_COMMANDS = ['extract']
 
@@ -12,23 +13,23 @@ async function main(argv: string[]) {
 
   const version = require('../package.json').version
 
-  commander
+  program
     .version(version, '-v, --version')
     .usage('<command> [flags]')
     .action(command => {
       if (!KNOWN_COMMANDS.includes(command)) {
-        commander.help()
+        program.help()
       }
     })
 
-  commander
+  program
     .command('help', {isDefault: true})
     .description('Show this help message.')
-    .action(() => commander.help())
+    .action(() => program.help())
 
   // Long text wrapping to available terminal columns: https://github.com/tj/commander.js/pull/956
   // NOTE: please keep the help text in sync with babel-plugin-formatjs documentation.
-  commander
+  program
     .command('extract [files...]')
     .description(
       `Extract string messages from React components that use react-intl.
@@ -73,7 +74,7 @@ extracted message descriptors.`,
     )
     .option(
       '--additional-component-names <comma-separated-names>',
-      `Additional component names to extract messages from, e.g: \`['FormattedFooBarMessage']\`. 
+      `Additional component names to extract messages from, e.g: \`'FormattedFooBarMessage'\`. 
 **NOTE**: By default we check for the fact that \`FormattedMessage\` 
 is imported from \`moduleSourceName\` to make sure variable alias 
 works. This option does not do that so it's less safe.`,
@@ -81,7 +82,7 @@ works. This option does not do that so it's less safe.`,
     )
     .option(
       '--additional-function-names <comma-separated-names>',
-      `Additional function names to extract messages from, e.g: \`['$t']\`.`,
+      `Additional function names to extract messages from, e.g: \`'$t'\`.`,
       (val: string) => val.split(',')
     )
     .option(
@@ -118,6 +119,8 @@ The goal is to provide as many full sentences as possible since fragmented
 sentences are not translator-friendly.`
     )
     .action(async (files: readonly string[], cmdObj: ExtractCLIOptions) => {
+      debug('File pattern:', files)
+      debug('Options:', cmdObj)
       const processedFiles = []
       for (const f of files) {
         processedFiles.push(
@@ -126,6 +129,7 @@ sentences are not translator-friendly.`
           })
         )
       }
+      debug('Files to extract:', files)
 
       await extract(processedFiles, {
         outFile: cmdObj.outFile,
@@ -147,7 +151,7 @@ sentences are not translator-friendly.`
       process.exit(0)
     })
 
-  commander
+  program
     .command('compile <translation_files>')
     .description(
       `Compile extracted translation file into react-intl consumable JSON
@@ -186,14 +190,17 @@ for more information`
 "--ast" is required for this to work.`
     )
     .action(async (filePattern: string, opts: CompileCLIOpts) => {
+      debug('File pattern:', filePattern)
+      debug('Options:', opts)
       const files = globSync(filePattern)
       if (!files.length) {
         throw new Error(`No input file found with pattern ${filePattern}`)
       }
+      debug('Files to compile:', files)
       await compile(files, opts)
     })
 
-  commander
+  program
     .command('compile-folder <folder> <outFolder>')
     .description(
       `Batch compile all extracted translation JSON files in <folder> to <outFolder> containing
@@ -218,18 +225,21 @@ This is especially useful to convert from a TMS-specific format back to react-in
 for more information`
     )
     .action(async (folder: string, outFolder: string, opts?: Opts) => {
+      debug('Folder:', folder)
+      debug('Options:', opts)
       // fast-glob expect `/` in Windows as well
       const files = globSync(`${folder}/*.json`)
       if (!files.length) {
         throw new Error(`No JSON file found in ${folder}`)
       }
+      debug('Files to compile:', files)
       await compileFolder(files, outFolder, opts)
     })
 
   if (argv.length < 3) {
-    commander.help()
+    program.help()
   } else {
-    commander.parse(argv)
+    program.parse(argv)
   }
 }
 export default main

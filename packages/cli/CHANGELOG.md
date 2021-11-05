@@ -3,6 +3,288 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.4.0](https://github.com/formatjs/formatjs/compare/@formatjs/cli@4.3.2...@formatjs/cli@4.4.0) (2021-10-22)
+
+
+### Features
+
+* **@formatjs/cli:** upgrade to TS 4.4 ([4fec415](https://github.com/formatjs/formatjs/commit/4fec41533617c3e62101512fa06850cf56c43358))
+
+
+
+
+
+## [4.3.2](https://github.com/formatjs/formatjs/compare/@formatjs/cli@4.3.1...@formatjs/cli@4.3.2) (2021-10-17)
+
+
+### Bug Fixes
+
+* **@formatjs/cli:** fix help text for --additional-component-names, fix [#3208](https://github.com/formatjs/formatjs/issues/3208) ([ed6cb55](https://github.com/formatjs/formatjs/commit/ed6cb558eac05f0606d8807b48d31aec815abab0))
+
+
+
+
+
+## [4.3.1](https://github.com/formatjs/formatjs/compare/@formatjs/cli@4.3.0...@formatjs/cli@4.3.1) (2021-09-27)
+
+**Note:** Version bump only for package @formatjs/cli
+
+
+
+
+
+# [4.3.0](https://github.com/formatjs/formatjs/compare/@formatjs/cli@4.2.33...@formatjs/cli@4.3.0) (2021-09-26)
+
+
+### Features
+
+* **@formatjs/cli:** upgrade vue libs, handle script setup, fix [#3181](https://github.com/formatjs/formatjs/issues/3181) ([a7b2960](https://github.com/formatjs/formatjs/commit/a7b296088367d1eeea3b142f0651920ffc2bc505))
+
+
+
+
+
+## [4.2.33](https://github.com/formatjs/formatjs/compare/@formatjs/cli@4.2.32...@formatjs/cli@4.2.33) (2021-08-24)
+
+**Note:** Version bump only for package @formatjs/cli
+
+
+
+
+
+## [4.2.32](https://github.com/formatjs/formatjs/compare/@formatjs/cli@4.2.31...@formatjs/cli@4.2.32) (2021-08-21)
+
+
+### Bug Fixes
+
+* **@formatjs/cli:** fix async process.stderr issue, close [#3125](https://github.com/formatjs/formatjs/issues/3125) ([4f4633e](https://github.com/formatjs/formatjs/commit/4f4633e1e87a4b90dfbcf688b8657dc0c6498a61))
+* **@formatjs/ts-transformer:** use console.error to avoid async process.stderr issue ([b7886a9](https://github.com/formatjs/formatjs/commit/b7886a9552c62b1c4e311cf74960fbec6ccb3a05))
+
+
+
+
+
+## [4.2.31](https://github.com/formatjs/formatjs/compare/@formatjs/cli@4.2.30...@formatjs/cli@4.2.31) (2021-08-15)
+
+**Note:** Version bump only for package @formatjs/cli
+
+
+
+
+
+## [4.2.30](https://github.com/formatjs/formatjs/compare/@formatjs/cli@4.2.29...@formatjs/cli@4.2.30) (2021-08-06)
+
+**Note:** Version bump only for package @formatjs/cli
+
+
+
+
+
+## [4.2.29](https://github.com/formatjs/formatjs/compare/@formatjs/cli@4.2.28...@formatjs/cli@4.2.29) (2021-07-24)
+
+**Note:** Version bump only for package @formatjs/cli
+
+
+
+
+
+## [4.2.28](https://github.com/formatjs/formatjs/compare/@formatjs/cli@4.2.27...@formatjs/cli@4.2.28) (2021-07-23)
+
+
+### Bug Fixes
+
+* **@formatjs/cli:** bump fast-glob to 3.2.7 ([#3060](https://github.com/formatjs/formatjs/issues/3060)) ([9cba510](https://github.com/formatjs/formatjs/commit/9cba5106abe747c6c60ab19c4ba23858d8992b60))
+
+
+
+
+
+## [4.2.27](https://github.com/formatjs/formatjs/compare/@formatjs/cli@4.2.26...@formatjs/cli@4.2.27) (2021-07-06)
+
+
+### Bug Fixes
+
+* **@formatjs/cli:** force @formatjs/ts-transformer to use CLI TS version, fix [#3022](https://github.com/formatjs/formatjs/issues/3022) ([5294e5b](https://github.com/formatjs/formatjs/commit/5294e5ba1142c48a7961dd2ce25d059469c36205))
+
+
+
+
+
+## [4.2.26](https://github.com/formatjs/formatjs/compare/@formatjs/cli@4.2.25...@formatjs/cli@4.2.26) (2021-07-06)
+
+
+### Bug Fixes
+
+* **@formatjs/cli:** stringify opts when log debug msg ([243cac8](https://github.com/formatjs/formatjs/commit/243cac8839afab27007d00c97c690f2a5cb98dd3))
+
+
+
+
+
+## [4.2.25](https://github.com/formatjs/formatjs/compare/@formatjs/cli@4.2.24...@formatjs/cli@4.2.25) (2021-07-04)
+
+
+### Bug Fixes
+
+* **@formatjs/cli:** add more debugging stmts throughout ([f95e54e](https://github.com/formatjs/formatjs/commit/f95e54e1be77b02be929040a76bb327565d928dd))
+
+
+
+
+
+## [4.2.24](https://github.com/formatjs/formatjs/compare/@formatjs/cli@4.2.23...@formatjs/cli@4.2.24) (2021-06-30)
+
+
+### Bug Fixes
+
+* **@formatjs/cli:** fix vue attr parsing, fix [#3018](https://github.com/formatjs/formatjs/issues/3018) ([413c855](https://github.com/formatjs/formatjs/commit/413c8557adce878eeda926d5346000ab32b36e3a))
+
+
+
+
+
+## [4.2.23](https://github.com/formatjs/formatjs/compare/@formatjs/cli@4.2.22...@formatjs/cli@4.2.23) (2021-06-27)
+
+
+### Bug Fixes
+
+* **@formatjs/cli:** extract from vue directive as well, fix [#3003](https://github.com/formatjs/formatjs/issues/3003) ([f5577cd](https://github.com/formatjs/formatjs/commit/f5577cdb01d67196d275797a2208fd3212fd91a5))
+
+
+
+
+
+## [4.2.22](https://github.com/formatjs/formatjs/compare/@formatjs/cli@4.2.21...@formatjs/cli@4.2.22) (2021-06-26)
+
+**Note:** Version bump only for package @formatjs/cli
+
+
+
+
+
+## [4.2.21](https://github.com/formatjs/formatjs/compare/@formatjs/cli@4.2.20...@formatjs/cli@4.2.21) (2021-06-21)
+
+**Note:** Version bump only for package @formatjs/cli
+
+
+
+
+
+## [4.2.20](https://github.com/formatjs/formatjs/compare/@formatjs/cli@4.2.19...@formatjs/cli@4.2.20) (2021-06-09)
+
+**Note:** Version bump only for package @formatjs/cli
+
+
+
+
+
+## [4.2.19](https://github.com/formatjs/formatjs/compare/@formatjs/cli@4.2.18...@formatjs/cli@4.2.19) (2021-06-05)
+
+**Note:** Version bump only for package @formatjs/cli
+
+
+
+
+
+## [4.2.18](https://github.com/formatjs/formatjs/compare/@formatjs/cli@4.2.17...@formatjs/cli@4.2.18) (2021-06-04)
+
+**Note:** Version bump only for package @formatjs/cli
+
+
+
+
+
+## [4.2.17](https://github.com/formatjs/formatjs/compare/@formatjs/cli@4.2.16...@formatjs/cli@4.2.17) (2021-06-01)
+
+**Note:** Version bump only for package @formatjs/cli
+
+
+
+
+
+## [4.2.16](https://github.com/formatjs/formatjs/compare/@formatjs/cli@4.2.15...@formatjs/cli@4.2.16) (2021-05-23)
+
+**Note:** Version bump only for package @formatjs/cli
+
+
+
+
+
+## [4.2.15](https://github.com/formatjs/formatjs/compare/@formatjs/cli@4.2.14...@formatjs/cli@4.2.15) (2021-05-20)
+
+**Note:** Version bump only for package @formatjs/cli
+
+
+
+
+
+## [4.2.14](https://github.com/formatjs/formatjs/compare/@formatjs/cli@4.2.13...@formatjs/cli@4.2.14) (2021-05-17)
+
+**Note:** Version bump only for package @formatjs/cli
+
+
+
+
+
+## [4.2.13](https://github.com/formatjs/formatjs/compare/@formatjs/cli@4.2.12...@formatjs/cli@4.2.13) (2021-05-14)
+
+
+### Bug Fixes
+
+* **@formatjs/cli:** add newline to extracted file, fix [#2803](https://github.com/formatjs/formatjs/issues/2803) ([9fbf2af](https://github.com/formatjs/formatjs/commit/9fbf2af73d1c6a8765f66403758e583365720e2a))
+
+
+
+
+
+## [4.2.12](https://github.com/formatjs/formatjs/compare/@formatjs/cli@4.2.11...@formatjs/cli@4.2.12) (2021-05-10)
+
+**Note:** Version bump only for package @formatjs/cli
+
+
+
+
+
+## [4.2.11](https://github.com/formatjs/formatjs/compare/@formatjs/cli@4.2.10...@formatjs/cli@4.2.11) (2021-05-02)
+
+**Note:** Version bump only for package @formatjs/cli
+
+
+
+
+
+## [4.2.10](https://github.com/formatjs/formatjs/compare/@formatjs/cli@4.2.9...@formatjs/cli@4.2.10) (2021-04-26)
+
+**Note:** Version bump only for package @formatjs/cli
+
+
+
+
+
+## [4.2.9](https://github.com/formatjs/formatjs/compare/@formatjs/cli@4.2.8...@formatjs/cli@4.2.9) (2021-04-26)
+
+**Note:** Version bump only for package @formatjs/cli
+
+
+
+
+
+## [4.2.8](https://github.com/formatjs/formatjs/compare/@formatjs/cli@4.2.7...@formatjs/cli@4.2.8) (2021-04-21)
+
+**Note:** Version bump only for package @formatjs/cli
+
+
+
+
+
+## [4.2.7](https://github.com/formatjs/formatjs/compare/@formatjs/cli@4.2.6...@formatjs/cli@4.2.7) (2021-04-12)
+
+**Note:** Version bump only for package @formatjs/cli
+
+
+
+
+
 ## [4.2.6](https://github.com/formatjs/formatjs/compare/@formatjs/cli@4.2.5...@formatjs/cli@4.2.6) (2021-04-04)
 
 **Note:** Version bump only for package @formatjs/cli

@@ -14,7 +14,7 @@ import {
 } from '../utils'
 
 export const visitor: VisitNodeFunction<
-  PluginPass<Options> & State,
+  PluginPass & State,
   t.JSXOpeningElement
 > = function (
   path,
@@ -31,7 +31,7 @@ export const visitor: VisitNodeFunction<
     overrideIdFn,
     ast,
     preserveWhitespace,
-  } = opts
+  } = opts as Options
 
   const {componentNames, messages} = this
   if (wasExtracted(path)) {
@@ -51,7 +51,9 @@ export const visitor: VisitNodeFunction<
   const descriptorPath = createMessageDescriptor(
     attributes.map(attr => [
       attr.get('name') as NodePath<t.JSXIdentifier>,
-      attr.get('value') as NodePath<t.StringLiteral>,
+      attr.get('value') as
+        | NodePath<t.StringLiteral>
+        | NodePath<t.JSXExpressionContainer>,
     ])
   )
 
@@ -61,7 +63,7 @@ export const visitor: VisitNodeFunction<
   // write `<FormattedMessage {...descriptor} />`, because it will be
   // skipped here and extracted elsewhere. The descriptor will
   // be extracted only (storeMessage) if a `defaultMessage` prop.
-  if (!descriptorPath.id && !descriptorPath.defaultMessage) {
+  if (!descriptorPath.defaultMessage) {
     return
   }
 
@@ -76,7 +78,13 @@ export const visitor: VisitNodeFunction<
     preserveWhitespace
   )
 
-  storeMessage(descriptor, path, opts, filename || undefined, messages)
+  storeMessage(
+    descriptor,
+    path,
+    opts as Options,
+    filename || undefined,
+    messages
+  )
 
   let idAttr: NodePath<t.JSXAttribute> | undefined
   let descriptionAttr: NodePath<t.JSXAttribute> | undefined

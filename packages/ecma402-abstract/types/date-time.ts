@@ -1,14 +1,5 @@
-export interface DateTimeFormatOptions extends Intl.DateTimeFormatOptions {
-  hourCycle?: 'h11' | 'h12' | 'h23' | 'h24'
-  dateStyle?: 'full' | 'long' | 'medium' | 'short'
-  timeStyle?: 'full' | 'long' | 'medium' | 'short'
-  calendar?: string
-  // dayPeriod?: 'narrow' | 'short' | 'long';
-  numberingSystem?: string
-}
-
 export type Formats = Pick<
-  DateTimeFormatOptions,
+  Intl.DateTimeFormatOptions,
   | 'weekday'
   | 'era'
   | 'year'
@@ -18,6 +9,7 @@ export type Formats = Pick<
   | 'minute'
   | 'second'
   | 'timeZoneName'
+  | 'fractionalSecondDigits'
 > & {
   hour12?: boolean
   pattern: string
@@ -39,10 +31,12 @@ export interface IntlDateTimeFormatInternal {
   year: '2-digit' | 'numeric'
   month: '2-digit' | 'numeric' | 'narrow' | 'short' | 'long'
   day: '2-digit' | 'numeric'
+  dayPeriod: 'narrow' | 'short' | 'long'
   hour: '2-digit' | 'numeric'
   minute: '2-digit' | 'numeric'
   second: '2-digit' | 'numeric'
   timeZoneName: 'short' | 'long'
+  fractionalSecondDigits?: 1 | 2 | 3
   hourCycle: string
   numberingSystem: string
   timeZone: string
@@ -60,7 +54,7 @@ export interface RangePatternPart<
 }
 
 export type RangePatterns = Pick<
-  DateTimeFormatOptions,
+  Intl.DateTimeFormatOptions,
   | 'weekday'
   | 'era'
   | 'year'
@@ -90,6 +84,7 @@ export type TABLE_6 =
   | 'hour'
   | 'minute'
   | 'second'
+  | 'fractionalSecondDigits'
   | 'timeZoneName'
 
 export type TABLE_2 =
@@ -97,10 +92,12 @@ export type TABLE_2 =
   | 'year'
   | 'month'
   | 'day'
+  | 'dayPeriod'
   | 'ampm'
   | 'hour'
   | 'minute'
   | 'second'
+  | 'fractionalSecondDigits'
 
 export type TimeZoneNameData = Record<
   string,
@@ -190,6 +187,7 @@ export type IntlDateTimeFormatPartType =
   | 'relatedYear'
   | 'yearName'
   | 'unknown'
+  | 'fractionalSecondDigits'
 
 export interface IntlDateTimeFormatPart {
   type: IntlDateTimeFormatPartType

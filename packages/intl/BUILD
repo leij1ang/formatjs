@@ -1,6 +1,8 @@
 load("@build_bazel_rules_nodejs//:index.bzl", "generated_file_test", "pkg_npm")
-load("//tools:index.bzl", "check_format", "ts_compile")
+load("//tools:index.bzl", "check_format", "package_json_test", "ts_compile")
 load("//tools:jest.bzl", "jest_test")
+
+exports_files(["package.json"])
 
 PACKAGE_NAME = "intl"
 
@@ -31,11 +33,11 @@ SRCS = glob(["src/**/*.ts*"]) + ["index.ts"]
 
 SRC_DEPS = [
     "//packages/ecma402-abstract:dist",
-    "//packages/intl-listformat:dist",
+    "//packages/fast-memoize:dist",
+    "//packages/icu-messageformat-parser:dist",
     "//packages/intl-displaynames:dist",
+    "//packages/intl-listformat:dist",
     "//packages/intl-messageformat:dist",
-    "@npm//fast-memoize",
-    "@npm//@types/node",
 ]
 
 TESTS = glob([
@@ -64,11 +66,13 @@ jest_test(
         "//packages/intl-datetimeformat:dist",
         "//packages/intl-datetimeformat:types",
         "//packages/intl-displaynames:types",
+        "//packages/fast-memoize:types",
         "//packages/intl-listformat:types",
         "//packages/icu-messageformat-parser:types",
         "//packages/intl-messageformat:types",
         "//packages/intl-numberformat:dist",
         "//packages/intl-numberformat:types",
+        "@npm//@types/node",
     ],
 )
 
@@ -89,4 +93,9 @@ check_format(
             "tests/__snapshots__/*",
         ],
     ),
+)
+
+package_json_test(
+    name = "package_json_test",
+    deps = SRC_DEPS,
 )

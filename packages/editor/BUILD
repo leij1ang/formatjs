@@ -4,6 +4,8 @@ load("@build_bazel_rules_nodejs//:index.bzl", "copy_to_bin", "generated_file_tes
 load("@npm//http-server:index.bzl", "http_server")
 load("//tools:index.bzl", "check_format", "esbuild", "ts_compile")
 
+exports_files(["package.json"])
+
 PACKAGE_NAME = "editor"
 
 pkg_npm(
@@ -87,9 +89,9 @@ check_format(
 
 esbuild(
     name = "app",
-    define = [
-        "process.env.NODE_ENV=\"development\"",
-    ],
+    define = {
+        "process.env.NODE_ENV": "development",
+    },
     entry_point = "lib/main.js",
     format = "iife",
     deps = [":dist-esm"] + SRC_DEPS + [
@@ -111,3 +113,8 @@ http_server(
         "packages/editor",
     ],
 )
+
+# package_json_test(
+#     name="package_json_test",
+#     deps=SRC_DEPS
+# )

@@ -1,4 +1,4 @@
-import {Rule, Scope} from 'eslint'
+import {Rule} from 'eslint'
 import {TSESTree} from '@typescript-eslint/typescript-estree'
 import {extractMessages} from '../util'
 import {
@@ -69,12 +69,11 @@ function verifyAst(
   }
 }
 
-function checkNode(
-  context: Rule.RuleContext,
-  node: TSESTree.Node,
-  importedMacroVars: Scope.Variable[]
-) {
-  const msgs = extractMessages(node, importedMacroVars, true)
+function checkNode(context: Rule.RuleContext, node: TSESTree.Node) {
+  const msgs = extractMessages(node, {
+    excludeMessageDeclCalls: true,
+    ...context.settings,
+  })
   const {
     options: [opt],
   } = context
@@ -90,11 +89,17 @@ function checkNode(
       continue
     }
     try {
-      verifyAst(parse(defaultMessage), values, ignoreList)
+      verifyAst(
+        parse(defaultMessage, {
+          ignoreTag: context.settings.ignoreTag,
+        }),
+        values,
+        ignoreList
+      )
     } catch (e) {
       context.report({
         node: messageNode as any,
-        message: e.message,
+        message: e instanceof Error ? e.message : String(e),
       })
     }
   }
@@ -127,9 +132,8 @@ const rule: Rule.RuleModule = {
     ],
   },
   create(context) {
-    let importedMacroVars: Scope.Variable[] = []
     const callExpressionVisitor = (node: TSESTree.Node) =>
-      checkNode(context, node, importedMacroVars)
+      checkNode(context, node)
 
     if (context.parserServices.defineTemplateBodyVisitor) {
       return context.parserServices.defineTemplateBodyVisitor(
@@ -142,14 +146,7 @@ const rule: Rule.RuleModule = {
       )
     }
     return {
-      ImportDeclaration: node => {
-        const moduleName = node.source.value
-        if (moduleName === 'react-intl') {
-          importedMacroVars = context.getDeclaredVariables(node)
-        }
-      },
-      JSXOpeningElement: (node: TSESTree.Node) =>
-        checkNode(context, node, importedMacroVars),
+      JSXOpeningElement: (node: TSESTree.Node) => checkNode(context, node),
       CallExpression: callExpressionVisitor,
     }
   },

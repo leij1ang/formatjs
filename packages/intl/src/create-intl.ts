@@ -1,4 +1,4 @@
-import {OptionalIntlConfig, IntlCache, IntlShape} from './types'
+import {IntlCache, IntlShape, IntlConfig} from './types'
 import {createFormatters, DEFAULT_INTL_CONFIG} from './utils'
 import {InvalidConfigError, MissingDataError} from './error'
 import {formatNumber, formatNumberToParts} from './number'
@@ -12,13 +12,13 @@ import {
 } from './dateTime'
 import {formatPlural} from './plural'
 import {formatMessage} from './message'
-import {formatList} from './list'
+import {formatList, formatListToParts} from './list'
 import {formatDisplayName} from './displayName'
 import {MessageFormatElement} from '@formatjs/icu-messageformat-parser'
 
 export interface CreateIntlFn<
   T = string,
-  C extends OptionalIntlConfig<T> = OptionalIntlConfig<T>,
+  C extends IntlConfig<T> = IntlConfig<T>,
   S extends IntlShape<T> = IntlShape<T>
 > {
   (config: C, cache?: IntlCache): S
@@ -32,7 +32,7 @@ function messagesContainString(
   return typeof firstMessage === 'string'
 }
 
-function verifyConfigMessages<T = string>(config: OptionalIntlConfig<T>) {
+function verifyConfigMessages<T = string>(config: IntlConfig<T>) {
   if (
     config.defaultRichTextElements &&
     messagesContainString(config.messages || {})
@@ -49,7 +49,7 @@ For more details see https://formatjs.io/docs/getting-started/message-distributi
  * @param cache cache for formatter instances to prevent memory leak
  */
 export function createIntl<T = string>(
-  config: OptionalIntlConfig<T>,
+  config: IntlConfig<T>,
   cache?: IntlCache
 ): IntlShape<T> {
   const formatters = createFormatters(cache)
@@ -141,6 +141,11 @@ export function createIntl<T = string>(
     ),
     formatMessage: formatMessage.bind(null, resolvedConfig, formatters),
     formatList: formatList.bind(null, resolvedConfig, formatters.getListFormat),
+    formatListToParts: formatListToParts.bind(
+      null,
+      resolvedConfig,
+      formatters.getListFormat
+    ),
     formatDisplayName: formatDisplayName.bind(
       null,
       resolvedConfig,

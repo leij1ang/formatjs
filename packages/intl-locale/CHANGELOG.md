@@ -3,6 +3,164 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.4.40](https://github.com/formatjs/formatjs/compare/@formatjs/intl-locale@2.4.39...@formatjs/intl-locale@2.4.40) (2021-10-22)
+
+**Note:** Version bump only for package @formatjs/intl-locale
+
+
+
+
+
+## [2.4.39](https://github.com/formatjs/formatjs/compare/@formatjs/intl-locale@2.4.38...@formatjs/intl-locale@2.4.39) (2021-10-17)
+
+**Note:** Version bump only for package @formatjs/intl-locale
+
+
+
+
+
+## [2.4.38](https://github.com/formatjs/formatjs/compare/@formatjs/intl-locale@2.4.37...@formatjs/intl-locale@2.4.38) (2021-09-27)
+
+**Note:** Version bump only for package @formatjs/intl-locale
+
+
+
+
+
+## [2.4.37](https://github.com/formatjs/formatjs/compare/@formatjs/intl-locale@2.4.36...@formatjs/intl-locale@2.4.37) (2021-08-21)
+
+**Note:** Version bump only for package @formatjs/intl-locale
+
+
+
+
+
+## [2.4.36](https://github.com/formatjs/formatjs/compare/@formatjs/intl-locale@2.4.35...@formatjs/intl-locale@2.4.36) (2021-08-15)
+
+**Note:** Version bump only for package @formatjs/intl-locale
+
+
+
+
+
+## [2.4.35](https://github.com/formatjs/formatjs/compare/@formatjs/intl-locale@2.4.34...@formatjs/intl-locale@2.4.35) (2021-08-06)
+
+**Note:** Version bump only for package @formatjs/intl-locale
+
+
+
+
+
+## [2.4.34](https://github.com/formatjs/formatjs/compare/@formatjs/intl-locale@2.4.33...@formatjs/intl-locale@2.4.34) (2021-07-24)
+
+**Note:** Version bump only for package @formatjs/intl-locale
+
+
+
+
+
+## [2.4.33](https://github.com/formatjs/formatjs/compare/@formatjs/intl-locale@2.4.32...@formatjs/intl-locale@2.4.33) (2021-06-26)
+
+
+### Bug Fixes
+
+* **@formatjs/intl-locale:** rm json import to be more ESM-friendly, fix [#2961](https://github.com/formatjs/formatjs/issues/2961) ([0aed8fa](https://github.com/formatjs/formatjs/commit/0aed8fae0ac2419163a094873a4d55313c676d59))
+
+
+
+
+
+## [2.4.32](https://github.com/formatjs/formatjs/compare/@formatjs/intl-locale@2.4.31...@formatjs/intl-locale@2.4.32) (2021-06-05)
+
+
+### Bug Fixes
+
+* **@formatjs/intl-locale:** remove Intl check ([8632739](https://github.com/formatjs/formatjs/commit/8632739fb562bed7b570f3ca6c8f82de30898028))
+
+
+
+
+
+## [2.4.31](https://github.com/formatjs/formatjs/compare/@formatjs/intl-locale@2.4.30...@formatjs/intl-locale@2.4.31) (2021-06-05)
+
+**Note:** Version bump only for package @formatjs/intl-locale
+
+
+
+
+
+## [2.4.30](https://github.com/formatjs/formatjs/compare/@formatjs/intl-locale@2.4.29...@formatjs/intl-locale@2.4.30) (2021-06-04)
+
+**Note:** Version bump only for package @formatjs/intl-locale
+
+
+
+
+
+## [2.4.29](https://github.com/formatjs/formatjs/compare/@formatjs/intl-locale@2.4.28...@formatjs/intl-locale@2.4.29) (2021-06-01)
+
+**Note:** Version bump only for package @formatjs/intl-locale
+
+
+
+
+
+## [2.4.28](https://github.com/formatjs/formatjs/compare/@formatjs/intl-locale@2.4.27...@formatjs/intl-locale@2.4.28) (2021-05-23)
+
+**Note:** Version bump only for package @formatjs/intl-locale
+
+
+
+
+
+## [2.4.27](https://github.com/formatjs/formatjs/compare/@formatjs/intl-locale@2.4.26...@formatjs/intl-locale@2.4.27) (2021-05-20)
+
+**Note:** Version bump only for package @formatjs/intl-locale
+
+
+
+
+
+## [2.4.26](https://github.com/formatjs/formatjs/compare/@formatjs/intl-locale@2.4.25...@formatjs/intl-locale@2.4.26) (2021-05-17)
+
+**Note:** Version bump only for package @formatjs/intl-locale
+
+
+
+
+
+## [2.4.25](https://github.com/formatjs/formatjs/compare/@formatjs/intl-locale@2.4.24...@formatjs/intl-locale@2.4.25) (2021-05-14)
+
+**Note:** Version bump only for package @formatjs/intl-locale
+
+
+
+
+
+## [2.4.24](https://github.com/formatjs/formatjs/compare/@formatjs/intl-locale@2.4.23...@formatjs/intl-locale@2.4.24) (2021-05-10)
+
+**Note:** Version bump only for package @formatjs/intl-locale
+
+
+
+
+
+## [2.4.23](https://github.com/formatjs/formatjs/compare/@formatjs/intl-locale@2.4.22...@formatjs/intl-locale@2.4.23) (2021-04-26)
+
+**Note:** Version bump only for package @formatjs/intl-locale
+
+
+
+
+
+## [2.4.22](https://github.com/formatjs/formatjs/compare/@formatjs/intl-locale@2.4.21...@formatjs/intl-locale@2.4.22) (2021-04-12)
+
+**Note:** Version bump only for package @formatjs/intl-locale
+
+
+
+
+
 ## [2.4.21](https://github.com/formatjs/formatjs/compare/@formatjs/intl-locale@2.4.20...@formatjs/intl-locale@2.4.21) (2021-03-26)
 
 **Note:** Version bump only for package @formatjs/intl-locale

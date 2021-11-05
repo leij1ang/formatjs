@@ -2,6 +2,7 @@ import * as typescript from 'typescript'
 import {MessageDescriptor} from './types'
 import {interpolateName} from './interpolate-name'
 import {parse, MessageFormatElement} from '@formatjs/icu-messageformat-parser'
+import {debug} from './console_utils'
 export type Extractor = (filePath: string, msgs: MessageDescriptor[]) => void
 export type MetaExtractor = (
   filePath: string,
@@ -38,22 +39,34 @@ function primitiveToTSNode(
     : undefined
 }
 
+function isValidIdentifier(k: string): boolean {
+  try {
+    new Function(`return {${k}:1}`)
+    return true
+  } catch (e) {
+    return false
+  }
+}
+
 function objToTSNode(factory: typescript.NodeFactory, obj: object) {
-  const props: typescript.PropertyAssignment[] = Object.entries(
-    obj
-  ).map(([k, v]) =>
-    factory.createPropertyAssignment(
-      k,
-      primitiveToTSNode(factory, v) ||
-        (Array.isArray(v)
-          ? factory.createArrayLiteralExpression(
-              v.map(n => objToTSNode(factory, n))
-            )
-          : typeof v === 'object'
-          ? objToTSNode(factory, v)
-          : factory.createNull())
+  if (typeof obj === 'object' && !obj) {
+    return factory.createNull()
+  }
+  const props: typescript.PropertyAssignment[] = Object.entries(obj)
+    .filter(([_, v]) => typeof v !== 'undefined')
+    .map(([k, v]) =>
+      factory.createPropertyAssignment(
+        isValidIdentifier(k) ? k : factory.createStringLiteral(k),
+        primitiveToTSNode(factory, v) ||
+          (Array.isArray(v)
+            ? factory.createArrayLiteralExpression(
+                v
+                  .filter(n => typeof n !== 'undefined')
+                  .map(n => objToTSNode(factory, n))
+              )
+            : objToTSNode(factory, v))
+      )
     )
-  )
   return factory.createObjectLiteralExpression(props)
 }
 
@@ -161,6 +174,8 @@ function isSingularMessageDecl(
   const compNames = new Set([
     'FormattedMessage',
     'defineMessage',
+    'formatMessage',
+    '$formatMessage',
     ...additionalComponentNames,
   ])
   let fnName = ''
@@ -372,27 +387,25 @@ function extractMessageDescriptor(
 }
 
 /**
- * Check if node is `intl.formatMessage` node
+ * Check if node is `foo.bar.formatMessage` node
  * @param node
  * @param sf
  */
-function isIntlFormatMessageCall(
+function isMemberMethodFormatMessageCall(
   ts: TypeScript,
   node: typescript.CallExpression,
   additionalFunctionNames: string[]
 ) {
-  const fnNames = new Set(['formatMessage', ...additionalFunctionNames])
+  const fnNames = new Set([
+    'formatMessage',
+    '$formatMessage',
+    ...additionalFunctionNames,
+  ])
   const method = node.expression
 
-  // Handle intl.formatMessage()
+  // Handle foo.formatMessage()
   if (ts.isPropertyAccessExpression(method)) {
-    return (
-      (method.name.text === 'formatMessage' &&
-        ts.isIdentifier(method.expression) &&
-        method.expression.text === 'intl') ||
-      (ts.isPropertyAccessExpression(method.expression) &&
-        method.expression.name.text === 'intl')
-    )
+    return fnNames.has(method.name.text)
   }
 
   // Handle formatMessage()
@@ -562,6 +575,7 @@ function extractMessagesFromCallExpression(
       if (!msgs.length) {
         return node
       }
+      debug('Multiple messages extracted from "%s": %s', sf.fileName, msgs)
       if (typeof onMsgExtracted === 'function') {
         onMsgExtracted(sf.fileName, msgs)
       }
@@ -592,9 +606,8 @@ function extractMessagesFromCallExpression(
           )
         })
       )
-      const clonedDescriptorsObj = factory.createObjectLiteralExpression(
-        clonedProperties
-      )
+      const clonedDescriptorsObj =
+        factory.createObjectLiteralExpression(clonedProperties)
       return factory.updateCallExpression(
         node,
         node.expression,
@@ -604,7 +617,7 @@ function extractMessagesFromCallExpression(
     }
   } else if (
     isSingularMessageDecl(ts, node, opts.additionalComponentNames || []) ||
-    isIntlFormatMessageCall(ts, node, additionalFunctionNames || [])
+    isMemberMethodFormatMessageCall(ts, node, additionalFunctionNames || [])
   ) {
     const [descriptorsObj, ...restArgs] = node.arguments
     if (ts.isObjectLiteralExpression(descriptorsObj)) {
@@ -612,6 +625,7 @@ function extractMessagesFromCallExpression(
       if (!msg) {
         return node
       }
+      debug('Message extracted from "%s": %s', sf.fileName, msg)
       if (typeof onMsgExtracted === 'function') {
         onMsgExtracted(sf.fileName, [msg])
       }
@@ -664,26 +678,30 @@ function getVisitor(
 
 export function transformWithTs(ts: TypeScript, opts: Opts) {
   opts = {...DEFAULT_OPTS, ...opts}
-  const transformFn: typescript.TransformerFactory<typescript.SourceFile> = ctx => {
-    return (sf: typescript.SourceFile) => {
-      const pragmaResult = PRAGMA_REGEX.exec(sf.text)
-      if (pragmaResult) {
-        const [, pragma, kvString] = pragmaResult
-        if (pragma === opts.pragma) {
-          const kvs = kvString.split(' ')
-          const result: Record<string, string> = {}
-          for (const kv of kvs) {
-            const [k, v] = kv.split(':')
-            result[k] = v
-          }
-          if (typeof opts.onMetaExtracted === 'function') {
-            opts.onMetaExtracted(sf.fileName, result)
+  debug('Transforming options', opts)
+  const transformFn: typescript.TransformerFactory<typescript.SourceFile> =
+    ctx => {
+      return (sf: typescript.SourceFile) => {
+        const pragmaResult = PRAGMA_REGEX.exec(sf.text)
+        if (pragmaResult) {
+          debug('Pragma found', pragmaResult)
+          const [, pragma, kvString] = pragmaResult
+          if (pragma === opts.pragma) {
+            const kvs = kvString.split(' ')
+            const result: Record<string, string> = {}
+            for (const kv of kvs) {
+              const [k, v] = kv.split(':')
+              result[k] = v
+            }
+            debug('Pragma extracted', result)
+            if (typeof opts.onMetaExtracted === 'function') {
+              opts.onMetaExtracted(sf.fileName, result)
+            }
           }
         }
+        return ts.visitNode(sf, getVisitor(ts, ctx, sf, opts))
       }
-      return ts.visitNode(sf, getVisitor(ts, ctx, sf, opts))
     }
-  }
 
   return transformFn
 }

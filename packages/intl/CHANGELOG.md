@@ -3,6 +3,256 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.15.0](https://github.com/formatjs/formatjs/compare/@formatjs/intl@1.14.3...@formatjs/intl@1.15.0) (2021-10-22)
+
+
+### Features
+
+* **@formatjs/intl:** add fallbackOnEmptyString option ([#3201](https://github.com/formatjs/formatjs/issues/3201)) ([5c67c28](https://github.com/formatjs/formatjs/commit/5c67c28b60aa361e076bb098a6d081c3f8a1fbd2))
+* **@formatjs/intl:** upgrade to TS 4.4 ([8037bb2](https://github.com/formatjs/formatjs/commit/8037bb2e8c437d7033a3e0761606d54b916e9ff2))
+
+
+
+
+
+## [1.14.3](https://github.com/formatjs/formatjs/compare/@formatjs/intl@1.14.2...@formatjs/intl@1.14.3) (2021-10-17)
+
+**Note:** Version bump only for package @formatjs/intl
+
+
+
+
+
+## [1.14.2](https://github.com/formatjs/formatjs/compare/@formatjs/intl@1.14.1...@formatjs/intl@1.14.2) (2021-09-27)
+
+
+### Bug Fixes
+
+* **@formatjs/intl:** rm dep on @types/node ([245301f](https://github.com/formatjs/formatjs/commit/245301f72c77e487f1a3a9dcf6d88f459e4fa92f))
+
+
+
+
+
+## [1.14.1](https://github.com/formatjs/formatjs/compare/@formatjs/intl@1.14.0...@formatjs/intl@1.14.1) (2021-08-21)
+
+
+### Bug Fixes
+
+* **@formatjs/intl:** fix missing deps, fix [#3122](https://github.com/formatjs/formatjs/issues/3122) ([117fc7d](https://github.com/formatjs/formatjs/commit/117fc7d3e69ac0f1c77b47b530601607f80b66f8))
+
+
+
+
+
+# [1.14.0](https://github.com/formatjs/formatjs/compare/@formatjs/intl@1.13.5...@formatjs/intl@1.14.0) (2021-08-15)
+
+
+### Features
+
+* **@formatjs/fast-memoize:** remove unused Cache.has ([#3102](https://github.com/formatjs/formatjs/issues/3102)) ([5e9a425](https://github.com/formatjs/formatjs/commit/5e9a425519fd2b2473172687fccb58a6979ec81e))
+
+
+
+
+
+## [1.13.5](https://github.com/formatjs/formatjs/compare/@formatjs/intl@1.13.4...@formatjs/intl@1.13.5) (2021-08-06)
+
+**Note:** Version bump only for package @formatjs/intl
+
+
+
+
+
+## [1.13.4](https://github.com/formatjs/formatjs/compare/@formatjs/intl@1.13.3...@formatjs/intl@1.13.4) (2021-07-24)
+
+**Note:** Version bump only for package @formatjs/intl
+
+
+
+
+
+## [1.13.3](https://github.com/formatjs/formatjs/compare/@formatjs/intl@1.13.2...@formatjs/intl@1.13.3) (2021-07-23)
+
+**Note:** Version bump only for package @formatjs/intl
+
+
+
+
+
+## [1.13.2](https://github.com/formatjs/formatjs/compare/@formatjs/intl@1.13.1...@formatjs/intl@1.13.2) (2021-06-26)
+
+**Note:** Version bump only for package @formatjs/intl
+
+
+
+
+
+## [1.13.1](https://github.com/formatjs/formatjs/compare/@formatjs/intl@1.13.0...@formatjs/intl@1.13.1) (2021-06-21)
+
+**Note:** Version bump only for package @formatjs/intl
+
+
+
+
+
+# [1.13.0](https://github.com/formatjs/formatjs/compare/@formatjs/intl@1.12.1...@formatjs/intl@1.13.0) (2021-06-09)
+
+
+### Features
+
+* **@formatjs/intl:** add numberingSystem to NUMBER_FORMAT_OPTIONS ([#2953](https://github.com/formatjs/formatjs/issues/2953)) ([508c45d](https://github.com/formatjs/formatjs/commit/508c45d7631d701509c76ffb3da1cb901f77d808)), closes [#2952](https://github.com/formatjs/formatjs/issues/2952)
+
+
+
+
+
+## [1.12.1](https://github.com/formatjs/formatjs/compare/@formatjs/intl@1.12.0...@formatjs/intl@1.12.1) (2021-06-05)
+
+**Note:** Version bump only for package @formatjs/intl
+
+
+
+
+
+# [1.12.0](https://github.com/formatjs/formatjs/compare/@formatjs/intl@1.11.3...@formatjs/intl@1.12.0) (2021-06-05)
+
+
+### Features
+
+* **@formatjs/intl:** allow formatList & FormattedList to take in readonly array ([#2950](https://github.com/formatjs/formatjs/issues/2950)) ([1d7896c](https://github.com/formatjs/formatjs/commit/1d7896c6d2aff31e215fae07f16e7509484a8ba6))
+
+
+
+
+
+## [1.11.3](https://github.com/formatjs/formatjs/compare/@formatjs/intl@1.11.2...@formatjs/intl@1.11.3) (2021-06-04)
+
+**Note:** Version bump only for package @formatjs/intl
+
+
+
+
+
+## [1.11.2](https://github.com/formatjs/formatjs/compare/@formatjs/intl@1.11.1...@formatjs/intl@1.11.2) (2021-06-01)
+
+**Note:** Version bump only for package @formatjs/intl
+
+
+
+
+
+## [1.11.1](https://github.com/formatjs/formatjs/compare/@formatjs/intl@1.11.0...@formatjs/intl@1.11.1) (2021-05-23)
+
+**Note:** Version bump only for package @formatjs/intl
+
+
+
+
+
+# [1.11.0](https://github.com/formatjs/formatjs/compare/@formatjs/intl@1.10.8...@formatjs/intl@1.11.0) (2021-05-20)
+
+
+### Features
+
+* **@formatjs/intl:** add intl.formatListToParts, fix [#2901](https://github.com/formatjs/formatjs/issues/2901) ([eb40bd3](https://github.com/formatjs/formatjs/commit/eb40bd3e9c2e788c4e13e3ea94bcdd786b99c095))
+
+
+
+
+
+## [1.10.8](https://github.com/formatjs/formatjs/compare/@formatjs/intl@1.10.7...@formatjs/intl@1.10.8) (2021-05-17)
+
+**Note:** Version bump only for package @formatjs/intl
+
+
+
+
+
+## [1.10.7](https://github.com/formatjs/formatjs/compare/@formatjs/intl@1.10.6...@formatjs/intl@1.10.7) (2021-05-14)
+
+**Note:** Version bump only for package @formatjs/intl
+
+
+
+
+
+## [1.10.6](https://github.com/formatjs/formatjs/compare/@formatjs/intl@1.10.5...@formatjs/intl@1.10.6) (2021-05-10)
+
+**Note:** Version bump only for package @formatjs/intl
+
+
+
+
+
+## [1.10.5](https://github.com/formatjs/formatjs/compare/@formatjs/intl@1.10.4...@formatjs/intl@1.10.5) (2021-05-02)
+
+**Note:** Version bump only for package @formatjs/intl
+
+
+
+
+
+## [1.10.4](https://github.com/formatjs/formatjs/compare/@formatjs/intl@1.10.3...@formatjs/intl@1.10.4) (2021-05-02)
+
+**Note:** Version bump only for package @formatjs/intl
+
+
+
+
+
+## [1.10.3](https://github.com/formatjs/formatjs/compare/@formatjs/intl@1.10.2...@formatjs/intl@1.10.3) (2021-04-26)
+
+**Note:** Version bump only for package @formatjs/intl
+
+
+
+
+
+## [1.10.2](https://github.com/formatjs/formatjs/compare/@formatjs/intl@1.10.1...@formatjs/intl@1.10.2) (2021-04-26)
+
+**Note:** Version bump only for package @formatjs/intl
+
+
+
+
+
+## [1.10.1](https://github.com/formatjs/formatjs/compare/@formatjs/intl@1.10.0...@formatjs/intl@1.10.1) (2021-04-26)
+
+
+### Bug Fixes
+
+* **@formatjs/intl:** fix fast-memoize import ([2738741](https://github.com/formatjs/formatjs/commit/2738741fb9b0d442fe2f1ad0b335c2436d8bc579))
+* **@formatjs/intl:** use fast-memoize esm fork ([d1a4509](https://github.com/formatjs/formatjs/commit/d1a45094a130107e019ce12e5038baf2febf397f))
+
+
+
+
+
+# [1.10.0](https://github.com/formatjs/formatjs/compare/@formatjs/intl@1.9.8...@formatjs/intl@1.10.0) (2021-04-21)
+
+
+### Bug Fixes
+
+* **@formatjs/intl:** make IntlShape generic default to string, fix [#2821](https://github.com/formatjs/formatjs/issues/2821) ([08d48f2](https://github.com/formatjs/formatjs/commit/08d48f297529ef276f8991bc40c8e864dbd18c5b))
+
+
+### Features
+
+* **@formatjs/intl:** rename OptionalIntlConfig to IntlConfig and IntlConfig to ResolvedIntlConfig ([4a3dd6e](https://github.com/formatjs/formatjs/commit/4a3dd6ef7457b8de1ffea0b61624b91250c717d5))
+
+
+
+
+
+## [1.9.8](https://github.com/formatjs/formatjs/compare/@formatjs/intl@1.9.7...@formatjs/intl@1.9.8) (2021-04-12)
+
+**Note:** Version bump only for package @formatjs/intl
+
+
+
+
+
 ## [1.9.7](https://github.com/formatjs/formatjs/compare/@formatjs/intl@1.9.6...@formatjs/intl@1.9.7) (2021-04-04)
 
 **Note:** Version bump only for package @formatjs/intl

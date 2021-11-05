@@ -4,6 +4,8 @@ load("//tools:jest.bzl", "jest_test")
 
 PACKAGE_NAME = "cli"
 
+exports_files(["package.json"])
+
 pkg_npm(
     name = PACKAGE_NAME,
     package_name = "@formatjs/%s" % PACKAGE_NAME,
@@ -36,6 +38,7 @@ SRC_DEPS = [
     "@npm//@types/fs-extra",
     "@npm//@types/json-stable-stringify",
     "@npm//@types/node",
+    "@npm//@vue/compiler-core",
     "@npm//@vue/compiler-sfc",
     "@npm//chalk",
     "@npm//commander",
@@ -43,6 +46,7 @@ SRC_DEPS = [
     "@npm//fs-extra",
     "@npm//json-stable-stringify",
     "@npm//loud-rejection",
+    "@npm//typescript",
     "//packages/icu-messageformat-parser:dist",
     "//packages/ts-transformer:dist",
 ]
@@ -58,10 +62,9 @@ jest_test(
     name = "unit",
     srcs = [
         "package.json",
-        "tests/extract/unit.test.ts",
-        "tests/extract/vue_extractor.test.ts",
-        "tests/extract/__snapshots__/unit.test.ts.snap",
-    ] + SRCS,
+    ] + SRCS + glob([
+        "tests/unit/**/*",
+    ]),
     deps = [
         "//packages/icu-messageformat-parser:types",
         "//packages/ts-transformer:types",
@@ -71,16 +74,59 @@ jest_test(
 )
 
 jest_test(
-    name = "integration",
+    name = "integration-compile",
+    size = "large",
+    srcs = [
+        "package.json",
+        "bin/formatjs",
+        "tests/integration/formatter.js",
+    ] + SRCS + glob(
+        [
+            "tests/integration/compile/**/*",
+        ],
+    ),
+    flaky = True,
+    deps = [
+        "//packages/icu-messageformat-parser:types",
+        "//packages/ts-transformer:types",
+        "@npm//rimraf",
+        "@npm//@types/rimraf",
+        ":dist",
+    ] + SRC_DEPS,
+)
+
+jest_test(
+    name = "integration-compile-folder",
     size = "large",
     srcs = [
         "package.json",
         "bin/formatjs",
     ] + SRCS + glob(
         [
-            "tests/**/*",
+            "tests/integration/compile_folder/**/*",
         ],
-        exclude = ["tests/extract/unit.test.ts"],
+    ),
+    flaky = True,
+    deps = [
+        "//packages/icu-messageformat-parser:types",
+        "//packages/ts-transformer:types",
+        "@npm//rimraf",
+        "@npm//@types/rimraf",
+        ":dist",
+    ] + SRC_DEPS,
+)
+
+jest_test(
+    name = "integration-extract",
+    size = "large",
+    srcs = [
+        "package.json",
+        "bin/formatjs",
+        "tests/integration/formatter.js",
+    ] + SRCS + glob(
+        [
+            "tests/integration/extract/**/*",
+        ],
     ),
     flaky = True,
     deps = [
@@ -107,8 +153,8 @@ check_format(
         exclude = [
             "CHANGELOG.md",
             # Intentional err
-            "tests/extract/typescript/err.tsx",
-            "tests/*/__snapshots__/*",
+            "tests/integration/extract/typescript/err.tsx",
+            "tests/**/__snapshots__/*",
         ],
     ),
 )

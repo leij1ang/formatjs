@@ -4,12 +4,12 @@ import {
   PluralRulesData,
   SupportedLocales,
   NumberFormatDigitInternalSlots,
-  ResolvePlural,
-  OperandsRecord,
-  InitializePluralRules,
   ToNumber,
   CanonicalizeLocaleList,
 } from '@formatjs/ecma402-abstract'
+import {OperandsRecord} from './abstract/GetOperands'
+import {InitializePluralRules} from './abstract/InitializePluralRules'
+import {ResolvePlural} from './abstract/ResolvePlural'
 import getInternalSlots from './get_internal_slots'
 
 function validateInstance(instance: any, method: string) {
@@ -72,13 +72,15 @@ export class PluralRules implements Intl.PluralRules {
     const internalSlots = getInternalSlots(this)
     opts.locale = internalSlots.locale
     opts.type = internalSlots.type
-    ;([
-      'minimumIntegerDigits',
-      'minimumFractionDigits',
-      'maximumFractionDigits',
-      'minimumSignificantDigits',
-      'maximumSignificantDigits',
-    ] as Array<keyof PluralRulesInternal>).forEach(field => {
+    ;(
+      [
+        'minimumIntegerDigits',
+        'minimumFractionDigits',
+        'maximumFractionDigits',
+        'minimumSignificantDigits',
+        'maximumSignificantDigits',
+      ] as Array<keyof PluralRulesInternal>
+    ).forEach(field => {
       const val = internalSlots[field]
       if (val !== undefined) {
         opts[field] = val

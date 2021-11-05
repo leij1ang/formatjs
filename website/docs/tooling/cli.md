@@ -81,8 +81,17 @@ function Comp(props) {
 
 ## Extraction
 
+<Tabs
+groupId="npm"
+defaultValue="npm"
+values={[
+{label: 'npm', value: 'npm'},
+{label: 'yarn', value: 'yarn'},
+]}>
+<TabItem value="npm">
+
 ```sh
-formatjs extract --help
+npm run extract --help
 # Usage: formatjs extract [options] [files...]
 
 # Extract string messages from React components that use react-intl.
@@ -92,8 +101,28 @@ formatjs extract --help
 For example:
 
 ```sh
-formatjs extract "src/**/*.{ts,tsx,vue}" --out-file lang.json
+npm run extract "src/**/*.{ts,tsx,vue}" --out-file lang.json
 ```
+
+</TabItem>
+<TabItem value="yarn">
+
+```sh
+yarn extract --help
+# Usage: formatjs extract [options] [files...]
+
+# Extract string messages from React components that use react-intl.
+# The input language is expected to be TypeScript or ES2017 with JSX.
+```
+
+For example:
+
+```sh
+yarn extract "src/**/*.{ts,tsx,vue}" --out-file lang.json
+```
+
+</TabItem>
+</Tabs>
 
 :::caution
 You should always quote (`"` or `'`) your glob pattern (like `"src/**/*"`) to avoid auto shell expansion of those glob, which varies depending on your shell (`zsh` vs `fish` vs `bash`).
@@ -120,7 +149,7 @@ The target file path where the plugin will output an aggregated `.json` file of 
 
 ### `--id-interpolation-pattern [pattern]`
 
-If certain message descriptors don't have id, this `pattern` will be used to automaticallygenerate IDs for them. Default to `[sha512:contenthash:base64:6]`. See https://github.com/webpack/loader-utils#interpolatename for sample patterns
+If certain message descriptors don't have id, this `pattern` will be used to automatically generate IDs for them. Default to `[sha512:contenthash:base64:6]`. See [nodejs crypto createHash](https://nodejs.org/api/crypto.html#crypto_crypto_createhash_algorithm_options) for hash algorithms & [nodejs buffer docs](https://nodejs.org/api/buffer.html#buffer_buffers_and_character_encodings) for digest encodings.
 
 ### `--extract-source-location`
 
@@ -177,12 +206,31 @@ sentences are not translator-friendly.
 
 ## Compilation
 
-Compile extracted file from `formatjs extract` to a react-intl consumable
+Compile extracted files from `formatjs extract` to a [react-intl](../react-intl.md) consumable
 JSON file. This also does ICU message verification. See [Message Distribution](../getting-started/message-distribution.md) for more details.
 
+<Tabs
+groupId="npm"
+defaultValue="npm"
+values={[
+{label: 'npm', value: 'npm'},
+{label: 'yarn', value: 'yarn'},
+]}>
+<TabItem value="npm">
+
 ```sh
-formatjs compile --help
+npm run compile --help
 ```
+
+</TabItem>
+<TabItem value="yarn">
+
+```sh
+yarn compile --help
+```
+
+</TabItem>
+</Tabs>
 
 ### `--format [path]`
 
@@ -219,13 +267,116 @@ Given the English message `my name is {name}`
 | `xx-HA` | `[javascript]my name is {name}`              |
 | `en-XA` | `ṁẏ ńâṁè íś {name}`                          |
 
+## Extraction and compilation with a single script
+
+In some environments you may want to simply extract your messages to a file ready for use with react-intl without using an intermediary extracted message file format. This could be useful for quickly and easily creating the file for the original language that uses the default messages. This could also be useful if you use a Translation Management System (TMS) that is best suited to working with the compiled files. Keep in mind that the compiled file does not contain message descriptions so it is harder to work with for translators. Ideally you want to find or write a custom formatter you can use to extract messages into a file format that works with your TMS.
+
+In order to achieve extraction and compilation in a single script, you can simply set up a script for that in `package.json` like in this example:
+
+```json
+"scripts": {
+  "extract": "formatjs extract",
+  "compile": "formatjs compile",
+  "extract-compile": "formatjs extract 'src/**/*.ts*' --out-file temp.json --flatten --id-interpolation-pattern '[sha512:contenthash:base64:6]' && formatjs compile 'temp.json' --out-file lang/en.json && rm temp.json"
+}
+```
+
+### Breakdown of the script
+
+The `extract-compile` example script consists of three operations performed one after the other.
+
+```sh
+formatjs extract 'src/**/*.ts*' --out-file temp.json --flatten --id-interpolation-pattern '[sha512:contenthash:base64:6]'
+```
+
+The first script extracts messages from all typescript files that are located in subfolders of `src`. You may need to ignore certain files that could trigger errors or warnings in the script, such as `--ignore myFolder/myFile.ts`
+
+```sh
+formatjs compile 'temp.json' --out-file lang/en.json
+```
+
+The second script compiles the messages from `temp.json` into the file `lang/en.json`. This file is ready to be consumed by react-intl.
+
+```sh
+rm temp.json
+```
+
+The last script deletes the `temp.json` extracted file. Feel free remove this from the script if you wish to keep this file around.
+
+### The resulting files
+
+Here you can see the difference between the extracted (using the default formatter) and the compiled file formats. In the script above, `temp.json` is the extracted file and `en.json` is the compiled file.
+<Tabs
+groupId="json"
+defaultValue="extracted"
+values={[
+{label: 'Extracted messages', value: 'extracted'},
+{label: 'Compiled messages', value: 'compiled'},
+]}>
+<TabItem value="extracted">
+
+```json
+{
+  "hak27d": {
+    "defaultMessage": "Control Panel",
+    "description": "title of control panel section"
+  },
+  "haqsd": {
+    "defaultMessage": "Delete user {name}",
+    "description": "delete button"
+  },
+  "19hjs": {
+    "defaultMessage": "New Password",
+    "description": "placeholder text"
+  },
+  "explicit-id": {
+    "defaultMessage": "Confirm Password",
+    "description": "placeholder text"
+  }
+}
+```
+
+</TabItem>
+<TabItem value="compiled">
+
+```json
+{
+  "hak27d": "Control Panel",
+  "haqsd": "Delete user {name}",
+  "19hjs": "New Password",
+  "explicit-id": "Confirm Password"
+}
+```
+
+</TabItem>
+</Tabs>
+
 ## Folder Compilation
 
 Batch compile a folder with extracted files from `formatjs extract` to a folder containing react-intl consumable JSON files. This also does ICU message verification. See [Message Distribution](../getting-started/message-distribution.md) for more details.
 
+<Tabs
+groupId="npm"
+defaultValue="npm"
+values={[
+{label: 'npm', value: 'npm'},
+{label: 'yarn', value: 'yarn'},
+]}>
+<TabItem value="npm">
+
 ```sh
-formatjs compile-folder [options] <folder> <outFolder>
+npm run formatjs compile-folder [options] <folder> <outFolder>
 ```
+
+</TabItem>
+<TabItem value="yarn">
+
+```sh
+yarn formatjs compile-folder [options] <folder> <outFolder>
+```
+
+</TabItem>
+</Tabs>
 
 Folder structure should be in the form of `<folder>/<locale>.json` and the output would be `<outFolder>/<locale>.json`.
 

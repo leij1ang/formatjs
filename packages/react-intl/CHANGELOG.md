@@ -3,6 +3,305 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.21.0](https://github.com/formatjs/formatjs/compare/react-intl@5.20.13...react-intl@5.21.0) (2021-10-22)
+
+
+### Features
+
+* **@formatjs/intl:** add fallbackOnEmptyString option ([#3201](https://github.com/formatjs/formatjs/issues/3201)) ([5c67c28](https://github.com/formatjs/formatjs/commit/5c67c28b60aa361e076bb098a6d081c3f8a1fbd2))
+* **react-intl:** upgrade to TS 4.4 ([b7f79b4](https://github.com/formatjs/formatjs/commit/b7f79b4a5567f76e3026abd90f3a2b3d894c17c0))
+
+
+
+
+
+## [5.20.13](https://github.com/formatjs/formatjs/compare/react-intl@5.20.12...react-intl@5.20.13) (2021-10-17)
+
+
+### Bug Fixes
+
+* **react-intl:** fix iife dist file, fix [#3188](https://github.com/formatjs/formatjs/issues/3188) ([a0767b6](https://github.com/formatjs/formatjs/commit/a0767b6a54c5596a25c45cec830611b1a82608f5))
+
+
+
+
+
+## [5.20.12](https://github.com/formatjs/formatjs/compare/react-intl@5.20.11...react-intl@5.20.12) (2021-09-27)
+
+
+### Bug Fixes
+
+* **react-intl:** use indexOf instead of includes ([aed19a2](https://github.com/formatjs/formatjs/commit/aed19a2719b8c28dbe064482e54da70f8aae1160))
+
+
+
+
+
+## [5.20.11](https://github.com/formatjs/formatjs/compare/react-intl@5.20.10...react-intl@5.20.11) (2021-09-26)
+
+
+### Bug Fixes
+
+* **react-intl:** allow @types/react 16 as well ([7a8cef1](https://github.com/formatjs/formatjs/commit/7a8cef142a20c96e847ac5c10efcd88dd032a074)), closes [#3138](https://github.com/formatjs/formatjs/issues/3138)
+
+
+
+
+
+## [5.20.10](https://github.com/formatjs/formatjs/compare/react-intl@5.20.9...react-intl@5.20.10) (2021-08-21)
+
+
+### Bug Fixes
+
+* **react-intl:** fix missing deps, fix [#3122](https://github.com/formatjs/formatjs/issues/3122) ([f3b9c0f](https://github.com/formatjs/formatjs/commit/f3b9c0f2a8e3bc5c0698df6dc29b2d6eaa0a2889))
+
+
+
+
+
+## [5.20.9](https://github.com/formatjs/formatjs/compare/react-intl@5.20.8...react-intl@5.20.9) (2021-08-16)
+
+
+### Bug Fixes
+
+* **react-intl:** fix children type of FormattedMessage, fix [#3117](https://github.com/formatjs/formatjs/issues/3117) ([567a131](https://github.com/formatjs/formatjs/commit/567a131a910e0bc2584cc031235b8987d91d815a))
+
+
+
+
+
+## [5.20.8](https://github.com/formatjs/formatjs/compare/react-intl@5.20.7...react-intl@5.20.8) (2021-08-15)
+
+
+### Bug Fixes
+
+* **react-intl:** add generic constraint to defineMessage for better intellisense experience ([#3111](https://github.com/formatjs/formatjs/issues/3111)) ([9eae9cd](https://github.com/formatjs/formatjs/commit/9eae9cdc12e2f073767d89e18d03f70917d7d1b0))
+
+
+
+
+
+## [5.20.7](https://github.com/formatjs/formatjs/compare/react-intl@5.20.6...react-intl@5.20.7) (2021-08-06)
+
+**Note:** Version bump only for package react-intl
+
+
+
+
+
+## [5.20.6](https://github.com/formatjs/formatjs/compare/react-intl@5.20.5...react-intl@5.20.6) (2021-07-24)
+
+**Note:** Version bump only for package react-intl
+
+
+
+
+
+## [5.20.5](https://github.com/formatjs/formatjs/compare/react-intl@5.20.4...react-intl@5.20.5) (2021-07-23)
+
+**Note:** Version bump only for package react-intl
+
+
+
+
+
+## [5.20.4](https://github.com/formatjs/formatjs/compare/react-intl@5.20.3...react-intl@5.20.4) (2021-06-26)
+
+**Note:** Version bump only for package react-intl
+
+
+
+
+
+## [5.20.3](https://github.com/formatjs/formatjs/compare/react-intl@5.20.2...react-intl@5.20.3) (2021-06-21)
+
+**Note:** Version bump only for package react-intl
+
+
+
+
+
+## [5.20.2](https://github.com/formatjs/formatjs/compare/react-intl@5.20.1...react-intl@5.20.2) (2021-06-09)
+
+**Note:** Version bump only for package react-intl
+
+
+
+
+
+## [5.20.1](https://github.com/formatjs/formatjs/compare/react-intl@5.20.0...react-intl@5.20.1) (2021-06-05)
+
+**Note:** Version bump only for package react-intl
+
+
+
+
+
+# [5.20.0](https://github.com/formatjs/formatjs/compare/react-intl@5.19.0...react-intl@5.20.0) (2021-06-05)
+
+
+### Features
+
+* **@formatjs/intl:** allow formatList & FormattedList to take in readonly array ([#2950](https://github.com/formatjs/formatjs/issues/2950)) ([1d7896c](https://github.com/formatjs/formatjs/commit/1d7896c6d2aff31e215fae07f16e7509484a8ba6))
+
+
+
+
+
+# [5.19.0](https://github.com/formatjs/formatjs/compare/react-intl@5.18.3...react-intl@5.19.0) (2021-06-04)
+
+
+### Features
+
+* **@formatjs/ts-transformer:** support ts-jest 27, fix [#2942](https://github.com/formatjs/formatjs/issues/2942) ([7d994e4](https://github.com/formatjs/formatjs/commit/7d994e485f0e615f8e08fe3befb78d4416edbaaa))
+
+
+
+
+
+## [5.18.3](https://github.com/formatjs/formatjs/compare/react-intl@5.18.2...react-intl@5.18.3) (2021-06-02)
+
+
+### Bug Fixes
+
+* **react-intl:** make React external to react-intl, fix [#2939](https://github.com/formatjs/formatjs/issues/2939) ([f744ccc](https://github.com/formatjs/formatjs/commit/f744ccc39bc7925a8d9764ef3e644333b28ee4e7))
+
+
+
+
+
+## [5.18.2](https://github.com/formatjs/formatjs/compare/react-intl@5.18.1...react-intl@5.18.2) (2021-06-01)
+
+**Note:** Version bump only for package react-intl
+
+
+
+
+
+## [5.18.1](https://github.com/formatjs/formatjs/compare/react-intl@5.18.0...react-intl@5.18.1) (2021-05-23)
+
+**Note:** Version bump only for package react-intl
+
+
+
+
+
+# [5.18.0](https://github.com/formatjs/formatjs/compare/react-intl@5.17.7...react-intl@5.18.0) (2021-05-20)
+
+
+### Features
+
+* **react-intl:** add FormattedListParts, fix [#2901](https://github.com/formatjs/formatjs/issues/2901) ([eb9f193](https://github.com/formatjs/formatjs/commit/eb9f193e084328f5471b183ec36eadba0edf3cf6))
+
+
+
+
+
+## [5.17.7](https://github.com/formatjs/formatjs/compare/react-intl@5.17.6...react-intl@5.17.7) (2021-05-17)
+
+**Note:** Version bump only for package react-intl
+
+
+
+
+
+## [5.17.6](https://github.com/formatjs/formatjs/compare/react-intl@5.17.5...react-intl@5.17.6) (2021-05-14)
+
+**Note:** Version bump only for package react-intl
+
+
+
+
+
+## [5.17.5](https://github.com/formatjs/formatjs/compare/react-intl@5.17.4...react-intl@5.17.5) (2021-05-10)
+
+**Note:** Version bump only for package react-intl
+
+
+
+
+
+## [5.17.4](https://github.com/formatjs/formatjs/compare/react-intl@5.17.3...react-intl@5.17.4) (2021-05-02)
+
+**Note:** Version bump only for package react-intl
+
+
+
+
+
+## [5.17.3](https://github.com/formatjs/formatjs/compare/react-intl@5.17.2...react-intl@5.17.3) (2021-05-02)
+
+**Note:** Version bump only for package react-intl
+
+
+
+
+
+## [5.17.2](https://github.com/formatjs/formatjs/compare/react-intl@5.17.1...react-intl@5.17.2) (2021-04-29)
+
+
+### Bug Fixes
+
+* **react-intl:** update react provider to match GetDerivedStateFromProps declaration. ([#2852](https://github.com/formatjs/formatjs/issues/2852)) ([7248d37](https://github.com/formatjs/formatjs/commit/7248d37af8b26ace9d94c15dd305bd5aab4d13dd)), closes [/github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/react/v16/index.d.ts#L646](https://github.com//github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/react/v16/index.d.ts/issues/L646)
+
+
+
+
+
+## [5.17.1](https://github.com/formatjs/formatjs/compare/react-intl@5.17.0...react-intl@5.17.1) (2021-04-26)
+
+**Note:** Version bump only for package react-intl
+
+
+
+
+
+# [5.17.0](https://github.com/formatjs/formatjs/compare/react-intl@5.16.2...react-intl@5.17.0) (2021-04-26)
+
+
+### Features
+
+* **react-intl:** expose ESM & IIFE versions ([06409a7](https://github.com/formatjs/formatjs/commit/06409a77e41e1b75eea39d18e4d4f3b099f14bc1))
+
+
+
+
+
+## [5.16.2](https://github.com/formatjs/formatjs/compare/react-intl@5.16.1...react-intl@5.16.2) (2021-04-26)
+
+**Note:** Version bump only for package react-intl
+
+
+
+
+
+## [5.16.1](https://github.com/formatjs/formatjs/compare/react-intl@5.16.0...react-intl@5.16.1) (2021-04-26)
+
+**Note:** Version bump only for package react-intl
+
+
+
+
+
+# [5.16.0](https://github.com/formatjs/formatjs/compare/react-intl@5.15.8...react-intl@5.16.0) (2021-04-21)
+
+
+### Features
+
+* **react-intl:** rename OptionalIntlConfig to IntlConfig and IntlConfig to ResolvedIntlConfig ([779a957](https://github.com/formatjs/formatjs/commit/779a957b190dc8ab6cc0549e11acd43bdeba4b82))
+
+
+
+
+
+## [5.15.8](https://github.com/formatjs/formatjs/compare/react-intl@5.15.7...react-intl@5.15.8) (2021-04-12)
+
+**Note:** Version bump only for package react-intl
+
+
+
+
+
 ## [5.15.7](https://github.com/formatjs/formatjs/compare/react-intl@5.15.6...react-intl@5.15.7) (2021-04-04)
 
 **Note:** Version bump only for package react-intl
